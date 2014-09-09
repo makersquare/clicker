@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/makersquare/clicker.png?label=ready&title=Ready)](https://waffle.io/makersquare/clicker)
 # Clicker
 
 Clicker is a web app that allows teachers to create questions to survey the class during lecture. The teacher will see the results in real time.

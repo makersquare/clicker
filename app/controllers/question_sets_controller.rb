@@ -1,6 +1,7 @@
 class QuestionSetsController < ApplicationController
   before_action :set_question_set, only: [:show, :edit, :update, :destroy]
   before_action :set_class_group
+  respond_to :json, :html
 
   # GET /question_sets
   # GET /question_sets.json

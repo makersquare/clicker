@@ -9,7 +9,4 @@ RSpec.describe ClassGroupsController, :type => :controller do
     end
   end 
 
-    
-  
-
 end

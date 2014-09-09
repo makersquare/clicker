@@ -23,18 +23,22 @@ ActiveRecord::Schema.define(version: 20140909221454) do
   end
 
   create_table "memberships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "class_group_id"
     t.string   "kind"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "question_sets", force: true do |t|
+    t.integer  "class_group_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "questions", force: true do |t|
+    t.integer  "question_set_id"
     t.string   "type"
     t.text     "content"
     t.datetime "created_at"
@@ -42,6 +46,8 @@ ActiveRecord::Schema.define(version: 20140909221454) do
   end
 
   create_table "responses", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"

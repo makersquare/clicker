@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140908223548) do
   end
 
   create_table "memberships", force: true do |t|
-    t.boolean  "teacher"
+    t.string   "kind"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140908223548) do
 
   create_table "users", force: true do |t|
     t.string   "username"
-    t.boolean  "teacher"
+    t.boolean  "verified"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

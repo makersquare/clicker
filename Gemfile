@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem "omniauth-github", '1.1.1'
 
 group :development do
-	gem 'better-errors'
+	gem 'better_errors'
 	gem 'binding_of_caller'
 end
 

@@ -17,5 +17,4 @@
 /tmp
 
 /config/_github.yml
-Gemfile*
 /app/assets/stylesheets/users.css.scss*

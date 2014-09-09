@@ -16,6 +16,7 @@ gem 'rails', '4.1.5'
 
 #use postgres as database for Active Record
 gem 'pg'
+gem 'hirb'
 
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

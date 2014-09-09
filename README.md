@@ -23,6 +23,7 @@ Clicker is a web app that allows teachers to create questions to survey the clas
 - As a teacher, I don't want students to see a question until I open it
 - As a teacher, after I close a question, I want to be able to anonymously present a student's answer
 - As a teacher, after I close a question, if no one gets the answer, I want to present a prepared answer
+- As a teacher, I want to be able to give feedback on individual student answers
 - As a student, if the question is still open, I want to resubmit my answer if I made a mistake
 - As a student, I want to be able to view past question sets I participated in.
 

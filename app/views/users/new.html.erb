@@ -1,6 +1,8 @@
 <% if current_user %>
   <h3>"Welcome, <%= current_user.name %>!"</h3>
+  You have just... <%= flash[:alert] %><br>
   <%= link_to "Sign out", "/signout" %>
 <% else %>
-  <%= link_to "Sign in with Github", "/auth/github" %>
+  <%= link_to "Sign in with Github", "/auth/github" %><br>
+  You have just... <%= flash[:alert] %>
 <% end %>

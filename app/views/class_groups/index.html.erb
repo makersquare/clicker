@@ -26,3 +26,36 @@
 
 <%= render 'form' %>
 
+<%= link_to 'New Class group', new_class_group_path %>
+
+
+<div class="class-groups panel">
+  <div class="header"><h1>Classes</h1></div>
+  <div class="class-list">
+
+  <!-- 'specific-class' is a div for each class that belongs to the user -->
+    <div class="specific-class panel">
+      <div class="row">
+        <a>
+          <h3>Ruby Course</h3>
+          <p>An adventure in a language that you will come to know and love dearly.</p>
+        </a>
+      </div>
+      <div class="row">
+        <ul class="small-block-grid-2">
+          <li><a><span class="fi-pencil iconic-md" title="pencil" aria-hidden="true">Edit</span></a></li>
+          <li><a><span class="fi-people iconic-md" title="people" aria-hidden="true">Add Students</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="create-class"></div>
+</div>
+
+
+<!-- add a new class -->
+<div class="add-class panel">
+  <div class="row panel">
+    <a href="#"><div class="header"><h3>Add a Class</h3></div></a>
+  </div>
+</div>

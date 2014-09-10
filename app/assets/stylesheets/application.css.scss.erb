@@ -1,0 +1,83 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+ *= require iconic-foundation
+
+ */
+
+@font-face {
+	font-family: 'iconic-sm';
+	// src: url('fonts/iconic-sm.eot');
+	src: url('<%= asset_path("iconic-sm.eot") %>');
+	src: url('<%= asset_path("iconic-sm.eot") + "?#iefix" %>') format('eot')
+		, url('<%= asset_path("iconic-sm.woff") %>') format('woff')
+		, url('<%= asset_path("iconic-sm.ttf") %>') format('truetype')
+		, url('<%= asset_path("iconic-sm.svg") + "#Iconic" %>') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'iconic-md';
+	// src: url('fonts/iconic-md.eot');
+	src: url('<%= asset_path("iconic-md.eot") %>');
+	src: url('<%= asset_path("iconic-md.eot") + "?#iefix" %>') format('eot')
+		, url('<%= asset_path("iconic-md.woff") %>') format('woff')
+		, url('<%= asset_path("iconic-md.ttf") %>') format('truetype')
+		, url('<%= asset_path("iconic-md.svg") + "#Iconic" %>') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'iconic-lg';
+	// src: url('fonts/iconic-lg.eot');
+	src: url('<%= asset_path("iconic-lg.eot") %>');
+	src: url('<%= asset_path("iconic-lg.eot") + "?#iefix" %>') format('eot')
+		, url('<%= asset_path("iconic-lg.woff") %>') format('woff')
+		, url('<%= asset_path("iconic-lg.ttf") %>') format('truetype')
+		, url('<%= asset_path("iconic-lg.svg") + "#Iconic" %>') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	text-align: center;
+}
+
+/*font styling*/
+
+h1, h2, h3 {
+	font-family: 'Droid Sans', sans-serif;
+}
+
+h4, h5, h6 {
+	font-family: 'Karla', sans-serif;
+	font-variant: small-caps;
+}
+
+p, span {
+	font-family: 'Inconsolata', sans-serif;
+}
+
+body div a:hover {
+	background-color: 10%;
+}
+
+/*navigation styling*/
+
+div.navigation #navigation {
+	color: red;
+}

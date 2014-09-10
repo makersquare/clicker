@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.belongs_to :question_set
       t.string :type
-      t.text :content
+      t.json :content
 
       t.timestamps
     end

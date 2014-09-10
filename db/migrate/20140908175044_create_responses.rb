@@ -3,7 +3,7 @@ class CreateResponses < ActiveRecord::Migration
     create_table :responses do |t|
       t.belongs_to :question
       t.belongs_to :user
-      t.text :content
+      t.json :content
 
       t.timestamps
     end

@@ -1,5 +1,5 @@
 class QuestionSetsController < ApplicationController
-  before_action :set_question_set, only: [:show, :edit, :update, :destroy]
+  #before_action :set_question_set, only: [:show, :edit, :update, :destroy]
 
   # GET /question_sets
   # GET /question_sets.json
@@ -11,6 +11,8 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
+    @class_group = ClassGroup.find(:class_group_id)
+    @question_sets = @class_group.question_sets
   end
 
   # GET /question_sets/1/edit

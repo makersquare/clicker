@@ -65,8 +65,8 @@ AttendanceQuestion.create([
   {
     question_set_id: 1,
     content: {
-          "question": "Attendance Check",
-          "answer": true
+          question: "Attendance Check",
+          answer: "true"
         }
   }
   ])
@@ -75,24 +75,21 @@ MultiChoiceQuestion.create([
   {
     question_set_id: 1,
     content: {
-          "question": "How many children can a node of a binary tree have?",
-          "answer": "D",
-          "choices": [
-            {"A": "0"},
-            {"B": "1"},
-            {"C": "2"},
-            {"D": "0, 1, or 2"}
+          question: "How many children can a node of a binary tree have?",
+          answer: "D",
+          choices: [
+            { "A" => "0" },
+            { "B" => "1" },
+            { "C" => "2" },
+            { "D" => "0, 1, or 2" }
           ]
         }
-  }
-  ])
-
-TrueFalseQuestion.create([
+  },
   {
     question_set_id: 1,
     content: {
-      "question": "Binary trees are cool.",
-      "answer": true
+      question: "Binary trees are cool.",
+      answer: "true"
     }
   }
   ])
@@ -101,8 +98,8 @@ ShortAnswerQuestion.create([
   {
     question_set_id: 1,
     content: {
-          "question": "What rule separates a binary search tree from a regular binary tree?",
-          "answer": "All children to the left of the node must be smaller than the node, and all children to the right must be larger."
+          question: "What rule separates a binary search tree from a regular binary tree?",
+          answer: "All children to the left of the node must be smaller than the node, and all children to the right must be larger."
         }
   }
   ])
@@ -111,17 +108,23 @@ Response.create([
   {
     question_id: 1,
     user_id: 1,
-    content: "true"
+    content: {
+      response: "true"
+    }
   },
   {
     question_id: 2,
     user_id: 1,
-    content: "D"
+    content: {
+      response: "D"
+    }
   },
   {
     question_id: 3,
     user_id: 1,
-    content: "I have no idea."
+    content: {
+      response: "I have no idea."
+    }
   }
   ])
 

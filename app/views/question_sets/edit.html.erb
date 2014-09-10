@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @question_set %> |
-<%= link_to 'Back', question_sets_path %>
+<%= link_to 'Show', [@class_group, @question_set] %> |
+<%= link_to 'Back', class_group_question_sets_path(@class_group) %>

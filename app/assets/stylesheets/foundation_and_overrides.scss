@@ -1377,7 +1377,7 @@ $include-html-global-classes: $include-html-classes;
 
 // Background color for the top bar
 $topbar-bg-color: $teal;
-$topbar-bg: $topbar-bg-color;
+// $topbar-bg: $topbar-bg-color;
 
 // Height and margin
 // $topbar-height: 45px;
@@ -1430,8 +1430,8 @@ $topbar-dropdown-label-bg: $teal;
 // $topbar-menu-link-weight: $font-weight-bold;
 // $topbar-menu-link-color: $white;
 // $topbar-menu-icon-color: $white;
-$topbar-menu-link-color-toggled: $teal;
-$topbar-menu-icon-color-toggled: $teal;
+// $topbar-menu-link-color-toggled: $jumbo;
+// $topbar-menu-icon-color-toggled: $jumbo;
 
 // Transitions and breakpoint styles
 // $topbar-transition-speed: 300ms;

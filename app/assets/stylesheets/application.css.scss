@@ -12,4 +12,31 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+body {
+	text-align: center;
+}
+
+/*font styling*/
+
+h1, h2, h3 {
+	font-family: 'Droid Sans', sans-serif;
+}
+
+h4, h5, h6 {
+	font-family: 'Karla', sans-serif;
+	font-variant: small-caps;
+}
+
+p, span {
+	font-family: 'Inconsolata', sans-serif;
+}
+
+/*navigation styling*/
+
+div.navigation #navigation {
+	color: red;
+}

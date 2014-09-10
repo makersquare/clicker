@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140910154744) do
   create_table "questions", force: true do |t|
     t.integer  "question_set_id"
     t.string   "type"
-    t.json     "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140910154744) do
   create_table "responses", force: true do |t|
     t.integer  "question_id"
     t.integer  "user_id"
-    t.json     "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

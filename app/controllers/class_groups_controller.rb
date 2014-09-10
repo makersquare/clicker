@@ -14,10 +14,6 @@ class ClassGroupsController < ApplicationController
   def show
   end
 
-  # GET /class_groups/new
-  def new
-    @class_group = ClassGroup.new
-  end
 
   # GET /class_groups/1/edit
   def edit
@@ -30,7 +26,7 @@ class ClassGroupsController < ApplicationController
 
     respond_to do |format|
       if @class_group.save
-        format.html { redirect_to @class_group, notice: 'Class group was successfully created.' }
+        format.html { render :show, notice: 'Class group was successfully created.' }
         format.json { render :show, status: :created, location: @class_group }
       else
         format.html { render :new }

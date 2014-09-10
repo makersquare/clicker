@@ -1,5 +1,5 @@
-<% if current_user %>
-  <h3>"Welcome, <%= current_user.name %>!"</h3>
+<% if @current_user %>
+  <h3>"Welcome, <%= @current_user.name %>!"</h3>
   You have just... <%= flash[:alert] %><br>
   <%= link_to "Sign out", "/signout" %>
 <% else %>

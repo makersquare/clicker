@@ -3,9 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Question</th>
       <th>Type</th>
-      <th>Choices</th>
+      <th>Content</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,9 +12,8 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= question.question %></td>
         <td><%= question.type %></td>
-        <td><%= question.choices %></td>
+        <td><%= question.content %></td>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>

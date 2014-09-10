@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get "/signout" => "sessions#destroy", :as => :signout
   
   resources :class_groups, except: [:new] do
-    resources :memberships
+    resources :question_sets
+	resources :memberships
   end
 
 
@@ -15,7 +16,6 @@ Rails.application.routes.draw do
 
   resources :questions
 
-  resources :question_sets
 
   resources :users
 

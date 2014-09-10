@@ -5,16 +5,12 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets.json
   def index
     @question_sets = QuestionSet.all
+    @question_set = QuestionSet.new
   end
 
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
-  end
-
-  # GET /question_sets/new
-  def new
-    @question_set = QuestionSet.new
   end
 
   # GET /question_sets/1/edit

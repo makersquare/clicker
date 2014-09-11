@@ -1,23 +1,14 @@
-<%= form_for [@class_group, @membership] do |f| %>
-  <% if @membership.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
 
-      <ul>
-      <% @membership.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :kind %><br>
-    <%= f.text_field :kind %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+<%= form_tag class_group_memberships_path, method: :post do %>
+
+        <%= label_tag('membership[nickname]', "Github Name") %>
+        <%= text_field_tag('membership[nickname]') %>
+        <%= label_tag('membership[kind]', "User Type") %>
+        <%= text_field_tag('membership[kind]') %>
+
+
+<%= submit_tag("submit", class: 'button') %>
+
 <% end %>
-
-

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :question_sets
     resources :memberships
   end
+  resources :class_groups, except: [:new]
+  # class_groups_path    #=> /class_groups
+  # class_group_path(9)  #=> /class_groups/9
 
   resources :responses
 

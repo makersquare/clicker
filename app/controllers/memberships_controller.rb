@@ -1,30 +1,24 @@
 class MembershipsController < ApplicationController
-  #before_action :set_membership, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :set_class_group, only: [:edit, :index, :show, :new]
   # GET /memberships
   # GET /memberships.json
   def index
-    @class_group = ClassGroup.find(params[:class_group_id])
     @memberships = Membership.where(class_group_id: @class_group.id)
   end
 
   # GET /memberships/1
   # GET /memberships/1.json
   def show
-    @class_group = ClassGroup.find(params[:class_group_id])
-    @membership = Membership.find(params[:id])
   end
 
   # GET /memberships/new
   def new
-    @class_group = ClassGroup.find(params[:class_group_id])
     @membership = Membership.new
   end
 
   # GET /memberships/1/edit
   def edit
-    @class_group = ClassGroup.find(params[:class_group_id])
-    @membership = Membership.find(params[:id])
   end
 
   # POST /memberships
@@ -34,7 +28,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.html { redirect_to class_group_memberships_url, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new }
@@ -48,7 +42,7 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
-        format.html { redirect_to @membership, notice: 'Membership was successfully updated.' }
+        format.html { redirect_to class_group_memberships_url, notice: 'Membership was successfully updated.' }
         format.json { render :show, status: :ok, location: @membership }
       else
         format.html { render :edit }
@@ -71,6 +65,10 @@ class MembershipsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_membership
       @membership = Membership.find(params[:id])
+    end
+
+    def set_class_group
+      @class_group = ClassGroup.find(params[:class_group_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

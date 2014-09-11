@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
   # GET /memberships.json
   def index
     @class_group = ClassGroup.find(params[:class_group_id])
-    @memberships = Membership.where(class_group_id: 1)
+    @memberships = Membership.where(class_group_id: @class_group.id)
   end
 
   # GET /memberships/1
@@ -17,11 +17,14 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/new
   def new
+    @class_group = ClassGroup.find(params[:class_group_id])
     @membership = Membership.new
   end
 
   # GET /memberships/1/edit
   def edit
+    @class_group = ClassGroup.find(params[:class_group_id])
+    @membership = Membership.find(params[:id])
   end
 
   # POST /memberships

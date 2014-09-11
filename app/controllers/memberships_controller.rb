@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
-  before_action :set_class_group, only: [:edit, :index, :show, :new]
+  before_action :set_class_group, only: [:edit, :index, :show, :new, :create]
   before_action :require_login
   
   # GET /memberships
@@ -10,7 +10,6 @@ class MembershipsController < ApplicationController
     @users = @class_group.users
     @student_memberships = @class_group.memberships.where(kind: 'student')
     @teacher_memberships = @class_group.memberships.where(kind: 'teacher')
-    @membership = Membership.new
   end
 
   # GET /memberships/1
@@ -26,8 +25,11 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     params = membership_params
-    @membership = Membership.new(membership_params)
-
+    @user = User.find_by(nickname: membership_params['nickname']) 
+    @membership = Membership.new
+    @membership.user_id = @user.id
+    @membership.kind = membership_params['kind']
+    @membership.class_group_id = @class_group.id
     respond_to do |format|
       if @membership.save
         format.html { redirect_to class_group_memberships_url, notice: 'Membership was successfully created.' }

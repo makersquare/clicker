@@ -1,6 +1,30 @@
-<h1>Editing class_group</h1>
+<div class="new-class panel">
+  <h3>Edit <%= @class_group.name %> Class </h3>
+  <!-- should have the information from this particular class_group -->
+  	<%= form_for(@class_group) do |f| %>
+  <% if @class_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@class_group.errors.count, "error") %> prohibited this class_group from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @class_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :name, placeholder: @class_group.name %>
+  </div>
+  <div class="field">
+    <%= f.text_field :description, placeholder: @class_group.description %>    
+  </div>
+  <div class="actions">
+    <%= f.submit :submit, class: 'button' %>  <%= link_to 'Cancel', class_groups_path, class: 'button' %>
+  </div>
+<% end %>
+</div>
 
 <%= link_to 'Show', @class_group %> |
 <%= link_to 'Back', class_groups_path %>

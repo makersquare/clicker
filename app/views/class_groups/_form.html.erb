@@ -18,6 +18,6 @@
     <%= f.text_field :description, placeholder: 'description' %>    
   </div>
   <div class="actions">
-    <%= f.submit :submit, class: 'button' %>  <button class="button">Cancel</button>
+    <%= f.submit :submit, class: 'button' %>  <%= link_to 'Cancel', class_groups_path, class: 'button' %>
   </div>
 <% end %>

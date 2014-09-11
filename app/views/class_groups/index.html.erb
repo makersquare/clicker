@@ -10,8 +10,8 @@
       <%= link_to class_group do %>
         <div class="row">
           <!-- I need a link here to the class show page -->
-            <h3>Name: <%= class_group.name %></h3>
-            <p>Description: <%= class_group.description %></p>
+            <h3><%= class_group.name %></h3>
+            <p><%= class_group.description %></p>
         </div>
       <% end %>
 
@@ -43,13 +43,15 @@
 <!-- add a new class form -->
 <div class="new-class panel">
   <h3>Create a Class</h3>
+  <% title = 'title' %>
+  <% description = 'description' %>
   <%= render 'form' %>
 </div>
 
 <!-- Add a student form -->
 <div class="add-student-form panel">
   <h3>Add a Student</h3>
-  <%= render 'partials/form_add_student' %>
+    <!-- render a form for a new student to be added -->
 </div>
 
 <!-- Successful Student Added - confirm -->
@@ -65,17 +67,12 @@
   </div>
 </div>
 
-
-
-
-<!-- student class list that shows a button for each registered class -->
-<div class="small-8 columns small-centered">
-  <h1>Student Listing class_groups</h1>
-
-  <div>
-    <% @class_groups.each do |class_group| %>
-      <%= link_to class_group.name, class_group, :class => "button expand radius" %>    
-    <% end %>
+<!-- Add Student Errortry again or cancel -->
+<div class="add-student-error panel">
+  <h3>input is not a Github user. Would you like to try again?</h3>
+  <div class="row">
+    <a href="#"><img alt="sad Octocat" src="http://archaeogeek.github.io/ukqgis_talk/images/octocat_sad.gif"></a>
+  <!-- render form for add student -->
   </div>
 </div>
 

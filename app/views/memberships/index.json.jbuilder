@@ -1,4 +1,5 @@
 json.array!(@memberships) do |membership|
   json.extract! membership, :id, :kind
-  json.url membership_url(membership, format: :json)
+  json.url class_group_membership_url(@class_group, membership, format: :json)
 end
+

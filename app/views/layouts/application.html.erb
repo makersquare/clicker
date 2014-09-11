@@ -14,6 +14,8 @@
   <body>
     <%= render 'partials/nav' %>
 
+    <h1><%= flash[:error_github] %></h1>
+
     <div class="row panel">
       <%= yield %>
     </div>

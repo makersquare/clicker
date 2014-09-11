@@ -12,9 +12,9 @@
     <% @memberships.each do |membership| %>
       <tr>
         <td><%= membership.kind %></td>
-        <td><%= link_to 'Show', membership %></td>
-        <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
-        <td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', class_group_membership_path(@class_group, membership) %></td>
+        <td><%= link_to 'Edit', edit_class_group_membership_path(@class_group, membership) %></td>
+        <td><%= link_to 'Destroy', class_group_membership_path(@class_group, membership), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Membership', new_membership_path %>
+<%= link_to 'New Membership', new_class_group_membership_path %>

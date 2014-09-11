@@ -1,15 +1,18 @@
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  #before_action :set_membership, only: [:show, :edit, :update, :destroy]
 
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.all
+    @class_group = ClassGroup.find(params[:class_group_id])
+    @memberships = Membership.where(class_group_id: 1)
   end
 
   # GET /memberships/1
   # GET /memberships/1.json
   def show
+    @class_group = ClassGroup.find(params[:class_group_id])
+    @membership = Membership.find(params[:id])
   end
 
   # GET /memberships/new

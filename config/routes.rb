@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create"
   get "/signout" => "sessions#destroy", :as => :signout
   
-  resources :class_groups, except: [:new]
+  resources :class_groups, except: [:new] do
+    resources :memberships
+  end
 
-  resources :memberships
 
   resources :responses
 

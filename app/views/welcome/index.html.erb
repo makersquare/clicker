@@ -1,2 +1,12 @@
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
+
+<% if current_user %>
+  You are signed in!<br>
+  <%= link_to "Sign out", "/signout" %>
+<% else %>
+  <%= link_to "Sign in with Github", "/auth/github" %>
+<% end %>
+
+
+<!-- <%= link_to "Sign in with Github", "/users/new" %> -->

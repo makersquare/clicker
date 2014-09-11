@@ -6,7 +6,7 @@
 var app = angular.module('app', ["ngResource"]);
 
 app.factory("QuestionSet", function($resource) {
- return $resource("/question_sets.json", {id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}});
+ return $resource("/class_groups/:id/question_sets.json", {id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}});
 });
 
 function EditCtrl($scope, $location, $routeParams, QuestionSet) {

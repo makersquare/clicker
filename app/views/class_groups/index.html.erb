@@ -65,13 +65,39 @@
   </div>
 </div>
 
-<!-- Add Student Errortry again or cancel -->
-<div class="add-student-error panel">
-  <h3>input is not a Github user. Would you like to try again?</h3>
-  <div class="row">
-    <a href="#"><img alt="sad Octocat" src="http://archaeogeek.github.io/ukqgis_talk/images/octocat_sad.gif"></a>
-    <%= render 'partials/form_add_student' %>
+
+
+
+<!-- student class list that shows a button for each registered class -->
+<div class="small-8 columns small-centered">
+  <h1>Student Listing class_groups</h1>
+
+  <div>
+    <% @class_groups.each do |class_group| %>
+      <%= link_to class_group.name, class_group, :class => "button expand radius" %>    
+    <% end %>
   </div>
 </div>
+
+
+
+
+
+
+<!-- selected student class that shows class info and available question sets; ** use @class_group as a stand-in for @question_sets in the "qset" id **-->
+<div>
+  <h1><%= @class_groups.name %></h1>
+  <h2><%= @class_groups.description %></h2>
+  <!-- Available Question Sets for the Class -->
+  <div id="qset">
+    <% @class_group.each do |question_set| %>
+      <%= link_to question_set.name, class_group, :class => "button expand radius" %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
 
 

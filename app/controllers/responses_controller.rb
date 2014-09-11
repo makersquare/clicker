@@ -1,6 +1,7 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login
+  
   # GET /responses
   # GET /responses.json
   def index

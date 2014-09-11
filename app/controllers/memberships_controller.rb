@@ -1,6 +1,8 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
   before_action :set_class_group, only: [:edit, :index, :show, :new]
+  before_action :require_login
+  
   # GET /memberships
   # GET /memberships.json
   def index

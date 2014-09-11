@@ -1,6 +1,7 @@
 class ClassGroupsController < ApplicationController
   before_action :set_class_group, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login
+  
   # GET /class_groups
   # GET /class_groups.json
   def index

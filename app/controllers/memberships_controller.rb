@@ -6,17 +6,16 @@ class MembershipsController < ApplicationController
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.where(class_group_id: @class_group.id)
+    @memberships = @class_group.memberships
+    @users = @class_group.users
+    @student_memberships = @class_group.memberships.where(kind: 'student')
+    @teacher_memberships = @class_group.memberships.where(kind: 'teacher')
+    @membership = Membership.new
   end
 
   # GET /memberships/1
   # GET /memberships/1.json
   def show
-  end
-
-  # GET /memberships/new
-  def new
-    @membership = Membership.new
   end
 
   # GET /memberships/1/edit

@@ -9,17 +9,25 @@
   </thead>
 
   <tbody>
-    <% @memberships.each do |membership| %>
+    <% @teacher_memberships.each do |teach_mem| %>
       <tr>
-        <td><%= membership.kind %></td>
-        <td><%= link_to 'Show', class_group_membership_path(@class_group, membership) %></td>
-        <td><%= link_to 'Edit', edit_class_group_membership_path(@class_group, membership) %></td>
-        <td><%= link_to 'Destroy', class_group_membership_path(@class_group, membership), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= teach_mem.user.name %></td>
+        <td><%= teach_mem.user.nickname %></td>
+        <td><%= teach_mem.kind %></td>
+        <td><%= link_to 'Destroy', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+        <% @student_memberships.each do |stud_mem| %>
+      <tr>
+        <td><%= stud_mem.user.name %></td>
+        <td><%= stud_mem.user.nickname %></td>
+        <td><%= stud_mem.kind %></td>
+        <td><%= link_to 'Destroy', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<h1>New membership</h1>
 
-<%= link_to 'New Membership', new_class_group_membership_path %>
+<%= render 'form' %>

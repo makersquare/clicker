@@ -65,7 +65,7 @@
   </div>
 </div>
 
-<!-- Add Student Errortry again or cancel -->
+<!-- Add Student Error try again or cancel -->
 <div class="add-student-error panel">
   <h3>input is not a Github user. Would you like to try again?</h3>
   <div class="row">
@@ -74,14 +74,8 @@
   </div>
 </div>
 
-
-</div>
-
-
-
-
 <!-- student class list that shows a button for each registered class -->
-<div class="small-8 columns small-centered">
+<div class="small-centered panel">
   <h1>Student Listing class_groups</h1>
 
   <div>
@@ -89,7 +83,6 @@
       <%= link_to class_group.name, class_group, :class => "button expand radius" %>    
     <% end %>
   </div>
-</div>
 
 
 
@@ -97,7 +90,7 @@
 
 
 <!-- selected student class that shows class info and available question sets; ** use @class_group as a stand-in for @question_sets in the "qset" id **-->
-<div class="small-8 columns small-centered">
+<div class="small-centered panel">
   <h1>
     <% @class_groups.each do |name_descr| %>
       <%= name_descr.name %>
@@ -115,6 +108,13 @@
     <% end %>
   </div>
 </div>
+
+</div>
+
+</div>
+
+
+
 
 
 

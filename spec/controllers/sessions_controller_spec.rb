@@ -16,14 +16,14 @@ describe SessionsController do
     end
  
     it "should successfully create a session" do
-      session[:user_id].should be_nil
+      expect(session[:user_id]).to be_nil
       post :create, provider: :github
-      session[:user_id].should_not be_nil
+      expect(session[:user_id]).to_not be_nil
     end
  
     it "should redirect the user to the root url" do
       post :create, provider: :github
-      response.should redirect_to root_url
+      expect(response).to redirect_to(root_url)
     end
  
   end
@@ -34,14 +34,14 @@ describe SessionsController do
     end
  
     it "should clear the session" do
-      session[:user_id].should_not be_nil
+      expect(session[:user_id]).to_not be_nil
       delete :destroy
-      session[:user_id].should be_nil
+      expect(session[:user_id]).to be_nil
     end
  
     it "should redirect to the home page" do
       delete :destroy
-      response.should redirect_to root_url
+      expect(response).to redirect_to(root_url)
     end
   end
  

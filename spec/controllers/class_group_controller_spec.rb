@@ -44,7 +44,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
       User.create(:verified => true)
       # Sign in the user
       count = ClassGroup.all.count
-      post :create, {classgroup_id: @classgroup_id}
+      post :create, {classgroup_id: @classgroup.id}
       expect(count).to eq(1)
     end
     
@@ -53,7 +53,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
       User.create(:verified => false)
       # Sign in the user
       count = ClassGroup.all.count
-      post :create, {classgroup_id: @classgroup_id}
+      post :create, {classgroup_id: @classgroup.id}
       expect(count).to eq(0)
     end
   end

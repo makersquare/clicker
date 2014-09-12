@@ -12,7 +12,6 @@ describe SessionsController do
                 :nickname => "Rand" 
       }
     })
-
   end
  
   describe "#create" do

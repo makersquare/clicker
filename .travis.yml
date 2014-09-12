@@ -1,8 +1,11 @@
 language: ruby
 rvm:
-  - "2.0.0"
+- 2.0.0
 script: bundle exec rspec spec
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
 before_script:
-  - psql -c 'create database clicker_test;' -U postgres
+- psql -c 'create database clicker_test;' -U postgres
+notifications:
+  slack:
+    secure: AGkl0xo6aC0n/yTgsePoWvxmRagMy+SRs8KYABwbdQ47SkJZH0//bd0YkVcpeNlP6LBk0qomenwl+Z+eMmIDCynoqGluFhDsHYBpZEYPKM+GFMAknPcISA7zbpDphxXuY6edI5hs8sxG5IorC2Yu0T3ZR2tHMBgTwADWZRq/TBQ=

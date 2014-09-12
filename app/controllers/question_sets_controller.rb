@@ -1,19 +1,21 @@
 class QuestionSetsController < ApplicationController
   before_action :set_question_set, only: [:show, :edit, :update, :destroy]
   before_action :set_class_group
-  respond_to :json, :html
+  respond_to :json
   before_action :require_login
 
   # GET /question_sets
   # GET /question_sets.json
   def index
-    respond_to do |format|
-      format.html {
-      }
-      format.json {
-        render json: QuestionSet.all
-      }
-    end
+    # respond_to do |format|
+    #   format.html {
+    #   }
+    #   format.json {
+    #     render json: QuestionSet.all
+    #   }
+    # end
+    # respond_with QuestionSet.all
+    @question_sets = QuestionSet.all
   end
 
   # GET /question_sets/1

@@ -18,6 +18,9 @@ RSpec.describe SessionsController, :type => :controller do
     it "should successfully create a user" do
       post :create, provider: :github
       expect(User.count).to eq(1)
+      user = User.first
+      expect(user.gravatar_id).to_not be_nil
+      expect(user.verified).to be_false
     end
  
     it "should successfully create a session" do

@@ -56,16 +56,6 @@ class ClassGroupsController < ApplicationController
     end
   end
 
-  # DELETE /class_groups/1
-  # DELETE /class_groups/1.json
-  def destroy
-    @class_group.destroy
-    respond_to do |format|
-      format.html { redirect_to class_groups_url, notice: 'Class group was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_class_group

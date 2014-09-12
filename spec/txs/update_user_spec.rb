@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UpdateUserInfo do
   it "connects to GitHub API and pulls correct user info by nickname" do
@@ -37,5 +37,4 @@ describe UpdateUserInfo do
   end
 end
 
-describe 
 

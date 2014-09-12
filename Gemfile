@@ -46,6 +46,8 @@ gem 'foundation-rails'
 
 gem 'font-awesome-sass', '~> 4.2.0'
 
+gem 'open-iconic-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -50,7 +50,8 @@ Membership.create([
 
 ClassGroup.create([
   {
-    name: "Cohort 8"
+    name: "Cohort 8",
+    description: "MakerSquare Cohort 8 Question Sets"
   }
   ])
 

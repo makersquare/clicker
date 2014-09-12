@@ -1,58 +1,147 @@
-<h1>Listing class_groups</h1>
+<h1 class="header">Classes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- displays each class -->
+<div class="all-classes panel">
 
-  <tbody>
-    <% @class_groups.each do |class_group| %>
-      <tr>
-        <td><%= class_group.name %></td>
-        <td><%= class_group.description %></td>
-        <td><%= link_to 'Show', class_group %></td>
-        <td><%= link_to 'Edit', edit_class_group_path(class_group) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @class_groups.each do |class_group| %>
+    <div class="specific-class panel">
+
+
+      <%= link_to class_group do %>
+        <div class="row">
+          <!-- I need a link here to the class show page -->
+            <h3><%= class_group.name %></h3>
+            <p><%= class_group.description %></p>
+        </div>
+      <% end %>
+
+      <div class="row class-options">
+        <ul class="small-block-grid-2">
+
+          <li><span> <%= link_to 'edit class', edit_class_group_path(class_group), class: 'fi-pencil iconic-md' %> </span></li>
+            
+            <!-- this is not the right link to add students, memberships controller -->
+          <li><span><%= link_to 'edit students', "class_groups/#{class_group.id}/memberships", class: 'fi-people iconic-md' %></span></li>
+        </ul>
+      </div>
+
+    </div>
+  <% end %>
+</div>
 
 <br>
 
-<h1>New class_group</h1>
-
-<%= render 'form' %>
-
-<div class="class-groups panel">
-  <div class="header"><h1>Classes</h1></div>
-  <div class="class-list">
-
-  <!-- 'specific-class' is a div for each class that belongs to the user -->
-    <div class="specific-class panel">
-      <div class="row">
-        <a>
-          <h3>Ruby Course</h3>
-          <p>An adventure in a language that you will come to know and love dearly.</p>
-        </a>
-      </div>
-      <div class="row">
-        <ul class="small-block-grid-2">
-          <li><a><span class="fi-pencil iconic-md" title="pencil" aria-hidden="true">Edit</span></a></li>
-          <li><a><span class="fi-people iconic-md" title="people" aria-hidden="true">Add Students</span></a></li>
-        </ul>
-      </div>
+<!-- add a new class button -->
+<a href="#">
+  <div class="add-class panel">
+    <div class="row panel">
+      <a href="#"><div class="header"><h3>Add a Class</h3></div></a>
     </div>
   </div>
-  <div class="create-class"></div>
+</a>
+
+<!-- add a new class form -->
+<div class="new-class panel">
+  <h3>Create a Class</h3>
+  <% title = 'title' %>
+  <% description = 'description' %>
+  <%= render 'form' %>
 </div>
 
+<!-- Add a student form -->
+<div class="add-student-form panel">
+  <h3>Add a Student</h3>
+  <%= render 'partials/form_add_student' %>
+</div>
 
-<!-- add a new class -->
-<div class="add-class panel">
-  <div class="row panel">
-    <a href="#"><div class="header"><h3>Add a Class</h3></div></a>
+<!-- Successful Student Added - confirm -->
+<div class="add-student-successful panel">
+  <h3>Do you want to add Catherine O'Neil to Ruby Course?</h3>
+  <div class="row">
+    <a href="#"><img alt="Gravatar for user" src="https://avatars.githubusercontent.com/u/5787114?size=100" class="gravatar"></a>
+
+    <ul class="small-block-grid-2">
+      <li><a><span class="fi-circle-x iconic-md" title="circle x" aria-hidden="true"></span></a></li>
+      <li><a><span class="fi-circle-check iconic-md" title="circle check" aria-hidden="true"></span></a></li>
+    </ul>
+
+
+
+
+
+<!-- selected student class that shows class info and available question sets; ** use @class_group as a stand-in for @question_sets in the "qset" id **-->
+<div class="small-8 columns small-centered">
+  <h1>
+    <% @class_groups.each do |name_descr| %>
+      <%= name_descr.name %>
+    <% end %>
+  </h1>
+  <h2>
+    <% @class_groups.each do |name_descr| %>
+      <%= name_descr.description %>
+    <% end %>
+  </h2>
+  <!-- Available Question Sets for the Class -->
+  <div id="qset">
+    <% @class_groups.each do |question_set| %>
+      <%= link_to question_set.name, question_set, :class => "button expand radius" %>
+    <% end %>
   </div>
 </div>
+
+<!-- Add Student Error try again or cancel -->
+<div class="add-student-error panel">
+  <h3>input is not a Github user. Would you like to try again?</h3>
+  <div class="row">
+    <a href="#"><img alt="sad Octocat" src="http://archaeogeek.github.io/ukqgis_talk/images/octocat_sad.gif"></a>
+    <%= render 'partials/form_add_student' %>
+  </div>
+</div>
+
+<!-- student class list that shows a button for each registered class -->
+<div class="small-centered panel">
+  <h1>Student Listing class_groups</h1>
+
+  <div>
+    <% @class_groups.each do |class_group| %>
+      <%= link_to class_group.name, class_group, :class => "button expand radius" %>    
+    <% end %>
+  </div>
+
+
+
+
+
+
+<!-- selected student class that shows class info and available question sets; ** use @class_group as a stand-in for @question_sets in the "qset" id **-->
+<div class="small-centered panel">
+  <h1>
+    <% @class_groups.each do |name_descr| %>
+      <%= name_descr.name %>
+    <% end %>
+  </h1>
+  <h2>
+    <% @class_groups.each do |name_descr| %>
+      <%= name_descr.description %>
+    <% end %>
+  </h2>
+  <!-- Available Question Sets for the Class -->
+  <div id="qset">
+    <% @class_groups.each do |question_set| %>
+      <%= link_to question_set.name, question_set, :class => "button expand radius" %>
+    <% end %>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,14 +1,13 @@
-
-
-
 <%= form_tag class_group_memberships_path, method: :post do %>
 
-        <%= label_tag('membership[nickname]', "Github Name") %>
-        <%= text_field_tag('membership[nickname]') %>
-        <%= label_tag('membership[kind]', "User Type") %>
-        <%= text_field_tag('membership[kind]') %>
+  <%= text_field_tag( 'membership[nickname]', '', placeholder: 'github username' )%>
 
+  <%= label_tag('membership[kind]', "Set Teacher") %>
+  <div class="switch radius">
+    <input id="membership[kind]" type="checkbox">
+    <label for="membership[kind]"></label>
+  </div> 
 
-<%= submit_tag("submit", class: 'button') %>
+<%= submit_tag("Submit", class: 'button') %> <button class="button">Cancel</button>
 
 <% end %>

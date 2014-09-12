@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe QuestionSetsController, :type => :controller do
   
   before do
+    request.env["HTTP_ACCEPT"] = 'application/json'
     @student = User.create(
       provider: "github",
       uid: "9999999",

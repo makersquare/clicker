@@ -1,0 +1,22 @@
+<!-- need a student object, @class_group is a stand-in object -->
+<%= form_for(@class_group) do |f| %>
+  <% if @class_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@class_group.errors.count, "error") %> prohibited this class_group from being saved:</h2>
+
+      <ul>
+      <% @class_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :name, placeholder: 'github username' %>
+  </div>
+  <div class="actions">
+    <%= f.submit :Submit, class: 'button' %>  <button class="button">Cancel</button>
+  </div>
+  
+<% end %>

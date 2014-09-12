@@ -11,14 +11,9 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <a><li class="has-dropdown slabo-font">
-        <a href="#" class="gravatar-container"><img alt="Gravatar for user" src="https://avatars.githubusercontent.com/u/5787114?size=40" class="gravatar"><%= current_user.name %></a>
-        <ul class="dropdown ">
-          <li><%= link_to 'My Classes', class_groups_path %></li>
-          <li><a href="#"><%= link_to "Sign out", "/signout" %></a></li>
-        </ul>
+      <li class="slabo-font">
+        <%= link_to "Sign in with Github", "/auth/github" %>
       </li>
-      </a>
     </ul>
   </section>
 </nav>

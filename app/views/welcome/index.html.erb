@@ -1,9 +1,23 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<header class="welcome-header">
+  <h1 class="megrim-font main-title">click clack</h1>
+  <h3 class="code-font italic tagline">leveling up lectures</h3>
+  <a class="code-font get-started">get started</a>
+  <p> < ></p>
 
-<% if current_user %>
-  <h3>"Welcome, <%= current_user.name %>!"</h3>
-  <%= link_to "Sign out", "/signout" %>
-<% else %>
-  <%= link_to "Sign in with Github", "/auth/github" %>
-<% end %>
+</header>
+
+<div class="home-sign-in">
+  <% if current_user %>
+    <%= link_to "SIGN OUT", "/signout", class: 'button code-font' %>
+  <% else %>
+    <%= link_to "GITHUB SIGN IN", "/auth/github", class: 'button code-font' %>
+  <% end %>
+</div>
+
+<div class="getting started">
+  <h4 class="opensans-fonts alliteration">
+    Click Clack is a clicker correspondent app
+    for classes where coordinating coaches &
+    coders is key.
+  </h4>
+</div>

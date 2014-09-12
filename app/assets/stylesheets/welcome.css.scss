@@ -1,3 +1,59 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$teal: #54BC9E;
+$teal-dark: #316858;
+$lime: #A4F7C0;
+$lime-dark: #90D8A8;
+$cloud: #ecf0f1;
+$dark-grey: #434234;
+$bright-yellow: #FBF963;
+$light-yellow: #FCFBBE;
+$grey-yellow: #7F7F61;
+$black-yellow: #303018;
+$black-warm: #1D1610;
+$light-black: #1d1d1d;
+$black-home: #141414;
+
+header.welcome-header {
+  background-image: url(image-path('home-bck.png'));
+  height: 67vh;
+  padding-top: 3rem;
+  h1 {
+    font-size: 5rem;
+  }
+  h1, h3, p {
+    color: $cloud;
+    margin: 0;
+  }
+}
+
+.main-title {
+  margin: 0;
+}
+
+.home-sign-in {
+  background-color: $cloud;
+  padding: 2rem;
+}
+
+.tagline {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 300;
+}
+
+a.get-started {
+  margin-top: 2rem;
+  color: $cloud;
+  font-size: 1rem;
+  font-weight: 300;
+  &:hover { 
+    color: $teal;
+    background-color: transparent;
+  }
+}
+
+.alliteration {
+  color: $black-home;
+}

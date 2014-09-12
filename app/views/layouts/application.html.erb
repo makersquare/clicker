@@ -3,23 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans|Inconsolata|Karla:400,400italic' rel='stylesheet' type='text/css'>
     <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
-
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Open+Sans|Megrim|Slabo+13px|Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= render 'partials/nav' %>
-
-    <h1><%= flash[:error_github] %></h1>
-
-    <div class="row panel">
+    <% if current_user %>
+      <%= render 'partials/nav' %>
+    <% else %>
+      <%= render 'partials/nav_signed_out' %>
+    <% end %>
+    <div>
       <%= yield %>
     </div>
-
     <%= javascript_include_tag "application" %>
   </body>
 </html>

@@ -17,6 +17,23 @@
 
  */
 
+
+$teal: #54BC9E;
+$teal-dark: #316858;
+$lime: #A4F7C0;
+$lime-dark: #90D8A8;
+$cloud: #ecf0f1;
+$dark-grey: #434234;
+$bright-yellow: #FBF963;
+$light-yellow: #FCFBBE;
+$grey-yellow: #7F7F61;
+$black-yellow: #303018;
+$black-warm: #1D1610;
+
+*{
+	margin: 0;
+}
+
 @font-face {
 	font-family: 'iconic-sm';
 	// src: url('fonts/iconic-sm.eot');
@@ -59,17 +76,32 @@ body {
 
 /*font styling*/
 
-h1, h2, h3 {
-	font-family: 'Droid Sans', sans-serif;
+.code-font {
+	font-family: 'Source Code Pro';
 }
 
-h4, h5, h6 {
-	font-family: 'Karla', sans-serif;
+.megrim-font {
+	font-family: 'Megrim', cursive;
+}
+
+.slabo-font {
+	font-family: 'Slabo', serif;
+}
+
+.gothic-caps-font {
+	font-family: 'Carrois Gothic SC', sans-serif;
+}
+
+.opensans-font {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.smallcaps {
 	font-variant: small-caps;
 }
 
-p, span {
-	font-family: 'Inconsolata', sans-serif;
+.italic {
+  font-style: italic;
 }
 
 body div a:hover {
@@ -78,6 +110,38 @@ body div a:hover {
 
 /*navigation styling*/
 
-div.navigation #navigation {
-	color: red;
+nav section ul li a img.gravatar {
+	margin-right: 0.62rem;
+}
+
+#navigation nav ul li h1 a {
+	font-size: 1.62rem;
+	&:hover {
+		background-color: 10%;
+	}
+}
+
+#navigation nav section ul li ul li a {
+	font-size: 1rem;
+	letter-spacing: 0.05rem;
+	padding-top: 0.6rem;
+	padding-botton: 0.6rem;
+}
+
+.gravatar {
+	border-radius: 50%;
+}
+
+div.home-sign-in {
+	background-color: white;
+}
+
+.button {
+	background-color: transparent;
+	border: 3px solid $grey-yellow;
+	font-weight: 400;
+		&:hover{
+			background-color: $grey-yellow;
+		}
+	border-radius: 0.4rem;
 }

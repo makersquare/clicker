@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/aacase
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Host:
+      - api.github.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Fri, 12 Sep 2014 15:51:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '55'
+      X-Ratelimit-Reset:
+      - '1410539865'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Fri, 12 Sep 2014 00:18:58 GMT
+      Etag:
+      - '"7307214d495f5aba6da176d6f07ab12d"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 4672CE4E:76FA:15102E3:5413169F
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - d818ddef80f4c7d10683dd483558952a
+    body:
+      encoding: UTF-8
+      string: '{"login":"aacase","id":7494406,"avatar_url":"https://avatars.githubusercontent.com/u/7494406?v=2","gravatar_id":"c69be0666998b3529d1f562a6fd70e7e","url":"https://api.github.com/users/aacase","html_url":"https://github.com/aacase","followers_url":"https://api.github.com/users/aacase/followers","following_url":"https://api.github.com/users/aacase/following{/other_user}","gists_url":"https://api.github.com/users/aacase/gists{/gist_id}","starred_url":"https://api.github.com/users/aacase/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aacase/subscriptions","organizations_url":"https://api.github.com/users/aacase/orgs","repos_url":"https://api.github.com/users/aacase/repos","events_url":"https://api.github.com/users/aacase/events{/privacy}","received_events_url":"https://api.github.com/users/aacase/received_events","type":"User","site_admin":false,"public_repos":17,"public_gists":1,"followers":1,"following":0,"created_at":"2014-05-05T23:38:56Z","updated_at":"2014-09-12T00:18:58Z"}'
+    http_version: 
+  recorded_at: Fri, 12 Sep 2014 15:51:59 GMT
+recorded_with: VCR 2.9.3

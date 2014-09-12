@@ -17,7 +17,7 @@ class UpdateUserInfo
     end
 
     if user.name.nil?
-      user.name = params['nickname']
+      user.name = user.nickname
     end
 
     user.save

@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/makersquare
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Host:
+      - api.github.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Fri, 12 Sep 2014 15:37:45 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '59'
+      X-Ratelimit-Reset:
+      - '1410539865'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Fri, 12 Sep 2014 15:33:52 GMT
+      Etag:
+      - '"f99f654d4c4225c048af31ea04926ec1"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 4672CE4E:13B0:1EA396D:54131349
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - a1d8c69b807c8e21f06cad9da377d1b0
+    body:
+      encoding: UTF-8
+      string: '{"login":"makersquare","id":4218375,"avatar_url":"https://avatars.githubusercontent.com/u/4218375?v=2","gravatar_id":"687058c0dcf54250a1dfef3515bbc2a7","url":"https://api.github.com/users/makersquare","html_url":"https://github.com/makersquare","followers_url":"https://api.github.com/users/makersquare/followers","following_url":"https://api.github.com/users/makersquare/following{/other_user}","gists_url":"https://api.github.com/users/makersquare/gists{/gist_id}","starred_url":"https://api.github.com/users/makersquare/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/makersquare/subscriptions","organizations_url":"https://api.github.com/users/makersquare/orgs","repos_url":"https://api.github.com/users/makersquare/repos","events_url":"https://api.github.com/users/makersquare/events{/privacy}","received_events_url":"https://api.github.com/users/makersquare/received_events","type":"Organization","site_admin":false,"name":"MakerSquare","company":null,"blog":"www.makersquare.com","location":"Austin
+        & San Francisco","email":"hello@makersquare.com","hireable":null,"bio":"Software
+        Engineering School in Austin & San Francisco","public_repos":110,"public_gists":0,"followers":0,"following":0,"created_at":"2013-04-21T19:29:54Z","updated_at":"2014-09-12T15:33:52Z"}'
+    http_version: 
+  recorded_at: Fri, 12 Sep 2014 15:37:45 GMT
+recorded_with: VCR 2.9.3

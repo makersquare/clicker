@@ -20,8 +20,8 @@
 
           <li><span> <%= link_to 'edit class', edit_class_group_path(class_group), class: 'fi-pencil iconic-md' %> </span></li>
             
-            <!-- this is not the right link to add students -->
-          <li><span><%= link_to 'add students', edit_class_group_path(class_group), class: 'fi-people iconic-md' %></span></li>
+            <!-- this is not the right link to add students, memberships controller -->
+          <li><span><%= link_to 'edit students', "class_groups/#{class_group.id}/memberships", class: 'fi-people iconic-md' %></span></li>
         </ul>
       </div>
 

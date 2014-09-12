@@ -7,8 +7,13 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets
   # GET /question_sets.json
   def index
-    @question_sets = QuestionSet.all
-    @question_set = QuestionSet.new
+    respond_to do |format|
+      format.html {
+      }
+      format.json {
+        render json: QuestionSet.all
+      }
+    end
   end
 
   # GET /question_sets/1

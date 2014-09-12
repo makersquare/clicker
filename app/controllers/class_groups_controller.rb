@@ -1,6 +1,7 @@
 class ClassGroupsController < ApplicationController
   before_action :set_class_group, only: [:show, :edit, :update, :destroy]
   before_action :require_login
+  respond_to :json, :html
   
   # GET /class_groups
   # GET /class_groups.json
@@ -12,7 +13,9 @@ class ClassGroupsController < ApplicationController
   # GET /class_groups/1
   # GET /class_groups/1.json
   def show
+     @question_sets = @class_group.question_sets   
   end
+
 
 
   # GET /class_groups/1/edit

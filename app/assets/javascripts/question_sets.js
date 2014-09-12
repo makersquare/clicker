@@ -6,7 +6,7 @@
 var app = angular.module('app', ["ngResource"]);
 
 app.factory("QuestionSet", function($resource) {
- return $resource("/class_groups/:id/question_sets.json", {id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}});
+ return $resource("/class_groups/:class_group_id/question_sets.json", {class_group_id: "@class_group_id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}});
 });
 
 function EditCtrl($scope, $location, $routeParams, QuestionSet) {
@@ -33,7 +33,7 @@ function NewCtrl($scope, $location, QuestionSet) {
 }
 
 function AppCtrl($scope, $location, QuestionSet){
- $scope.questionSets = QuestionSet.query();
+ $scope.questionSets = QuestionSet.query({ class_group_id: g.classGroup.id });
 
  $scope.destroy = function(id) {
    if (confirm("Are you sure?")) {

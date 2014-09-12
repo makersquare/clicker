@@ -11,6 +11,7 @@ class UpdateUserInfo
     user.name = json['name']
     user.uid = json['id'].to_s #typecast into string to match omniauth's format
     user.provider = 'github'
+    user.gravatar_id = json['gravatar_id']
 
     if user.verified.nil?
       user.verified = false

@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/Rand
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+      Host:
+      - api.github.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Fri, 12 Sep 2014 22:01:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '58'
+      X-Ratelimit-Reset:
+      - '1410562693'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Mon, 01 Sep 2014 18:46:51 GMT
+      Etag:
+      - '"514df94a9060da7fce0e8802b1967b48"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - '*'
+      X-Github-Request-Id:
+      - 4672CE4E:3B44:27A1A39:54136D2C
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 6d7de9e645814cac34ea2a8d72ba3141
+    body:
+      encoding: UTF-8
+      string: '{"login":"rand","id":2835,"avatar_url":"https://avatars.githubusercontent.com/u/2835?v=2","gravatar_id":"6a912025c15dbd97306c6efcc4cc5f46","url":"https://api.github.com/users/rand","html_url":"https://github.com/rand","followers_url":"https://api.github.com/users/rand/followers","following_url":"https://api.github.com/users/rand/following{/other_user}","gists_url":"https://api.github.com/users/rand/gists{/gist_id}","starred_url":"https://api.github.com/users/rand/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/rand/subscriptions","organizations_url":"https://api.github.com/users/rand/orgs","repos_url":"https://api.github.com/users/rand/repos","events_url":"https://api.github.com/users/rand/events{/privacy}","received_events_url":"https://api.github.com/users/rand/received_events","type":"User","site_admin":false,"name":"Rand
+        Fitzpatrick","company":"Null Divide","blog":"http://about.me/fitzpatrick","location":"San
+        Francisco, CA","email":"rand.fitzpatrick@gmail.com","hireable":false,"bio":null,"public_repos":41,"public_gists":4,"followers":30,"following":37,"created_at":"2008-03-11T16:58:14Z","updated_at":"2014-09-01T18:46:51Z"}'
+    http_version: 
+  recorded_at: Fri, 12 Sep 2014 22:01:16 GMT
+recorded_with: VCR 2.9.3

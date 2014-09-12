@@ -23,9 +23,9 @@ RSpec.describe ClassGroupsController, :type => :controller do
     )
   end
 
-  describe "GET show_cohort8" do
+  describe "GET #show" do
     it "responds successfully with an HTTP 200 status code" do
-      get :show, nil, {class_group_id: @classgroup.id}
+      get :show, {id: @classgroup.id}, {user_id: @student.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
@@ -39,7 +39,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
     end
   end
 
-  describe "Create" do
+  describe "POST #create" do
     it "allows verified accounts" do
       User.create(:verified => true)
       # Sign in the user
@@ -48,7 +48,13 @@ RSpec.describe ClassGroupsController, :type => :controller do
       expect(count).to eq(1)
     end
     
-    it "does not allow unverified accounts" do
+    # Pending: Need to add verification of User first (see Issue #50)
+    xit "does not allow unverified accounts" do
+      User.create(:verified => false)
+      # Sign in the user
+      count = ClassGroup.all.count
+      post :create, {classgroup_id: @classgroup_id}
+      expect(count).to eq(0)
     end
   end
 

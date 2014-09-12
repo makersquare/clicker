@@ -19,7 +19,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
       verified: true,
       gravatar_id: "687058c0dcf54250a1dfef3515bbc2a7"      
     )
-    @classgroup = ClassGroup.create(
+    @class_group = ClassGroup.create(
       name: "Cohort 8, The Ocho",
       description: "MKS immersive course"
     )
@@ -27,7 +27,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
 
   describe "GET #show" do
     it "responds successfully with an HTTP 200 status code" do
-      get :show, {id: @classgroup.id}, {user_id: @student.id}
+      get :show, {id: @class_group.id}, {user_id: @student.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
@@ -46,7 +46,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
       User.create(:verified => true)
       # Sign in the user
       count = ClassGroup.all.count
-      post :create, {classgroup_id: @classgroup.id}
+      post :create, {class_group_id: @class_group.id}
       expect(count).to eq(1)
     end
     
@@ -55,7 +55,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
       User.create(:verified => false)
       # Sign in the user
       count = ClassGroup.all.count
-      post :create, {classgroup_id: @classgroup.id}
+      post :create, {class_group_id: @class_group.id}
       expect(count).to eq(0)
     end
   end

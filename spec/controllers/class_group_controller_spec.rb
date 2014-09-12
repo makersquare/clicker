@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ClassGroupsController, :type => :controller do
   
-  before(:all) do
+  before do
     @student = User.create(
       provider: "github",
       uid: "9999999",

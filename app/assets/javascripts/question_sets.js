@@ -18,18 +18,6 @@ app.config(['$httpProvider', function(provider){
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 }]);
 
-
-// function EditCtrl($scope, $location, $routeParams, QuestionSet) {
-//  $scope.title = "Edit Question Set";
-//  $scope.questionSet = QuestionSet.get({id: $routeParams.id});
-
-//  $scope.save = function() {
-//    QuestionSet.update({id: $scope.questionSet.id}, $scope.questionSet, function(response){
-//      $location.path("/");
-//    });
-//  };
-// }
-
 app.controller('AppCtrl', function($scope, $location, QuestionSet, QuestionSetDelete){
  $scope.questionSets = QuestionSet.query({ class_group_id: g.classGroup.id });
  $scope.addQuestionSet = function(){

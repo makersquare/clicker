@@ -12,6 +12,7 @@ class ClassGroupsController < ApplicationController
   # GET /class_groups/1
   # GET /class_groups/1.json
   def show
+    @question_sets = @class_group.question_sets
   end
 
 

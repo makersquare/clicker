@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-class CreateUnregisteredUser
+class GetUserInfo
   def self.run(params)
       user = User.find_by(nickname: params['nickname']) 
       

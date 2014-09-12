@@ -24,7 +24,7 @@ class MembershipsController < ApplicationController
   # POST /memberships
   # POST /memberships.json
   def create
-    @user = CreateUnregisteredUser.run(membership_params)
+    @user = GetUserInfo.run(membership_params)
     @membership = Membership.new
     @membership.user_id = @user.id
     @membership.kind = membership_params['kind']

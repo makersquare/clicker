@@ -10,7 +10,8 @@ end
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-  require 'rspec/autorun'
+  # Suppresses deprecation: Requiring `rspec/autorun` when running RSpec via the `rspec` command is deprecated.
+  # require 'rspec/autorun'
  
   OmniAuth.config.test_mode = true
   omniauth_hash = { 'provider' => 'github',

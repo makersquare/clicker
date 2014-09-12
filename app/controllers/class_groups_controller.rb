@@ -31,11 +31,15 @@ class ClassGroupsController < ApplicationController
       if @class_group.save
         format.html { render :show, notice: 'Class group was successfully created.' }
         format.json { render :show, status: :created, location: @class_group }
+        Membership.create(
+          user_id: @current_user.id,
+          class_group_id: @class_group.id,
+          kind: 'teacher')
       else
         format.html { render :new }
         format.json { render json: @class_group.errors, status: :unprocessable_entity }
       end
-    end
+    end  
   end
 
   # PATCH/PUT /class_groups/1

@@ -20,6 +20,7 @@ describe UpdateUserInfo do
         expect(user.name).to eq 'MakerSquare'
         expect(user.uid).to eq "4218375"
         expect(user.nickname).to eq 'makersquare'
+        expect(user.gravatar_id).to eq '687058c0dcf54250a1dfef3515bbc2a7'
       end
     end
   end
@@ -32,6 +33,7 @@ describe UpdateUserInfo do
         expect(user.name).to eq 'aacase'
         expect(user.uid).to eq "7494406"
         expect(user.nickname).to eq 'aacase'
+        expect(user.gravatar_id).to eq 'c69be0666998b3529d1f562a6fd70e7e'
       end
     end
   end

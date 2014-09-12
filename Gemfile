@@ -5,6 +5,7 @@ gem "omniauth-github", '1.1.1'
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
+  gem 'hirb'
 end
 
 gem 'figaro'
@@ -17,7 +18,6 @@ gem 'rails', '4.1.5'
 
 #use postgres as database for Active Record
 gem 'pg'
-gem 'hirb'
 
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -44,7 +44,6 @@ end
 
 gem 'foundation-rails'
 
-gem 'angularjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

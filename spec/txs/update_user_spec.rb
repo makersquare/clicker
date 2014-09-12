@@ -18,7 +18,7 @@ describe UpdateUserInfo do
         new_user = User.new(nickname: 'makersquare')
         user = UpdateUserInfo.run(new_user)
         expect(user.name).to eq 'MakerSquare'
-        expect(user.uid).to be 4218375
+        expect(user.uid).to eq "4218375"
         expect(user.nickname).to eq 'makersquare'
       end
     end
@@ -30,7 +30,7 @@ describe UpdateUserInfo do
         new_user = User.new(nickname: 'aacase')
         user = UpdateUserInfo.run(new_user)
         expect(user.name).to eq 'aacase'
-        expect(user.uid).to be 7494406
+        expect(user.uid).to eq "7494406"
         expect(user.nickname).to eq 'aacase'
       end
     end    

@@ -9,7 +9,7 @@ class UpdateUserInfo
     json = JSON.parse(data)
 
     user.name = json['name']
-    user.uid = json['id']
+    user.uid = json['id'].to_s #typecast into string to match omniauth's format
     user.provider = 'github'
     
     if user.verified.nil?

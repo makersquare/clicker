@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Fri, 12 Sep 2014 16:37:00 GMT
+      - Fri, 12 Sep 2014 21:01:37 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,15 +33,15 @@ http_interactions:
       X-Ratelimit-Limit:
       - '60'
       X-Ratelimit-Remaining:
-      - '49'
+      - '56'
       X-Ratelimit-Reset:
-      - '1410539865'
+      - '1410558807'
       Cache-Control:
       - public, max-age=60, s-maxage=60
       Last-Modified:
-      - Fri, 12 Sep 2014 16:17:37 GMT
+      - Fri, 12 Sep 2014 20:36:09 GMT
       Etag:
-      - '"abeea91ad1c24275da53ca2ac86a0c5f"'
+      - '"fa10746d727836f5e03e15100939fdf9"'
       Vary:
       - Accept
       - Accept-Encoding
@@ -61,17 +61,17 @@ http_interactions:
       Access-Control-Allow-Origin:
       - '*'
       X-Github-Request-Id:
-      - 4672CE4E:5B16:1727836:5413212C
+      - 4672CE4E:13B1:E9DD0E:54135F31
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains; preload
       X-Content-Type-Options:
       - nosniff
       X-Served-By:
-      - 6d7de9e645814cac34ea2a8d72ba3141
+      - a8d8e492d6966f0c23dee2eed64c678a
     body:
       encoding: UTF-8
       string: '{"login":"mindeavor","id":17013,"avatar_url":"https://avatars.githubusercontent.com/u/17013?v=2","gravatar_id":"44d05cf62687c3489b863e4677414ca6","url":"https://api.github.com/users/mindeavor","html_url":"https://github.com/mindeavor","followers_url":"https://api.github.com/users/mindeavor/followers","following_url":"https://api.github.com/users/mindeavor/following{/other_user}","gists_url":"https://api.github.com/users/mindeavor/gists{/gist_id}","starred_url":"https://api.github.com/users/mindeavor/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/mindeavor/subscriptions","organizations_url":"https://api.github.com/users/mindeavor/orgs","repos_url":"https://api.github.com/users/mindeavor/repos","events_url":"https://api.github.com/users/mindeavor/events{/privacy}","received_events_url":"https://api.github.com/users/mindeavor/received_events","type":"User","site_admin":false,"name":"Gilbert","company":null,"blog":"https://twitter.com/mindeavor","location":"Austin,
-        TX","email":null,"hireable":false,"bio":null,"public_repos":63,"public_gists":6,"followers":32,"following":2,"created_at":"2008-07-14T15:11:51Z","updated_at":"2014-09-12T16:17:37Z"}'
+        TX","email":null,"hireable":false,"bio":null,"public_repos":63,"public_gists":6,"followers":32,"following":2,"created_at":"2008-07-14T15:11:51Z","updated_at":"2014-09-12T20:36:09Z"}'
     http_version: 
-  recorded_at: Fri, 12 Sep 2014 16:37:00 GMT
+  recorded_at: Fri, 12 Sep 2014 21:01:37 GMT
 recorded_with: VCR 2.9.3

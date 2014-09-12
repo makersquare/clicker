@@ -13,8 +13,11 @@ class UpdateUserInfo
     user.name = json['name']
     user.uid = json['id']
     user.provider = 'github'
-    user.verified = false
     
+    if user.verified.nil?
+      user.verified = false
+    end
+
     if user.name.nil?
       user.name = params['nickname']
     end

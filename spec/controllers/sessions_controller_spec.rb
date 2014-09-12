@@ -24,7 +24,7 @@ RSpec.describe SessionsController, :type => :controller do
       expect(User.count).to eq(1)
       user = User.first
       expect(user.gravatar_id).to_not be_nil
-      expect(user.verified).to be_false
+      expect(user.verified).to eq(false)
     end
  
     it "should successfully create a session" do

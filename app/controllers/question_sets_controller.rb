@@ -26,12 +26,13 @@ class QuestionSetsController < ApplicationController
   # POST /question_sets
   # POST /question_sets.json
   def create
+    return render :json => { :id => 99, :name => "Hello Class", :class_group_id => 1 }
     @question_set = QuestionSet.new(question_set_params)
 
     respond_to do |format|
       if @question_set.save
         format.html { redirect_to [@class_group, @question_set], notice: 'Question set was successfully created.' }
-        format.json { render :show, status: :created, location: @question_set }
+        format.json { render :show, status: :created, location: [@class_group, @question_set] }
       else
         format.html { render :new }
         format.json { render json: @question_set.errors, status: :unprocessable_entity }

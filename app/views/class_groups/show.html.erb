@@ -26,11 +26,17 @@
    <tbody>
      <tr ng-repeat="questionSet in questionSets">
        <td>{{questionSet.name}}</td>
+       <td>{{questionSet.description}}</td>
        <td>
          <a href="#/edit/{{questionSet.id}}" class="btn btn-mini">Edit</a>
          <a ng-click="destroy(questionSet.id)" class="btn btn-danger btn-mini">Destroy</a>
        </td>
      </tr>
+
    </tbody>
   </table>
+  <form ng-submit="addQuestionSet()">
+    <input type="text" ng-model="name">
+    <input type="submit" id="submit" value="Add Question Set">
+  </form>
 </div>

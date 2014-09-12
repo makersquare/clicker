@@ -26,7 +26,7 @@ class QuestionSetsController < ApplicationController
   # POST /question_sets
   # POST /question_sets.json
   def create
-    return render :json => { :id => 99, :name => "Hello Class", :class_group_id => 1 }
+    # return render :json => { :id => 99, :name => "Hello Class", :class_group_id => 1 }
     @question_set = QuestionSet.new(question_set_params)
 
     respond_to do |format|
@@ -46,7 +46,7 @@ class QuestionSetsController < ApplicationController
     respond_to do |format|
       if @question_set.update(question_set_params)
         format.html { redirect_to [@class_group, @question_set], notice: 'Question set was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question_set }
+        format.json { render :show, status: :ok, location: [@class_group, @question_set] }
       else
         format.html { render :edit }
         format.json { render json: @question_set.errors, status: :unprocessable_entity }
@@ -76,6 +76,6 @@ class QuestionSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_set_params
-      params.require(:question_set).permit(:name)
+      params.require(:question_set).permit(:class_group_id, :name)
     end
 end

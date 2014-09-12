@@ -1,33 +1,60 @@
-<h1><%= @class_group.name %></h1>
-<h2>Instructors</h2>
+<div>
+  <h2>Manage</h2><br>
+  <a href="#">
+    <div class="panel">
+      <h1><%= @class_group.name %></h1>
+      <h4><%= @class_group.description %></h4>
+    </div>
+  </a>
+</div>
 
-<table>
-<% @teacher_memberships.each do |teach_mem| %>
-  <tr>
-    <td><%= teach_mem.user.name %></td>
-    <!-- this should link to their github account -->
-    <td>@<%= teach_mem.user.nickname %></td>
-    <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div>
+  <h2>Members</h2>
+</div>
 
-<h2>Students</h2>
+<div data-equalizer>
+  <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+    <h3>Instructors</h3>
+    <p>
+      <table>
+        <% @teacher_memberships.each do |teach_mem| %>
+          <tr>
+            <td><%= teach_mem.user.name %></td>
+            <!-- this should link to their github account -->
+            <td>@<%= teach_mem.user.nickname %></td>
+            <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+          <!-- Instructor Gravatar placeholder -->
+          <tr>
+            <td colspan="3" class="medium-centered large-centered"><img src="http://lorempixel.com/output/cats-q-c-479-200-4.jpg" alt="Pretticky Kittickidy" title="Pretticky Kittickidy"></td>
+          </tr>
+        <% end %>
+      </table>
+    </p>
+  </div>
 
-<table>
-<% @student_memberships.each do |stud_mem| %>
-  <tr>
-    <td><%= stud_mem.user.name %></td>
-    <!-- this should link to their github account -->
-    <td>@<%= stud_mem.user.nickname %></td>
-    <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="small-12 medium-6 large-6columns" data-equalizer-watch>
+    <h3>Students</h3>
+    <p>
+      <table>
+        <% @student_memberships.each do |stud_mem| %>
+          <tr>
+            <td><%= stud_mem.user.name %></td>
+            <!-- this should link to their github account -->
+            <td>@<%= stud_mem.user.nickname %></td>
+            <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </p>
+  </div>
+</div>
+
+
 
 <a>
   <div class="add-student-form-button panel">
-    <h2>Add Student</h2>
+    <h2>Add Member <img data-src="plus.svg" class="iconic iconic-sm" alt="plus"></h2>
   </div>
 </a>
 

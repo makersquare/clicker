@@ -24,8 +24,7 @@ class MembershipsController < ApplicationController
   # POST /memberships
   # POST /memberships.json
   def create
-    @user = User.find_by(nickname: membership_params['nickname']) 
-    @user = CreateUnregisteredUser.run(membership_params) if @user.nil?    
+    @user = CreateUnregisteredUser.run(membership_params)
     @membership = Membership.new
     @membership.user_id = @user.id
     @membership.kind = membership_params['kind']

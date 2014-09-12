@@ -36,8 +36,8 @@ RSpec.describe QuestionSetsController, :type => :controller do
 
   describe "GET #index" do
     it "responds successfully with an HTTP 200 status code" do
-      get :index, {class_group_id: @class_group.id}, 
-        {user_id: @student.id}
+      get :index, { class_group_id: @class_group.id },
+        { user_id: @student.id }
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
@@ -45,6 +45,13 @@ RSpec.describe QuestionSetsController, :type => :controller do
 
   describe "GET #show" do
     it "responds successfully with an HTTP 200 status code" do
+      get :show, { 
+        class_group_id: @class_group.id,
+        id: @question_set.id
+        },
+        { user_id: @student.id }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
     end
   end
 

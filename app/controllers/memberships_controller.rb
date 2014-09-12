@@ -24,12 +24,11 @@ class MembershipsController < ApplicationController
   # POST /memberships
   # POST /memberships.json
   def create
-    params = membership_params
-    @user = User.find_by(nickname: membership_params['nickname']) 
-    @membership = Membership.new
-    @membership.user_id = @user.id
-    @membership.kind = membership_params['kind']
-    @membership.class_group_id = @class_group.id
+    @user = GetUserInfo.run(membership_params)
+    @membership = Membership.new(
+      user_id: @user.id,
+      kind: membership_params['kind'],
+      class_group_id: @class_group.id)
     respond_to do |format|
       if @membership.save
         format.html { redirect_to class_group_memberships_url, notice: 'Membership was successfully created.' }

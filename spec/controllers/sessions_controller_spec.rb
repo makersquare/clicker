@@ -12,8 +12,10 @@ RSpec.describe SessionsController, :type => :controller do
       }
     })
     session[:user_id] = nil
-    # WRAP IN VCR
-    post :create, provider: :github
+
+    VCR.use_cassette('create session') do
+      post :create, provider: :github
+    end
   end
  
   describe "#create" do

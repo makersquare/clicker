@@ -4,7 +4,8 @@ class GetUserInfo
       user = User.find_by(nickname: params['nickname']) 
       
       if user.nil?
-        user = UpdateUserInfo.run(params)
+        user = User.new(nickname: params['nickname'])
+        user = UpdateUserInfo.run(user)
       end
 
       return user

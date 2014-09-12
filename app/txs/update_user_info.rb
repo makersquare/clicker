@@ -2,14 +2,12 @@ require 'net/http'
 require 'json'
 
 class UpdateUserInfo
-  def self.run(params)
-    url = 'https://api.github.com/users/' + params["nickname"]
+  def self.run(user)
+    url = 'https://api.github.com/users/' + user.nickname
     uri = URI(url)
     data = Net::HTTP.get(uri)
     json = JSON.parse(data)
 
-    user = User.new
-    user.nickname = params['nickname']
     user.name = json['name']
     user.uid = json['id']
     user.provider = 'github'

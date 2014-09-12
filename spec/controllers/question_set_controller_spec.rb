@@ -55,6 +55,19 @@ RSpec.describe QuestionSetsController, :type => :controller do
     end
   end
 
+  describe "POST #create" do
+    it "creates a new question set" do
+      get :show, { 
+        class_group_id: @class_group.id,
+        id: @question_set.id,
+        name: @question_set.name
+        },
+        { user_id: @student.id }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+  end
+
 
 
 

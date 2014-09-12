@@ -13,15 +13,6 @@ class ResponsesController < ApplicationController
   def show
   end
 
-  # GET /responses/new
-  def new
-    @response = Response.new
-  end
-
-  # GET /responses/1/edit
-  def edit
-  end
-
   # POST /responses
   # POST /responses.json
   def create

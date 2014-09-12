@@ -19,12 +19,9 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
-    @question_sets = @class_group.question_sets
+    @question_sets = @class_group.question_sets #TO DO: Should be just this Question Set
   end
 
-  # GET /question_sets/1/edit
-  def edit
-  end
 
   # POST /question_sets
   # POST /question_sets.json

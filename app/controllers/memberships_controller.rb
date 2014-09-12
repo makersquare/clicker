@@ -17,10 +17,6 @@ class MembershipsController < ApplicationController
   def show
   end
 
-  # GET /memberships/1/edit
-  def edit
-  end
-
   # POST /memberships
   # POST /memberships.json
   def create

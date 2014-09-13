@@ -26,7 +26,7 @@
           </tr>
           <!-- Instructor Gravatar placeholder -->
           <tr>
-            <td colspan="3" class="medium-centered large-centered"><img src="http://lorempixel.com/output/cats-q-c-479-200-4.jpg" alt="Pretticky Kittickidy" title="Pretticky Kittickidy"></td>
+            <td colspan="3" class="medium-centered large-centered"><img src="http://lorempixel.com/output/cats-q-c-479-200-8.jpg" alt="Pretticky Kittickidy" title="Pretticky Kittickidy"></td>
           </tr>
         <% end %>
       </table>
@@ -42,7 +42,7 @@
             <td><%= stud_mem.user.name %></td>
             <!-- this should link to their github account -->
             <td>@<%= stud_mem.user.nickname %></td>
-            <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), class: 'fa fa-times-circle-o', method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </table>
@@ -50,13 +50,9 @@
   </div>
 </div>
 
-
-
-<a>
   <div class="add-student-form-button panel">
-    <h2>Add Member <img data-src="plus.svg" class="iconic iconic-sm" alt="plus"></h2>
+    <button class="radius"><h2>Add Member <i class="fa fa-plus"></i></h2></button>
   </div>
-</a>
 
 
 <div class="add-student-form panel">

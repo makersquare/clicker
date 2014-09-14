@@ -18,10 +18,15 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.json
   def create
-    @response = Response.new(response_params)
+    @response = Response.new
+    p response_params
+    @response.content = response_params["content"]
     @response.user_id = @current_user.id
     @response.question_id = @question.id
-    if @response.save
+    p @response
+    if @response.content.nil?
+      render json: {errors: :missing_content}, status: :unprocessable_entity    
+    elsif @response.save
       render :show, {question_set_id: @question_set.id, question_id: @question.id, id: @response.id, status: :created}
     else
       render json: @response.errors, status: :unprocessable_entity
@@ -53,6 +58,7 @@ class ResponsesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
-      params.require(:response).permit(:content)
+      p params
+      params.require("response").permit("content")
     end
 end

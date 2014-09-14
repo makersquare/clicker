@@ -144,8 +144,8 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe 'POST #create' do
     context 'with valid attributes' do
-      it "creates a new contact" do 
-        valid_params = {content: {"response" => "D"}}
+      it "creates a new response" do 
+        valid_params = {content: {response: "D"}}
         expect {
           post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
         }.to change(Response, :count).by(1)
@@ -153,15 +153,33 @@ RSpec.describe ResponsesController, :type => :controller do
     end
 
     context 'with invalid attributes' do
-      it "does not create a new contact" do
-        invalid_params = {"response" => "D"}
+      it "does not create a new response" do
+        invalid_params = {invalid: "D"}
           expect {
-            post :create, {question_set_id: @questionset, question_id: @question1}, {response: invalid_params}, {user_id: @studenta}
+            post :create, {question_set_id: @questionset, question_id: @question1, response: invalid_params}, {user_id: @studenta}
           }.to change(Response, :count).by(0)
       end
     end
   end
 
   describe 'PUT #update' do
+    context 'with valid attributes' do
+      it "updates a response" do 
+        expect(@response1a.content).to eq({"response" => "D"})        
+        valid_params = {content: {"response" => "updated answer"}}
+        patch :update, {question_set_id: @questionset, question_id: @question1, response_id: @response1a, response: valid_params}, {user_id: @studenta}
+        expect(response).to be_success
+        expect(@response1a.content).to eq({"response" => "updated answer"})
+      end
+    end
+
+    context 'with invalid attributes' do
+      it "does not update a response" do
+        invalid_params = {"response" => "D"}
+          expect {
+            post :create, {question_set_id: @questionset, question_id: @question1}, {response: invalid_params}, {user_id: @studenta}
+          }.to change(Response, :count).by(0)
+      end
+    end
   end
 end

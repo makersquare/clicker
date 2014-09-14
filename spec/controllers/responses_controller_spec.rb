@@ -114,6 +114,10 @@ RSpec.describe ResponsesController, :type => :controller do
     it 'renders show template' do
       expect(response).to render_template(:show)
     end   
+
+    it "assigns @response" do
+      expect(assigns(:response)).to eq(@response1a)
+    end
   end
 
   describe 'GET #index' do

@@ -121,8 +121,11 @@ RSpec.describe ResponsesController, :type => :controller do
   end
 
   describe 'GET #index' do
-    it "responds successfully with an HTTP 200 status code" do
+    before do
       get :index, {question_set_id: @questionset.id, question_id: @question1.id}, {user_id: @studenta}
+    end
+
+    it "responds successfully with an HTTP 200 status code" do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end    

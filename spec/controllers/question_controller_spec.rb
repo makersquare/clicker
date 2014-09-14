@@ -76,12 +76,13 @@ RSpec.describe QuestionsController, :type => :controller do
   end
 
   describe "POST #create" do
-    it "allows verified accounts" do
-      User.create(:verified => true)
-      # Sign in the user
-      count = ClassGroup.all.count
-      post :create, {classgroup_id: @classgroup.id}
-      expect(count).to eq(1)
+    context "with valid attributes" do
+      it "creates a new question" do
+        valid_params = {content: {question: "True or False", answer: "False"}}
+        expect {
+          post :create, {question_set_id: @question_set.id, question: valid_params}, {user_id: @teacher.id}
+        }.to change(Question, :count).by(1)
+      end
     end
   end
 

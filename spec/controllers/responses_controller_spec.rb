@@ -103,10 +103,14 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe 'GET #show' do
     it "responds successfully with an HTTP 200 status code" do
-      get :show, {question_set_id: @questionset.id, question_id: @question1.id, id: @response1a.id}
+      get :show, {question_set_id: @questionset, question_id: @question1, id: @response1a}, {user_id: @studenta}
       expect(response).to be_success
       expect(response).to have_http_status(200)
-    end    
+    end 
+
+    it 'renders show template' do
+      expect(response).to render_template(:show)
+    end   
   end
 
   describe 'GET #index' do

@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ResponsesController, :type => :controller do
 
   before do
+    request.env["HTTP_ACCEPT"] = 'application/json'
+
     @studenta = User.create(
       provider: "github",
       uid: "9999999",

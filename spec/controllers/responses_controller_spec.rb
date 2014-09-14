@@ -153,7 +153,7 @@ RSpec.describe ResponsesController, :type => :controller do
     end
 
     context 'with invalid attributes' do
-      xit "does not create a new contact" do
+      it "does not create a new contact" do
         invalid_params = {"response" => "D"}
           expect {
             post :create, {question_set_id: @questionset, question_id: @question1}, {response: invalid_params}, {user_id: @studenta}

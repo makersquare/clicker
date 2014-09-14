@@ -19,15 +19,12 @@ class ResponsesController < ApplicationController
   # POST /responses.json
   def create
     @response = Response.new(response_params)
-
-    respond_to do |format|
-      if @response.save
-        format.html { redirect_to @response, notice: 'Response was successfully created.' }
-        format.json { render :show, status: :created, location: @response }
-      else
-        format.html { render :new }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
-      end
+    @response.user_id = @current_user.id
+    @response.question_id = @question.id
+    if @response.save
+      render :show, status: :created, location: @response
+    else
+      render json: @response.errors, status: :unprocessable_entity
     end
   end
 
@@ -36,11 +33,9 @@ class ResponsesController < ApplicationController
   def update
     respond_to do |format|
       if @response.update(response_params)
-        format.html { redirect_to @response, notice: 'Response was successfully updated.' }
-        format.json { render :show, status: :ok, location: @response }
+        render :show, status: :ok, location: @response
       else
-        format.html { render :edit }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
+        render json: @response.errors, status: :unprocessable_entity 
       end
     end
   end

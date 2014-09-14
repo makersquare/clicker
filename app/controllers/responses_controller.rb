@@ -7,7 +7,7 @@ class ResponsesController < ApplicationController
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all
+    @responses = @question.responses
   end
 
   # GET /responses/1

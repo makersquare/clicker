@@ -4,6 +4,7 @@ RSpec.describe QuestionsController, :type => :controller do
 
   before do
     request.env["HTTP_ACCEPT"] = 'application/json'
+
     @student = User.create(
       provider: "github",
       uid: "9999999",
@@ -82,8 +83,7 @@ RSpec.describe QuestionsController, :type => :controller do
       post :create, {classgroup_id: @classgroup.id}
       expect(count).to eq(1)
     end
-end
-
+  end
 
 end
 

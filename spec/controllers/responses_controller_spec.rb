@@ -129,6 +129,17 @@ RSpec.describe ResponsesController, :type => :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end    
+
+    it 'renders index template' do
+      expect(response).to render_template(:index)
+    end   
+
+    it "assigns @responses to only include responses to correct question" do
+      expect(assigns(:responses)).to include(@response1a)
+      expect(assigns(:responses)).to include(@response1b)
+      expect(assigns(:responses)).to_not include(@anotherresponsea)
+      expect(assigns(:responses)).to_not include(@response2a)
+    end    
   end
 
   describe 'POST #create' do

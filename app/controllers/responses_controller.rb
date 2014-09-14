@@ -1,5 +1,7 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
+  before_action :set_question_set
+  before_action :set_question
   before_action :require_login
   
   # GET /responses
@@ -59,6 +61,13 @@ class ResponsesController < ApplicationController
       @response = Response.find(params[:id])
     end
 
+    def set_question_set
+      @question_set = QuestionSet.find(params[:question_set_id])
+    end
+
+    def set_question
+      @question = Question.find(params[:question_id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
       params.require(:response).permit(:content)

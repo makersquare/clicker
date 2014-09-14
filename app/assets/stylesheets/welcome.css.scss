@@ -14,6 +14,7 @@ $black-yellow: #303018;
 $black-warm: #1D1610;
 $light-black: #1d1d1d;
 $black-home: #141414;
+$escher: #444444;
 
 header.welcome-header {
   background-image: url(image-path('home-bck.png'));
@@ -26,6 +27,10 @@ header.welcome-header {
     color: $cloud;
     margin: 0;
   }
+}
+
+.no-margin {
+  margin: 0;
 }
 
 .main-title {
@@ -46,7 +51,7 @@ header.welcome-header {
 a.get-started {
   margin-top: 2rem;
   color: $cloud;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 300;
   &:hover { 
     color: $teal;
@@ -55,5 +60,29 @@ a.get-started {
 }
 
 .alliteration {
-  color: $black-home;
+  color: $cloud;
+  padding: 2rem 4rem 2rem 4rem;
+  font-weight: 300;
+}
+
+.getting-started {
+  background-color: $escher;
+}
+
+div.home-sign-in .button {
+  background-color: transparent;
+  border: 3px solid $teal;
+  color: $teal;
+  font-weight: 400;
+    &:hover{
+      background-color: $teal;
+      color: $cloud;
+    }
+}
+// screens larger than 1025px width
+@media only screen and (min-width: 64.063em) { 
+  header.welcome-header {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }

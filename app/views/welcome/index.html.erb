@@ -10,14 +10,18 @@
   <% if current_user %>
     <%= link_to "SIGN OUT", "/signout", class: 'button code-font' %>
   <% else %>
-    <%= link_to "GITHUB SIGN IN", "/auth/github", class: 'button code-font' %>
+    <%= link_to "GITHUB SIGN IN", "/auth/github", class: 'button code-font no-margin' %>
   <% end %>
 </div>
 
-<div class="getting started">
-  <h4 class="opensans-fonts alliteration">
-    Click Clack is a clicker correspondent app
-    for classes where coordinating coaches &
-    coders is key.
+<div class="getting-started">
+  <h4 class="code-font alliteration no-margin">
+    Click Clack<br>
+    is a clicker communication app<br>
+    for classes where coordinating<br>
+    concepts, coaches, & coders<br>
+    is key.
   </h4>
 </div>
+
+<p class="opensans-font">As teachers, our goal is to lead the student up the master ladder. Click Clack is a tool for smarter and faster <span class="smallcaps">checks for understanding</span> during your instruction.</p>

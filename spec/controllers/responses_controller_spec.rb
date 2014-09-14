@@ -144,10 +144,10 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe 'POST #create' do
     context 'with valid attributes' do
-      xit "creates a new contact" do 
+      it "creates a new contact" do 
         valid_params = {content: {"response" => "D"}}
         expect {
-          post :create, {question_set_id: @questionset, question_id: @question1}, {response: valid_params}, {user_id: @studenta}
+          post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
         }.to change(Response, :count).by(1)
       end
     end

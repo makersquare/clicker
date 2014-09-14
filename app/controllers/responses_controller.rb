@@ -22,7 +22,7 @@ class ResponsesController < ApplicationController
     @response.user_id = @current_user.id
     @response.question_id = @question.id
     if @response.save
-      render :show, status: :created, location: @response
+      render :show, {question_set_id: @question_set.id, question_id: @question.id, id: @response.id, status: :created}
     else
       render json: @response.errors, status: :unprocessable_entity
     end

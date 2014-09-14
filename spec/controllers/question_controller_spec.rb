@@ -23,7 +23,7 @@ RSpec.describe QuestionsController, :type => :controller do
       description: "MKS immersive course"
     )
     @question_set = QuestionSet.create(
-      class_group_id: 1
+      class_group_id: 1,
       name: "Algorithms"
     )
 
@@ -46,6 +46,7 @@ RSpec.describe QuestionsController, :type => :controller do
               { "C" => "2" },
               { "D" => "0, 1, or 2" }
             ]
+          }
     )
 
     @short_answer_question = ShortAnswerQuestion.create(
@@ -58,9 +59,30 @@ RSpec.describe QuestionsController, :type => :controller do
   end
 
   describe 'GET #index' do
-
+    it "responds successfully with an HTTP 200 status code" do
+      get :index, {question_set_id: @question_set.id}, {user_id: @student.id}
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
   end
 
+  describe 'GET #show' do
+    it "responds successfully with an HTTP 200 status code" do
+      get :show, {question_set_id: @question_set.id, id: @multi_choice_question.id}, {user_id: @student.id}
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe "POST #create" do
+    it "allows verified accounts" do
+      User.create(:verified => true)
+      # Sign in the user
+      count = ClassGroup.all.count
+      post :create, {classgroup_id: @classgroup.id}
+      expect(count).to eq(1)
+    end
+end
 
 
 end

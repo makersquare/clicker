@@ -164,7 +164,4 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe 'PUT #update' do
   end
-
-  describe 'DELETE #destroy' do
-  end
 end

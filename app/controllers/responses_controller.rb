@@ -31,22 +31,10 @@ class ResponsesController < ApplicationController
   # PATCH/PUT /responses/1
   # PATCH/PUT /responses/1.json
   def update
-    respond_to do |format|
-      if @response.update(response_params)
-        render :show, status: :ok, location: @response
-      else
-        render json: @response.errors, status: :unprocessable_entity 
-      end
-    end
-  end
-
-  # DELETE /responses/1
-  # DELETE /responses/1.json
-  def destroy
-    @response.destroy
-    respond_to do |format|
-      format.html { redirect_to responses_url, notice: 'Response was successfully destroyed.' }
-      format.json { head :no_content }
+    if @response.update(response_params)
+      render :show, status: :ok, location: @response
+    else
+      render json: @response.errors, status: :unprocessable_entity 
     end
   end
 

@@ -1,6 +1,6 @@
 // This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below. There is another manifest file which will compile angular javascript dependencies. It is included
-// in class_groups/show.html.erb where the angular application begins.
+// listed below. This manifest file is specifically for the angular portion of the application which begins 
+// at class_groups/show.html.erb
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
@@ -11,8 +11,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery-2.1.1.js
-//= require foundation
 
+//= require angular
+//= require angular-resource
+//= require angular-route
 
-$(function(){ $(document).foundation(); });
+//= require question_sets.js

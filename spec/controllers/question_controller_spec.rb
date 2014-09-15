@@ -86,5 +86,35 @@ RSpec.describe QuestionsController, :type => :controller do
     end
   end
 
+  describe "PUT #update" do
+    context "with valid attributes" do
+      it "updates a question" do
+        question = @multi_choice_question
+        question_content = {
+            "question" => "How many children can a node of a binary tree have?",
+            "answer" => "D",
+            "choices" => [
+              { "A" => "0" },
+              { "B" => "1" },
+              { "C" => "2" },
+              { "D" => "0, 1, or 2" }
+            ]
+          }
+        expect(question.content).to eq(question_content) 
+        updated_question = {
+          "question" => "How many children can a node of a binary tree have?",
+          "answer" => "B",
+          "choices" => [
+              { "A" => "8" },
+              { "B" => "0, 1, or 2" }
+            ]
+          }
+        valid_params = {content: updated_question}
+        patch :update, {question_set_id: @question_set.id, id: question.id, question: valid_params}, {user_id: @teacher.id}
+        expect(question.content).to eq(updated_question)
+      end
+    end
+  end
+
 end
 

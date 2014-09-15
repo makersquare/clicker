@@ -24,6 +24,17 @@ RSpec.describe ClassGroupsController, :type => :controller do
       name: "Cohort 8, The Ocho",
       description: "MKS immersive course"
     )
+
+    @classgroup2 = ClassGroup.create(
+      name: "Cohort 9",
+      description: "the newbies"
+    )
+
+    Membership.create(
+      user_id: 1,
+      class_group_id: 1,
+      kind: "student"
+    )
   end
 
   describe "GET #show" do
@@ -31,6 +42,12 @@ RSpec.describe ClassGroupsController, :type => :controller do
       get :show, {id: @class_group.id}, {user_id: @student.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
+    end
+
+    it "does not allow users that are not members of the class to view the class" do
+      get :show, {id: @classgroup2.id}, {user_id: @student.id}
+      #expect(response).to be_success
+      expect(response).to have_http_status(302)      
     end
   end
 

@@ -51,6 +51,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
+    fabrication (2.11.3)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     figaro (0.7.0)
@@ -186,6 +187,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   database_cleaner
+  fabrication
   figaro
   font-awesome-sass (~> 4.2.0)
   foundation-rails

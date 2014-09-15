@@ -59,13 +59,14 @@ RSpec.describe QuestionSetsController, :type => :controller do
   describe "POST #create" do
     it "creates a new question set" do
       count = QuestionSet.all.count
+      question_set_name = QuestionSet.find(@question_set.id).name
       post :create, { 
         class_group_id: @class_group.id
         # id: @question_set.id,
         # name: @question_set.name
         }
       expect(count).to eq(1)
-      expect(QuestionSet.find(@question_set.id).name).to eq("Lambda Calculus")
+      expect(question_set_name).to eq("Lambda Calculus")
     end
   end
 

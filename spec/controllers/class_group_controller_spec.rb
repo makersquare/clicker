@@ -4,14 +4,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
   render_views
 
   before do
-    @student = User.create(
-      provider: "github",
-      uid: "9999999",
-      name: "Catelyn Tully",
-      nickname: "Cat",
-      verified: false,
-      gravatar_id: "a4af3797c372cf36817f6767cefccc98"
-    )
+    @student = Fabricate(:user)
     @teacher = User.create(
       provider: "github",
       uid: "1111111",

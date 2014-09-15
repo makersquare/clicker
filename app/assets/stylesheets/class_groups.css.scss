@@ -1,3 +1,76 @@
 // Place all the styles related to the ClassGroups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// our colors
+$teal: #54BC9E;
+$teal-dark: #316858;
+$lime: #A4F7C0;
+$lime-dark: #90D8A8;
+$cloud: #ecf0f1;
+$dark-grey: #434234;
+$bright-yellow: #FBF963;
+$light-yellow: #FCFBBE;
+$grey-yellow: #7F7F61;
+$black-yellow: #303018;
+$black-warm: #1D1610;
+$light-black: #1d1d1d;
+$black-home: #141414;
+$escher: #444444;
+
+div.classes-container {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+div.header h1 {
+  font-size: 3rem;
+  padding: 1.5rem 0 1.5rem 0;
+}
+
+div.row {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+
+// class div styling
+.specific-class {
+  border-radius: 0.4rem;
+  border: 4px solid $teal;
+  background-color: $cloud;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.class-header {
+
+}
+
+.class-options {
+  div a {
+    padding-left: 1rem;
+  }
+}
+
+.edit-class .edit-students {
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.add-class {
+  h3 {
+    color: grey;
+  }
+  border: 3px dashed grey;
+  border-radius: 0.4rem;
+  margin: 0.4rem;
+  &:hover {
+    border: 3px dashed $teal;
+    h3 {
+      color: $teal;
+    }
+  }
+}
+

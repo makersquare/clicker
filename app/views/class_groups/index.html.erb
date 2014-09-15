@@ -6,6 +6,12 @@
     </h1>
 <!-- displays each class -->
 <div class="all-classes panel">
+  <% if @class_groups.count == 0 %>
+    <div class="no-classes panel">
+      <%= "No current classes.  Please add a class to begin." %>
+    </div>
+  <% end %>
+  
   <% @class_groups.each do |class_group| %>
     <div class="specific-class panel">
       <%= link_to class_group do %>

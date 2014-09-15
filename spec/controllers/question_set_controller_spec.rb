@@ -68,19 +68,18 @@ RSpec.describe QuestionSetsController, :type => :controller do
 
   describe "PATCH/PUT #update" do
     it "updates already created question set" do
-      
+      question_set_name = QuestionSet.find(@question_set.id).name
+      puts "before: " + question_set_name
+      question_set_name = "Functional Calculus"
+      post :update, { 
+        class_group_id: @class_group.id, 
+        id: @question_set.id,
+        # name: @question_set.name
+      }
+      puts "after: " + question_set_name
+      expect(question_set_name).to eq("Functional Calculus") 
     end
   end
-
-
-
-
-
-
-
-
-
-
 
 
 

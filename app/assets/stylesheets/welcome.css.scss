@@ -66,7 +66,7 @@ a.get-started {
 }
 
 .getting-started {
-  background-color: $escher;
+  background-color: $teal;
 }
 
 div.home-sign-in .button {
@@ -79,6 +79,8 @@ div.home-sign-in .button {
       color: $cloud;
     }
 }
+
+
 // screens larger than 1025px width
 @media only screen and (min-width: 64.063em) { 
   header.welcome-header {

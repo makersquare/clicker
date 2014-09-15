@@ -1,5 +1,7 @@
+
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question_set
   before_action :require_login
   
   # GET /questions
@@ -17,11 +19,11 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    @question.question_set_id = params[:question_set_id]
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
+        format.html { redirect_to [@question_set, @question], notice: 'Question was successfully created.' }
+        format.json { render :show, status: :created, location: [@question_set, @question] }
       else
         format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -34,8 +36,8 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
+        format.html { redirect_to question_set_questions_url, notice: 'Question was successfully updated.' }
+        format.json { render :show, status: :ok, location: question_set_questions_url }
       else
         format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -48,7 +50,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to question_set_questions_url, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -59,8 +61,12 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:id])
     end
 
+    def set_question_set
+      @question_set = QuestionSet.find(params[:question_set_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:type, :content)
+      params.require(:question).permit!
     end
 end

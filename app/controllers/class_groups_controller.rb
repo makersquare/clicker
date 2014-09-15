@@ -23,6 +23,7 @@ class ClassGroupsController < ApplicationController
 
   # GET /class_groups/1/edit
   def edit
+    redirect_to "/class_groups/" + params[:id] + "/#/edit"
   end
 
   # POST /class_groups

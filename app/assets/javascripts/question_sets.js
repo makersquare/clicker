@@ -3,7 +3,7 @@
 
 
 
-var app = angular.module('app', ["ngResource"]);
+var app = angular.module('app', ["ngResource", "ngRoute"]);
 
 app.factory("QuestionSet", function($resource) {
  return $resource("/class_groups/:class_group_id/question_sets.json", {class_group_id: "@class_group_id"});
@@ -23,6 +23,7 @@ app.controller('QuestionSetCtrl', function($scope, $location, QuestionSet, Quest
   var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
     $scope.questionSets.push(response);
   });
+  $scope.name = '';
  };
  $scope.destroy = function(id) {
    if (confirm("Are you sure?")) {
@@ -36,4 +37,27 @@ app.controller('QuestionSetCtrl', function($scope, $location, QuestionSet, Quest
      });
    }
  };
+}).controller('EditCtrl', function($scope) {
+  $scope.id = g.classGroup.id;
+});
+
+// app.controller('QuestionsCtrl', function($scope){
+
+// });
+
+
+app.config(function ($routeProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: '/angular/main.html',
+      controller: 'AppCtrl'
+    })
+    .when('/edit', {
+      templateUrl: '/angular/edit.html',
+      controller: 'EditCtrl'
+    })
+    .when('/questions', {
+      templateUrl: '../angular/questions.html',
+      controller: 'QuestionsCtrl'
+    });
 });

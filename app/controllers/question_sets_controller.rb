@@ -29,16 +29,22 @@ class QuestionSetsController < ApplicationController
   # POST /question_sets.json
   def create
     # return render :json => { :id => 99, :name => "Hello Class", :class_group_id => 1 }
-    @question_set = QuestionSet.new(question_set_params)
 
-    respond_to do |format|
-      if @question_set.save
-        format.html { redirect_to [@class_group, @question_set], notice: 'Question set was successfully created.' }
-        format.json { render :show, status: :created, location: [@class_group, @question_set] }
-      else
-        format.html { render :new }
-        format.json { render json: @question_set.errors, status: :unprocessable_entity }
+    if current_user.teacher?(question_set_params)
+      @question_set = QuestionSet.new(question_set_params)
+      @question_set.class_group_id = params[:class_group_id]
+
+      respond_to do |format|
+        if @question_set.save
+          format.html { redirect_to [@class_group, @question_set], notice: 'Question set was successfully created.' }
+          format.json { render :show, status: :created, location: [@class_group, @question_set] }
+        else
+          format.html { render :new }
+          format.json { render json: @question_set.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error_not_teacher] = "You must be a teacher to perform this action."
     end
   end
 
@@ -47,6 +53,9 @@ class QuestionSetsController < ApplicationController
   def update
     respond_to do |format|
       if @question_set.update(question_set_params)
+        @question_set = QuestionSet.new(question_set_params)
+        @question_set.class_group_id = params[:class_group_id]
+        
         format.html { redirect_to [@class_group, @question_set], notice: 'Question set was successfully updated.' }
         format.json { render :show, status: :ok, location: [@class_group, @question_set] }
       else
@@ -78,6 +87,6 @@ class QuestionSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_set_params
-      params.require(:question_set).permit(:class_group_id, :name)
+      params.require(:question_set).permit(:name)
     end
 end

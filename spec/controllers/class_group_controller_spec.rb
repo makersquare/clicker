@@ -31,8 +31,8 @@ RSpec.describe ClassGroupsController, :type => :controller do
     )
 
     Membership.create(
-      user_id: 1,
-      class_group_id: 1,
+      user_id: @student.id,
+      class_group_id: @classgroup.id,
       kind: "student"
     )
   end
@@ -48,8 +48,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
     it "does not allow users that are not members of the class to view the class and redirects to index" do
       get :show, {id: @classgroup2.id}, {user_id: @student.id}
       expect(response).to_not render_template(:show)
-      expect(response).to render_template(:index)
-      #expect(response).to have_http_status(302)      
+      expect(response).to redirect_to(class_groups_path)
     end
   end
 

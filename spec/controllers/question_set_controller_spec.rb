@@ -58,16 +58,23 @@ RSpec.describe QuestionSetsController, :type => :controller do
 
   describe "POST #create" do
     it "creates a new question set" do
-      get :show, { 
-        class_group_id: @class_group.id,
-        id: @question_set.id,
-        name: @question_set.name
-        },
-        { user_id: @student.id }
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
+      count = QuestionSet.all.count
+      post :create, { 
+        class_group_id: @class_group.id
+        # id: @question_set.id,
+        # name: @question_set.name
+        }
+      expect(count).to eq(1)
+      expect(QuestionSet.find(@question_set.id).name).to eq("Lambda Calculus")
     end
   end
+
+  describe "PATCH/PUT #update" do
+    it "updates already created question set" do
+      
+    end
+  end
+
 
 
 

@@ -19,8 +19,10 @@ class ResponsesController < ApplicationController
   # POST /responses.json
   def create
     @response = Response.new
-    p response_params
-    @response.content = response_params["content"]
+    content = response_params["content"]
+    puts "Content from params:"
+    p content
+    @response.content = content
     @response.user_id = @current_user.id
     @response.question_id = @question.id
     p @response
@@ -58,7 +60,8 @@ class ResponsesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
+      puts "incoming params:"
       p params
-      params.require(:response).permit(:content)
+      return params.require(:response).permit(:content)
     end
 end

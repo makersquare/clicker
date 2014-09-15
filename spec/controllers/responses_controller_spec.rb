@@ -146,9 +146,14 @@ RSpec.describe ResponsesController, :type => :controller do
     context 'with valid attributes' do
       it "creates a new response" do 
         valid_params = {content: {response: "D"}}
-        expect {
-          post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
-        }.to change(Response, :count).by(1)
+        current_count = Response.count
+        post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
+        json = JSON.parse(response.body)
+        p json
+        expect(Response.count).to eq(current_count + 1)
+        # expect {
+        #   post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
+        # }.to change(Response, :count).by(1)
       end
     end
 

@@ -1,0 +1,35 @@
+$teal: #54BC9E;
+$teal-dark: #316858;
+$lime: #A4F7C0;
+$lime-dark: #90D8A8;
+$cloud: #ecf0f1;
+$dark-grey: #434234;
+$bright-yellow: #FBF963;
+$light-yellow: #FCFBBE;
+$grey-yellow: #7F7F61;
+$black-yellow: #303018;
+$black-warm: #1D1610;
+$light-black: #1d1d1d;
+$black-home: #141414;
+$escher: #444444;
+
+.ng-qset-show {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.add-qset, .add-q, .add-choice {
+  h3, h5 {
+    color: grey;
+  }
+  border: 3px dashed grey;
+  border-radius: 0.4rem;
+  margin: 0.4rem;
+  &:hover {
+    border: 3px dashed $teal;
+    h3, h5 {
+      color: $teal;
+    }
+  }
+}
+

@@ -25,14 +25,14 @@ RSpec.describe ClassGroupsController, :type => :controller do
       description: "MKS immersive course"
     )
 
-    @classgroup2 = ClassGroup.create(
+    @class_group2 = ClassGroup.create(
       name: "Cohort 9",
       description: "the newbies"
     )
 
     Membership.create(
       user_id: @student.id,
-      class_group_id: @classgroup.id,
+      class_group_id: @class_group.id,
       kind: "student"
     )
   end
@@ -46,7 +46,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
     end
 
     it "does not allow users that are not members of the class to view the class and redirects to index" do
-      get :show, {id: @classgroup2.id}, {user_id: @student.id}
+      get :show, {id: @class_group2.id}, {user_id: @student.id}
       expect(response).to_not render_template(:show)
       expect(response).to redirect_to(class_groups_path)
     end

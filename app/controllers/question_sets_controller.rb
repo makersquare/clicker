@@ -7,14 +7,6 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets
   # GET /question_sets.json
   def index
-    # respond_to do |format|
-    #   format.html {
-    #   }
-    #   format.json {
-    #     render json: QuestionSet.all
-    #   }
-    # end
-    # respond_with QuestionSet.all
     @question_sets = QuestionSet.all
   end
 

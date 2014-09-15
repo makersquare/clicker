@@ -67,21 +67,30 @@ RSpec.describe QuestionSetsController, :type => :controller do
   end
 
   describe "PATCH/PUT #update" do
-    it "updates already created question set" do
+    xit "updates already created question set" do
       question_set_name = QuestionSet.find(@question_set.id).name
       puts "before: " + question_set_name
-      question_set_name = "Functional Calculus"
+      # question_set_name = "Functional Calculus"
       post :update, { 
         class_group_id: @class_group.id, 
         id: @question_set.id,
-        # name: @question_set.name
+        name: "sdfa"
       }
       puts "after: " + question_set_name
-      expect(question_set_name).to eq("Functional Calculus") 
+      expect(question_set_name).to eq("Functional Calculus")
     end
   end
 
-
+  describe "DELETE #destroy" do
+    it "deletes a question set" do
+      count = QuestionSet.all.count
+      delete :destroy,  {
+        class_group_id: @class_group.to_param, 
+        id: @question_set.to_param
+      }
+      expect(count).to eq(0)
+    end
+  end
 
 
 

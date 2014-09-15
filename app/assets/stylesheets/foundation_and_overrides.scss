@@ -18,7 +18,6 @@ $black-yellow: #303018;
 $black-warm: #1D1610;
 
 
-
 // Table of Contents
 // Foundation Settings
 //
@@ -1456,3 +1455,5 @@ $topbar-dropdown-label-bg: $teal;
 // $include-accessibility-classes: true;
 
 @import 'foundation';
+@import "font-awesome-sprockets";
+@import "font-awesome";

@@ -33,8 +33,10 @@ class ResponsesController < ApplicationController
   # PATCH/PUT /responses/1
   # PATCH/PUT /responses/1.json
   def update
-    if @response.update(response_params)
-      render :show, status: :ok, location: @response
+    if response_params["content"].nil?
+      render json: {errors: :missing_content}, status: :unprocessable_entity          
+    elsif @response.update(response_params)
+      render :show, {question_set_id: @question_set.id, question_id: @question.id, id: @response.id, status: :ok}
     else
       render json: @response.errors, status: :unprocessable_entity 
     end

@@ -164,21 +164,23 @@ RSpec.describe ResponsesController, :type => :controller do
 
   describe 'PUT #update' do
     context 'with valid attributes' do
-      xit "updates a response" do 
+      it "updates a response" do 
         expect(@response1a.content).to eq({"response" => "D"})        
-        valid_params = {content: {"response" => "updated answer"}}
-        patch :update, {question_set_id: @questionset, question_id: @question1, response_id: @response1a, response: valid_params}, {user_id: @studenta}
+        valid_params = {content: {response: "updated answer"}}
+        put :update, {question_set_id: @questionset, question_id: @question1, id: @response1a, response: valid_params}, {user_id: @studenta}
+        @response1a.reload
         expect(response).to be_success
         expect(@response1a.content).to eq({"response" => "updated answer"})
       end
     end
 
     context 'with invalid attributes' do
-      xit "does not update a response" do
-        invalid_params = {"response" => "D"}
-          expect {
-            post :create, {question_set_id: @questionset, question_id: @question1}, {response: invalid_params}, {user_id: @studenta}
-          }.to change(Response, :count).by(0)
+      it "does not update a response" do
+        expect(@response1a.content).to eq({"response" => "D"})        
+        invalid_params = {content: "D"}
+        put :update, {question_set_id: @questionset, question_id: @question1, id: @response1a, response: invalid_params}, {user_id: @studenta}
+        @response1a.reload
+        expect(@response1a.content).to eq({"response" => "D"})
       end
     end
   end

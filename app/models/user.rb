@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def teacher?(class_group_id)
+    self.memberships.where(class_group_id: class_group_id, kind: "teacher")
+  end
+
 end

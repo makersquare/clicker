@@ -112,6 +112,46 @@ Membership.create([
     user_id: 3,
     class_group_id: 1,
     kind: "teacher"
+  },
+  {
+    user_id: 4,
+    class_group_id: 1,
+    kind: "teacher"
+  },
+  {
+    user_id: 5,
+    class_group_id: 1,
+    kind: "teacher"
+  },
+  {
+    user_id: 6,
+    class_group_id: 1,
+    kind: "teacher"
+  },
+  {
+    user_id: 7,
+    class_group_id: 1,
+    kind: "teacher"
+  },
+  {
+    user_id: 8,
+    class_group_id: 1,
+    kind: "teacher"
+  },
+  {
+    user_id: 9,
+    class_group_id: 1,
+    kind: "teacher"
+  },
+  {
+    user_id: 10,
+    class_group_id: 1,
+    kind: "teacher"
+  },
+  {
+    user_id: 11,
+    class_group_id: 1,
+    kind: "teacher"
   }
   ])
 

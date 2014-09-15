@@ -60,21 +60,17 @@ RSpec.describe ClassGroupsController, :type => :controller do
   end
 
   describe "POST #create" do
-    it "allows verified accounts" do
-      User.create(:verified => true)
-      # Sign in the user
-      count = ClassGroup.all.count
-      post :create, {class_group_id: @class_group.id}
-      expect(count).to eq(1)
+    it "allows verified accounts to create class groups" do
+      expect{
+        post :create, {class_group: {name: "Best Class", description: "really"}}, {user_id: @teacher.id}
+      }.to change(ClassGroup, :count).by(1)
     end
     
     # Pending: Need to add verification of User first (see Issue #50)
-    xit "does not allow unverified accounts" do
-      User.create(:verified => false)
-      # Sign in the user
-      count = ClassGroup.all.count
-      post :create, {class_group_id: @class_group.id}
-      expect(count).to eq(0)
+    it "does not allow unverified accounts to create class groups" do
+      expect{
+        post :create, {class_group: {name: "Best Class", description: "really"}}, {user_id: @student.id}
+      }.to change(ClassGroup, :count).by(0)
     end
 
     it "shows form errors" do

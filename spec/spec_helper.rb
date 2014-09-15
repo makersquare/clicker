@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'rubygems'
 require 'vcr'
 require 'webmock'
+require 'pry-byebug'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'

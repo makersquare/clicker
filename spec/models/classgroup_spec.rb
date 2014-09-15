@@ -18,13 +18,5 @@ RSpec.describe ClassGroup, :type => :model do
         )
       expect(invalid_class).to be_invalid
     end
-
-    it 'is invalid without a description' do
-      invalid_class = ClassGroup.create(
-        name: "Cohort 8",
-        description: ""
-        )
-      expect(invalid_class).to be_invalid
-    end
   end
 end

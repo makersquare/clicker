@@ -1,3 +1,4 @@
+
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :set_question_set
@@ -18,7 +19,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-    # binding.pry
+    @question.question_set_id = params[:question_set_id]
     respond_to do |format|
       if @question.save
         format.html { redirect_to [@question_set, @question], notice: 'Question was successfully created.' }
@@ -66,6 +67,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question_set_id, :type, :content)
+      params.require(:question).permit!
     end
 end

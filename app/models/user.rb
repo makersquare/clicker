@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
     self.memberships.where(class_group_id: class_group_id, kind: "teacher")
   end
 
+  def enrolled?(class_group_id)
+    response = self.memberships.where(class_group_id: class_group_id)
+    response.empty? ? false : true
+  end
 end

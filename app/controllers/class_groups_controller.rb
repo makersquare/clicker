@@ -13,7 +13,12 @@ class ClassGroupsController < ApplicationController
   # GET /class_groups/1
   # GET /class_groups/1.json
   def show
-     @question_sets = @class_group.question_sets   
+    if @current_user.enrolled?(@class_group.id)
+      @question_sets = @class_group.question_sets   
+    else
+      redirect_to class_groups_path
+      return
+    end
   end
 
   # GET /class_groups/1/edit

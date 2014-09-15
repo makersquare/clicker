@@ -116,5 +116,13 @@ RSpec.describe QuestionsController, :type => :controller do
     end
   end
 
+  describe "POST #delete" do
+    it "deletes the question" do
+      expect{
+        delete :destroy, {question_set_id: @question_set.id, id: @multi_choice_question.id}, {user_id: @teacher.id}
+      }.to change(Question, :count).by(-1)
+    end
+  end
+
 end
 

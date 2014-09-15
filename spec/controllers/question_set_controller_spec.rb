@@ -22,16 +22,19 @@ RSpec.describe QuestionSetsController, :type => :controller do
       name: "Cohort 8, The Ocho",
       description: "MKS immersive course"
     )
+    @student_membership = Membership.create(
+      user_id: 1,
+      class_group_id: 1,
+      kind: "student"
+    )
+    @teacher_membership = Membership.create(
+      user_id: 2,
+      class_group_id: 1,
+      kind: "teacher"
+    )
     @question_set = QuestionSet.create(
       class_group_id: 1,
       name: "Lambda Calculus"
-    )
-    @attendance_check = AttendanceQuestion.create(
-      question_set_id: 1,
-      content: {
-        question: "Attendance Check",
-        answer: "true"
-      }
     )
   end
 
@@ -46,11 +49,11 @@ RSpec.describe QuestionSetsController, :type => :controller do
 
   describe "GET #show" do
     it "responds successfully with an HTTP 200 status code" do
-      get :show, { 
+      new_param_hash = { 
         class_group_id: @class_group.id,
         id: @question_set.id
-        },
-        { user_id: @student.id }
+        }
+      get :show, new_param_hash, { user_id: @student.id }
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
@@ -59,44 +62,47 @@ RSpec.describe QuestionSetsController, :type => :controller do
   describe "POST #create" do
     it "creates a new question set" do
       count = QuestionSet.all.count
-      question_set_name = QuestionSet.find(@question_set.id).name
-      post :create, { class_group_id: @class_group.id }
-      expect(count).to eq(1)
-      expect(question_set_name).to eq("Lambda Calculus")
+
+      new_param_hash = {
+        class_group_id: @class_group.id,
+        question_set: {
+          name: "UX Design"
+        }
+      }
+      post :create, new_param_hash, { user_id: @teacher.id }
+      expect(QuestionSet.all.count).to eq(2)
+
+      qset = assigns(:question_set)
+      expect(qset.class_group_id).to eq @class_group.id
+      expect(qset.name).to eq("UX Design")
     end
   end
 
   describe "PATCH/PUT #update" do
-    xit "updates already created question set" do
+    it "updates already created question set" do
       question_set_name = QuestionSet.find(@question_set.id).name
-      puts "before: " + question_set_name
-      # question_set_name = "Functional Calculus"
-      post :update, { 
+      new_param_hash = { 
         class_group_id: @class_group.id, 
         id: @question_set.id,
-        name: "sdfa"
+        question_set: { 
+          name: "Functional Calculus"
+        }
       }
-      puts "after: " + question_set_name
-      expect(question_set_name).to eq("Functional Calculus")
+      put :update, new_param_hash, { user_id: @teacher.id }
+      qset = assigns(:question_set)
+      expect(qset.name).to eq("Functional Calculus")
     end
   end
 
   describe "DELETE #destroy" do
     it "deletes a question set" do
-      count = QuestionSet.all.count
-      delete :destroy,  {
-        class_group_id: @class_group.to_param, 
-        id: @question_set.to_param
+      new_param_hash = {
+        class_group_id: @class_group.id, 
+        id: @question_set.id
       }
-      expect(count).to eq(0)
+      delete :destroy, new_param_hash, { user_id: @teacher.id }
+      expect(QuestionSet.all.count).to eq(0)
     end
   end
-
-
-
-
-
-
-
 
 end

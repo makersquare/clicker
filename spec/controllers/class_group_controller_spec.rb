@@ -66,7 +66,6 @@ RSpec.describe ClassGroupsController, :type => :controller do
       }.to change(ClassGroup, :count).by(1)
     end
     
-    # Pending: Need to add verification of User first (see Issue #50)
     it "does not allow unverified accounts to create class groups" do
       expect{
         post :create, {class_group: {name: "Best Class", description: "really"}}, {user_id: @student.id}

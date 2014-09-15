@@ -23,6 +23,10 @@ class ClassGroupsController < ApplicationController
   # POST /class_groups
   # POST /class_groups.json
   def create
+    if !@current_user.verified 
+      redirect_to class_groups_path
+      return
+    end
     @class_group = ClassGroup.new(class_group_params)
 
     respond_to do |format|

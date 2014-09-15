@@ -41,6 +41,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'pry-byebug'
+  gem 'fabrication'
 end
 
 gem 'foundation-rails'

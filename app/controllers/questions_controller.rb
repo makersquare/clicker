@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    # binding.pry
     respond_to do |format|
       if @question.save
         format.html { redirect_to [@question_set, @question], notice: 'Question was successfully created.' }

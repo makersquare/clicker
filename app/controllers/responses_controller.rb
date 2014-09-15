@@ -18,17 +18,14 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.json
   def create
-    @response = Response.new
-    content = response_params["content"]
-    puts "Content from params:"
-    p content
-    @response.content = content
+    p response_params
+    @response = Response.new(response_params)
     @response.user_id = @current_user.id
     @response.question_id = @question.id
     p @response
-    if @response.content.nil?
-      render json: {errors: :missing_content}, status: :unprocessable_entity    
-    elsif @response.save
+    # if @response.content.nil?
+    #   render json: {errors: :missing_content}, status: :unprocessable_entity    
+    if @response.save
       render :show, {question_set_id: @question_set.id, question_id: @question.id, id: @response.id, status: :created}
     else
       render json: @response.errors, status: :unprocessable_entity
@@ -62,6 +59,6 @@ class ResponsesController < ApplicationController
     def response_params
       puts "incoming params:"
       p params
-      return params.require(:response).permit(:content)
+      params.require(:response).permit(:content)
     end
 end

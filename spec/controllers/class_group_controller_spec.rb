@@ -64,7 +64,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
       
       original_count = ClassGroup.all.count
       post_params = {
-        class_group_id: @classgroup.id,
+        class_group_id: @class_group.id,
         class_group: {
           name: "",
           description: "The Ocho"

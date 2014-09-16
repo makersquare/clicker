@@ -5,24 +5,9 @@ RSpec.describe QuestionSetsController, :type => :controller do
   
   before do
     request.env["HTTP_ACCEPT"] = 'application/json'
-    @student = User.create(
-      provider: "github",
-      uid: "9999999",
-      name: "Catelyn Tully",
-      nickname: "Cat",
-      verified: false
-    )
-    @teacher = User.create(
-      provider: "github",
-      uid: "1111111",
-      name: "Ed Stark",
-      nickname: "Ned",
-      verified: true
-    )
-    @class_group = ClassGroup.create(
-      name: "Cohort 8, The Ocho",
-      description: "MKS immersive course"
-    )
+    @student = Fabricate(:user)
+    @teacher = Fabricate(:verified_user)
+    @class_group = Fabricate(:class_group)
     @student_membership = Membership.create(
       user_id: 1,
       class_group_id: 1,

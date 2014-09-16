@@ -7,13 +7,12 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets
   # GET /question_sets.json
   def index
-    @question_sets = QuestionSet.all
+    @question_sets = @class_group.question_sets
   end
 
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
-    @question_sets = @class_group.question_sets #TO DO: Should be just this Question Set
   end
 
 

@@ -6,28 +6,10 @@ RSpec.describe QuestionsController, :type => :controller do
   before do
     request.env["HTTP_ACCEPT"] = 'application/json'
 
-    @student = User.create(
-      provider: "github",
-      uid: "9999999",
-      name: "Catelyn Tully",
-      nickname: "Cat",
-      verified: false
-    )
-    @teacher = User.create(
-      provider: "github",
-      uid: "1111111",
-      name: "Ed Stark",
-      nickname: "Ned",
-      verified: true
-    )
-    @classgroup = ClassGroup.create(
-      name: "Cohort 8, The Ocho",
-      description: "MKS immersive course"
-    )
-    @question_set = QuestionSet.create(
-      class_group_id: 1,
-      name: "Algorithms"
-    )
+    @student = Fabricate(:user)
+    @teacher = Fabricate(:verified_user)
+    @classgroup = Fabricate(:class_group)
+    @question_set = Fabricate(:question_set, class_group_id: @classgroup.id)
 
     @attendance_question = AttendanceQuestion.create(
       question_set_id: 1,

@@ -36,12 +36,12 @@ class ClassGroupsController < ApplicationController
 
     respond_to do |format|
       if @class_group.save
-        format.html { render :show, notice: 'Class group was successfully created.' }
-        format.json { render :show, status: :created, location: @class_group }
         Membership.create(
           user_id: @current_user.id,
           class_group_id: @class_group.id,
           kind: 'teacher')
+        format.html { redirect_to @class_group, notice: 'Class group was successfully created.' }
+        format.json { render :show, status: :created, location: @class_group }
       else
         @class_groups = @current_user.class_groups
         format.html { render :index }

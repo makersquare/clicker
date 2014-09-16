@@ -11,29 +11,21 @@ RSpec.describe ResponsesController, :type => :controller do
     @teacher = Fabricate(:verified_user)
     @classgroup = Fabricate(:class_group)
 
-    Membership.create(
+    @classgroup.memberships.create(
       user_id: @studenta.id,
-      class_group_id: @classgroup.id,
       kind: 'student'
     )
-    Membership.create(
+    @classgroup.memberships.create(
       user_id: @studentb.id,
-      class_group_id: @classgroup.id,
       kind: 'student'
     )
-    Membership.create(
+    @classgroup.memberships.create(
       user_id: @teacher.id,
-      class_group_id: @classgroup.id,
       kind: 'teacher'
     )
     #####1ST QUESTION SET WITH TWO QUESTIONS WITH TWO RESPONSES EACH#####
-    @questionset = QuestionSet.create(
-      class_group_id: @classgroup.id,
-      name: "RSpec testing"
-    )
-    @question1 = MultiChoiceQuestion.create(
-      question_set_id: @questionset.id
-    )
+    @questionset = Fabricate(:question_set, class_group_id: @classgroup.id)
+    @question1 = Fabricate(:multi_choice_question, question_set_id: @questionset.id)
     @response1a = Response.create(
       question_id: @question1.id,
       user_id: @studenta.id,
@@ -44,9 +36,7 @@ RSpec.describe ResponsesController, :type => :controller do
       user_id: @studentb.id,
       content: {"response"=>"C"}   
     )
-    @question2 = ShortAnswerQuestion.create(
-      question_set_id: @questionset.id
-    )
+    @question2 = Fabricate(:short_answer_question, question_set_id: @questionset.id)
     @response2a = Response.create(
       question_id: @question2.id,
       user_id: @studenta.id,
@@ -59,13 +49,8 @@ RSpec.describe ResponsesController, :type => :controller do
     )
 
     #####2ND QUESTION SET WITH ONE QUESTION WITH TWO RESPONSES#####
-    @anotherquestionset = QuestionSet.create(
-      class_group_id: @classgroup.id,
-      name: "Jasmine testing"
-    )
-    @anotherquestion = AttendanceQuestion.create(
-      question_set_id: @anotherquestionset.id
-    )
+    @anotherquestionset = Fabricate(:question_set, class_group_id: @classgroup.id)
+    @anotherquestion = Fabricate(:attendance_question, question_set_id: @anotherquestionset.id)
     @anotherresponsea = Response.create(
       question_id: @anotherquestion.id,
       user_id: @studenta.id,

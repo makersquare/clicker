@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ClassGroupsController, :type => :controller do
-  
+  render_views
+
   before do
     @student = User.create(
       provider: "github",
@@ -57,6 +58,23 @@ RSpec.describe ClassGroupsController, :type => :controller do
       count = ClassGroup.all.count
       post :create, {class_group_id: @class_group.id}
       expect(count).to eq(0)
+    end
+
+    it "shows form errors" do
+      
+      original_count = ClassGroup.all.count
+      post_params = {
+        class_group_id: @class_group.id,
+        class_group: {
+          name: "",
+          description: "The Ocho"
+        }
+      }
+      post :create, post_params, { user_id: @teacher.id }
+
+      expect(ClassGroup.all.count).to eq(original_count)
+      expect(response).to render_template 'class_groups/index'
+      expect(response.body).to include "error", ERB::Util.html_escape("Name can't be blank")
     end
   end
 

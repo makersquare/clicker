@@ -34,10 +34,11 @@ class ClassGroupsController < ApplicationController
           class_group_id: @class_group.id,
           kind: 'teacher')
       else
-        format.html { render :new }
+        @class_groups = @current_user.class_groups
+        format.html { render :index }
         format.json { render json: @class_group.errors, status: :unprocessable_entity }
       end
-    end  
+    end
   end
 
   # PATCH/PUT /class_groups/1

@@ -9,6 +9,14 @@
   <h1 class="opensans-font"><%= link_to @class_group.name, class_group_path %></h1>
   <p class="code-font italic"><%= @class_group.description %></p>
 
+  <% if @class_group.errors.any? %>
+    <div id="error_explanation">
+      <p> <%= @class_group.errors %> </p>
+    </div>
+  <% end %>
+
+  <%= link_to 'Back', class_groups_path %>
+
   <div class="ng-qset-show">
     
   <!-- yield here to the view -->

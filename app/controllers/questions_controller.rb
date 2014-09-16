@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :set_question_set
   before_action :require_login
+
   
   # GET /questions
   # GET /questions.json

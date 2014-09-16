@@ -4,10 +4,7 @@ RSpec.describe ClassGroup, :type => :model do
   
   describe 'Class Group' do
     it 'creates a valid class group' do
-      valid_class = ClassGroup.create(
-        name: "Cohort 8",
-        description: "The Ocho"
-        )
+      valid_class = Fabricate(:class_group)
       expect(valid_class).to be_valid
     end
 

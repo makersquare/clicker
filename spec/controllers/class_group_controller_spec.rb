@@ -9,11 +9,15 @@ RSpec.describe ClassGroupsController, :type => :controller do
     @class_group = Fabricate(:class_group)
     @class_group2 = Fabricate(:class_group)
 
-    Membership.create(
+    @class_group.memberships.create(
       user_id: @student.id,
-      class_group_id: @class_group.id,
       kind: "student"
     )
+    # Membership.create(
+    #   user_id: @student.id,
+    #   class_group_id: @class_group.id,
+    #   kind: "student"
+    # )
   end
 
   describe "GET #show" do

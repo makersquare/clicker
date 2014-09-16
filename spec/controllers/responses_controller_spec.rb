@@ -6,34 +6,10 @@ RSpec.describe ResponsesController, :type => :controller do
   before do
     request.env["HTTP_ACCEPT"] = 'application/json'
 
-    @studenta = User.create(
-      provider: "github",
-      uid: "9999999",
-      name: "Catelyn Tully",
-      nickname: "Cat",
-      verified: false,
-      gravatar_id: "a4af3797c372cf36817f6767cefccc98"
-    )
-    @studentb = User.create(
-      provider: "github",
-      uid: "9999998",
-      name: "Molly Miller",
-      nickname: "mole",
-      verified: false,
-      gravatar_id: "a4af3797c372cf36817f6767cefccc98"
-    )
-    @teacher = User.create(
-      provider: "github",
-      uid: "1111111",
-      name: "Ed Stark",
-      nickname: "Ned",
-      verified: true,
-      gravatar_id: "687058c0dcf54250a1dfef3515bbc2a7"      
-    )
-    @classgroup = ClassGroup.create(
-      name: "Cohort 8, The Ocho",
-      description: "MKS immersive course"
-    )
+    @studenta = Fabricate(:user)
+    @studentb = Fabricate(:user)
+    @teacher = Fabricate(:verified_user)
+    @classgroup = Fabricate(:class_group)
 
     Membership.create(
       user_id: @studenta.id,

@@ -5,14 +5,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
 
   before do
     @student = Fabricate(:user)
-    @teacher = User.create(
-      provider: "github",
-      uid: "1111111",
-      name: "Ed Stark",
-      nickname: "Ned",
-      verified: true,
-      gravatar_id: "687058c0dcf54250a1dfef3515bbc2a7"      
-    )
+    @teacher = Fabricate(:verified_user)
     @class_group = ClassGroup.create(
       name: "Cohort 8, The Ocho",
       description: "MKS immersive course"

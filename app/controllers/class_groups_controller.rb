@@ -16,8 +16,6 @@ class ClassGroupsController < ApplicationController
      @question_sets = @class_group.question_sets   
   end
 
-
-
   # GET /class_groups/1/edit
   def edit
   end

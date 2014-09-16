@@ -26,41 +26,17 @@ RSpec.describe ResponsesController, :type => :controller do
     #####1ST QUESTION SET WITH TWO QUESTIONS WITH TWO RESPONSES EACH#####
     @questionset = Fabricate(:question_set, class_group_id: @classgroup.id)
     @question1 = Fabricate(:multi_choice_question, question_set_id: @questionset.id)
-    @response1a = Response.create(
-      question_id: @question1.id,
-      user_id: @studenta.id,
-      content: {"response"=>"D"}   
-    )
-    @response1b = Response.create(
-      question_id: @question1.id,
-      user_id: @studentb.id,
-      content: {"response"=>"C"}   
-    )
+    @response1a = Fabricate(:response, question_id: @question1.id, content: {response: "D"})
+    @response1b = Fabricate(:response, question_id: @question1.id)
     @question2 = Fabricate(:short_answer_question, question_set_id: @questionset.id)
-    @response2a = Response.create(
-      question_id: @question2.id,
-      user_id: @studenta.id,
-      content: {"response"=>"Here we go!"}   
-    )
-    @response2b = Response.create(
-      question_id: @question2.id,
-      user_id: @studentb.id,
-      content: {"response"=>"Woah! No way!"}   
-    )
+    @response2a = Fabricate(:response, question_id: @question2.id)
+    @response2b = Fabricate(:response, question_id: @question2.id)
 
     #####2ND QUESTION SET WITH ONE QUESTION WITH TWO RESPONSES#####
     @anotherquestionset = Fabricate(:question_set, class_group_id: @classgroup.id)
     @anotherquestion = Fabricate(:attendance_question, question_set_id: @anotherquestionset.id)
-    @anotherresponsea = Response.create(
-      question_id: @anotherquestion.id,
-      user_id: @studenta.id,
-      content: {"response"=>"true"}   
-    )
-    @anotherresponseb = Response.create(
-      question_id: @anotherquestion.id,
-      user_id: @studentb.id,
-      content: {"response"=>nil}   
-    )    
+    @anotherresponsea = Fabricate(:response, question_id: @anotherquestion.id)
+    @anotherresponseb = Fabricate(:response, question_id: @anotherquestion.id)    
   end
 
   describe 'GET #show' do

@@ -13,11 +13,6 @@ RSpec.describe ClassGroupsController, :type => :controller do
       user_id: @student.id,
       kind: "student"
     )
-    # Membership.create(
-    #   user_id: @student.id,
-    #   class_group_id: @class_group.id,
-    #   kind: "student"
-    # )
   end
 
   describe "GET #show" do

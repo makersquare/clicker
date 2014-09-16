@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ResponsesController, :type => :controller do
+  render_views
 
   before do
     request.env["HTTP_ACCEPT"] = 'application/json'

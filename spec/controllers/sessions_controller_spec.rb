@@ -1,6 +1,7 @@
 require 'rails_helper'
  
 RSpec.describe SessionsController, :type => :controller do
+  render_views
  
   before do
     request.env['omniauth.auth'] = OmniAuth::AuthHash.new({

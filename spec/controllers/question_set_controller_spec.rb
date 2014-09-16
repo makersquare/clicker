@@ -8,20 +8,14 @@ RSpec.describe QuestionSetsController, :type => :controller do
     @student = Fabricate(:user)
     @teacher = Fabricate(:verified_user)
     @class_group = Fabricate(:class_group)
-    @student_membership = Membership.create(
-      user_id: 1,
-      class_group_id: 1,
-      kind: "student"
-    )
-    @teacher_membership = Membership.create(
-      user_id: 2,
-      class_group_id: 1,
-      kind: "teacher"
-    )
-    @question_set = QuestionSet.create(
-      class_group_id: 1,
-      name: "Lambda Calculus"
-    )
+    @class_group.memberships.create(
+      kind: "student",
+      user_id: @student.id)
+    @class_group.memberships.create(
+      kind: "teacher",
+      user_id: @teacher.id
+      )
+    @question_set = Fabricate(:question_set, class_group_id: @class_group.id)
   end
 
   describe "GET #index" do

@@ -6,12 +6,14 @@
 var app = angular.module('app', ["ngResource", "ngRoute"]);
 
 app.factory("QuestionSet", function($resource) {
- return $resource("/class_groups/:class_group_id/question_sets.json", {class_group_id: "@class_group_id"});
-});
-
-app.factory("QuestionSetDelete", function($resource) {
- return $resource("/class_groups/:class_group_id/question_sets/:id.json", {class_group_id: "@class_group_id", id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}});
-});
+   return $resource("/class_groups/:class_group_id/question_sets.json", {class_group_id: "@class_group_id"});
+  })
+  .factory("QuestionSetDelete", function($resource) {
+   return $resource("/class_groups/:class_group_id/question_sets/:id.json", {class_group_id: "@class_group_id", id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}});
+  })
+  .factory("AddQuestions", function($resource) {
+  return $resource("/question_sets/:question_sets_id/questions.json", {question_sets_id: "@question_sets_id"});
+  });
 
 app.config(['$httpProvider', function(provider){
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
@@ -41,23 +43,35 @@ app.controller('QuestionSetCtrl', function($scope, $location, QuestionSet, Quest
   $scope.id = g.classGroup.id;
 });
 
-// app.controller('QuestionsCtrl', function($scope){
-
-// });
+app.controller('QuestionsCtrl', function($scope, AddQuestions){
+  $scope.question = 
+});
 
 
 app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: '/angular/main.html',
+      templateUrl: '/angular/display_all_question_sets.html',
       controller: 'AppCtrl'
     })
-    .when('/edit', {
-      templateUrl: '/angular/edit.html',
+    .when('/edit/{g.classGroup.id}', {
+      templateUrl: '/angular/edit_question_set.html',
       controller: 'EditCtrl'
     })
-    .when('/questions', {
-      templateUrl: '../angular/questions.html',
-      controller: 'QuestionsCtrl'
+    // .when('/questions', {
+    //   templateUrl: '../angular/questions.html',
+    //   controller: 'QuestionsCtrl'
+    // })
+    .when('/add', {
+      templateUrl: '/angular/add_question_set.html',
+      controller: ''
+    })
+    .when('/add_question', {
+      templateUrl: '/angular/add_question.html',
+      controller: ''
+    })
+    .when('/add_choice', {
+      templateUrl: '/angular/add_answer_choice.html',
+      controller: ''
     });
 });

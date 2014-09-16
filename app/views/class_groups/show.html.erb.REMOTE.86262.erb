@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  window.g = {};
+  g.classGroup = <%= raw @class_group.to_json %>;
+</script>
+<div ng-app="app" ng-controller="AppCtrl">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Name:</strong>
+    <%= @class_group.name %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @class_group.description %>
+  </p>
+  <%= link_to 'Edit', edit_class_group_path(@class_group) %> |
+  <%= link_to 'Back', class_groups_path %>
+  
+  <ng-view></ng-view>
+
+<!--   <table class="table table-striped">
+   <thead>
+     <tr>
+       <th>Name </th>
+       <th>Description</th>
+       <th>Action</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr ng-repeat="questionSet in questionSets">
+       <td>{{questionSet.name}}</td>
+       <td>{{questionSet.description}}</td>
+       <td>
+         <a href="#/edit/{{questionSet.id}}" class="btn btn-mini">Edit</a>
+         <a ng-click="destroy(questionSet.id)" class="btn btn-danger btn-mini">Destroy</a>
+       </td>
+     </tr>
+
+   </tbody>
+  </table> -->
+<!--   <form ng-submit="addQuestionSet()">
+    <input type="text" ng-model="name">
+    <input type="submit" id="submit" value="Add Question Set">
+  </form> -->
+</div>

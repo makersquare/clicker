@@ -1,0 +1,24 @@
+  <!-- Layout A: display all question sets -->
+  <div class="all-q-sets panel" ng-repeat="questionSet in questionSets">
+    <div class="each-q-set panel">
+      <div>
+        <h3 class="gothic-caps-font">{{questionSet.name}}</h3>
+      </div>
+      <div class="row">
+        <a href="#" class="small-4 medium-4 large-4 columns lecture">
+          <p class="code-font">lecture</p>
+        </a>
+        <a href="#/edit/{{questionSet.id}}" class="small-4 medium-4 large-4 columns edit-questions">
+          <p class="code-font">edit</p>
+        </a>
+        <a ng-click="destroy(questionSet.id)" class="btn btn-danger btn-mini small-4 medium-4 large-4 columns">destroy</a>
+      </div>
+    </div>
+  </div>
+
+
+  <a href="#/add" id="addqset">
+    <div class="add-qset">
+      <h5 class="opensans-font">new question set</h5>
+    </div>
+  </a>

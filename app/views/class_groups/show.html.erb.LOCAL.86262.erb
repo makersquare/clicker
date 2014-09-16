@@ -2,31 +2,19 @@
   window.g = {};
   g.classGroup = <%= raw @class_group.to_json %>;
 </script>
-<%= javascript_include_tag "angular_application" %>
-<div ng-app="app" ng-controller="QuestionSetCtrl">
+<div ng-app="app" ng-controller="AppCtrl">
   <p id="notice"><%= notice %></p>
   <h3 class="gothic-caps-font">manage question sets</h3>
   <!-- class title -->
   <h1 class="opensans-font"><%= link_to @class_group.name, class_group_path %></h1>
   <p class="code-font italic"><%= @class_group.description %></p>
 
-  <% if @class_group.errors.any? %>
-    <div id="error_explanation">
-      <p> <%= @class_group.errors %> </p>
-    </div>
-  <% end %>
-
-  <%= link_to 'Back', class_groups_path %>
-  
-  <ng-view></ng-view>
-
   <div class="ng-qset-show">
     
   <!-- yield here to the view -->
-  <ng-view></ng-view>
 
   <!-- Layout A: display all question sets -->
-  <!-- <div class="all-q-sets panel" ng-repeat="questionSet in questionSets">
+  <div class="all-q-sets panel" ng-repeat="questionSet in questionSets">
     <div class="each-q-set panel">
       <div>
         <h3 class="gothic-caps-font">{{questionSet.name}}</h3>
@@ -48,40 +36,40 @@
     </a>
     
   </div>
- -->
+
 
   <!-- Layout B: add a question set -->
- <!--  <div class="new-q-set panel">
+  <div class="new-q-set panel">
     <form ng-submit="addQuestionSet()">
       <h1 class="gothic-caps-font">add question set</h1>
- -->
+
       <!-- type in question set title -->
-      <!-- <input class="form-control" type="text" ng-model="name" placeholder="title"> -->
+      <input class="form-control" type="text" ng-model="name" placeholder="title">
 
       <!-- option to edit the default intro question -->
-      <!-- <button class="button intro-button">Intro Question</button> -->
+      <button class="button intro-button">Intro Question</button>
       
       <!-- add a new question button -->
-     <!--  <a href="#" id="addq">
+      <a href="#" id="addq">
         <div class="add-q">
           <h5 class="opensans-font">add a question</h5>
         </div>
-      </a> -->
+      </a>
 
       <!-- submit, 'Save' button -->
-     <!--  <div>
+      <div>
         <input type="submit" class="button" id="submit" value="Save">
-      </div> -->
+      </div>
 
       <!-- cancel button returns you to display of all question sets -->
-<!--       <div>
+      <div>
         <a href="#"> < Cancel</a>
       </div>
     </form>
-  </div> -->
+  </div>
 
   <!-- Layout C: Add a new question to the question set -->
-<!--   <div class="add-question panel">
+  <div class="add-question panel">
     <div>
       <p class="code-font italic">
         insert question set name here:
@@ -107,35 +95,35 @@
 
       </form>
     </div>
-  </div> -->
+  </div>
 
 
   <!-- Layout D: Edit Specific Question Template -->
-  <!-- <div class="edit-question panel">
-    <p class="code-font italic"> -->
+  <div class="edit-question panel">
+    <p class="code-font italic">
     <!-- TODO: insert question set title below {{}} -->
-     <!--  insert question set name here:
-    </p -->>
+      insert question set name here:
+    </p>
     
     <!-- TODO: insert question number at end {{}} -->
-    <!-- <h1 class="gothic-caps-font">edit question 1</h1>
- -->
-    <!-- <form action=""> -->
+    <h1 class="gothic-caps-font">edit question 1</h1>
+
+    <form action="">
       <!-- TODO: insert current question string into the placeholder text {{}} -->
-      <!-- <input type="text" placeholder="What is an Object?"> -->
+      <input type="text" placeholder="What is an Object?">
 
       <!-- a choice -->
-    <!--   <div class="row a-choice">
-        <div class="small-3 large-3 columns" -->>
+      <div class="row a-choice">
+        <div class="small-3 large-3 columns">
         <!-- TODO: alphabetize stuff -->
-          <!-- <span>A.</span>
-        </div> -->
+          <span>A.</span>
+        </div>
         <!-- choices that are wrong have class of 'wrong answer', correct ones have 'right-answer' -->
-      <!--   <div class="small-9 large-9 columns wrong-answer">
+        <div class="small-9 large-9 columns wrong-answer">
           <p>A Thingy.</p>
         </div>
-      </div> -->
-<!-- 
+      </div>
+
       <a href="#" id="addchoice">
         <div class="add-choice">
           <h5 class="opensans-font">add choice</h5>
@@ -149,18 +137,18 @@
         <a href="#"> < Cancel</a>
       </div>
     </form>
-  </div> -->
+  </div>
 
   <!-- Layout E: Edit Intro Question -->
-<!--   <div class="edit-intro-q panel">
-    <p class="code-font italic"> -->
+  <div class="edit-intro-q panel">
+    <p class="code-font italic">
     <!-- TODO: insert question set title below {{}} -->
-<!--       insert question set name here:
+      insert question set name here:
     </p>
     <h1 class="gothic-caps-font">edit intro question</h1>
-    <div> -->
+    <div>
       <!-- choice -->
-<!--       <form>
+      <form>
         <div>
           <input type="text" placeholder="Intro Question Default: Are you here?">
         </div>
@@ -180,10 +168,10 @@
         </div>
       </form>
     </div>
-  </div> -->
+  </div>
 
   <!-- Layout F: Add choice template -->
- <!--  <div class="add-choice-template panel">
+  <div class="add-choice-template panel">
     <h1 class="gothic-caps-font">add choice</h1>
     <form action="">
       <input type="text" placeholder:"default choice">
@@ -201,8 +189,6 @@
       </div>
     </form>
   </div>
- -->
-  </div> 
-  <%= javascript_include_tag "angular_application" %>
 
+  </div> 
 </div>

@@ -6,15 +6,8 @@ RSpec.describe ClassGroupsController, :type => :controller do
   before do
     @student = Fabricate(:user)
     @teacher = Fabricate(:verified_user)
-    @class_group = ClassGroup.create(
-      name: "Cohort 8, The Ocho",
-      description: "MKS immersive course"
-    )
-
-    @class_group2 = ClassGroup.create(
-      name: "Cohort 9",
-      description: "the newbies"
-    )
+    @class_group = Fabricate(:class_group)
+    @class_group2 = Fabricate(:class_group)
 
     Membership.create(
       user_id: @student.id,

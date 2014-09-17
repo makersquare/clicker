@@ -5,36 +5,6 @@
       Classes
     </h1>
 <!-- displays each class -->
-<div class="all-classes panel">
-  <% if @class_groups.count == 0 %>
-    <div class="no-classes panel">
-      <%= "No current classes.  Please add a class to begin." %>
-    </div>
-  <% end %>
-  
-  <% @class_groups.each do |class_group| %>
-    <div class="specific-class panel">
-      <%= link_to class_group do %>
-        <div class="row">
-          <!-- I need a link here to the class show page -->
-            <h3><%= class_group.name %></h3>
-            <p><%= class_group.description %></p>
-        </div>
-      <% end %>
-
-      <div class="row class-options">
-        <ul class="small-block-grid-2">
-          <li><span><%= link_to 'edit class', edit_class_group_path(class_group), class: 'fa fa-pencil fa-2x' %></span></li>
-            <!-- this is not the right link to add students, memberships controller -->
-          <li>
-            <span><%= link_to 'edit students', "class_groups/#{class_group.id}/memberships", class: 'fa fa-users fa-2x' %>
-            </span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-</div>
 
 <br>
 

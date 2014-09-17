@@ -13,7 +13,7 @@
     <ul class="right">
       <a><li class="has-dropdown slabo-font">
         <a href="#" class="gravatar-container"><img alt="Gravatar for user" src="http://www.gravatar.com/avatar/<%= current_user.gravatar_id %>?size=40" class="gravatar"><%= current_user.name %></a>
-        <ul class="dropdown ">
+        <ul class="dropdown">
           <li><%= link_to 'My Classes', class_groups_path %></li>
           <li><%= link_to 'About', "/about" %></li>
           <li><a href="#"><%= link_to "Sign out", "/signout" %></a></li>

@@ -16,69 +16,66 @@ RSpec.describe Question, :type => :model do
     @multi_choice_question = @question_set.questions[2]
   end
 
-  describe 'Question Model Association' do
-    it "belongs to same question_set_id" do
-      attendance_qset_id = @attendance_question.question_set_id
-      short_ans_qset_id = @short_answer_question.question_set_id
-      multi_choice_qset_id = @multi_choice_question.question_set_id
+  describe "AttendanceQuestion's content validation" do
+    it "validates the question key/value" do
+      attendance_check = @attendance_question["content"]["question"] 
 
-      expect(attendance_qset_id).to eq(@question_set.id)
-      expect(short_ans_qset_id).to eq(@question_set.id)
-      expect(multi_choice_qset_id).to eq(@question_set.id)
+      expect(@attendance_question.question_set_id).to eq(@question_set.id)
+      expect(attendance_check).to_not eq(nil)
+    end
+    it "validates absence of choice" do
+      expect(@attendance_question["content"]["choices"]).to eq(nil)
     end
 
-  end
-
-  describe 'AttendanceQuestion' do
-
-    it "is an instance of AttendanceQuestion class" do
-      expect(@attendance_question).to be_a(AttendanceQuestion) 
-    end
-
-    it "contains the word 'attendance check'" do
-      attendance_question_title = @attendance_question.content["question"]
-      
-      expect(attendance_question_title).to match(/^(A|a)ttendance (C|c)heck/) 
-    end
-
-    it "has only one answer as 'true'" do
-      attendance_answer = @attendance_question.content["answer"]
-
-      expect(attendance_answer).to eq("true")
+    it "ensures the answer set to 'true'" do
+      expect(@attendance_question["content"]["answer"]).to eq("true")
     end
   end
 
-  describe 'ShortAnswerQuestion' do
+  describe "ShortAnswerQuestion's content validation" do
+    it "validates the question key/value" do
+      short_answer_check = @short_answer_question["content"]
 
-    it "is an instance of ShortAnswerQuestion class" do
-      expect(@short_answer_question).to be_a(ShortAnswerQuestion) 
+      expect(@short_answer_question.question_set_id).to eq(@question_set.id)
+      expect(short_answer_check).to_not eq(nil)
     end
-
-    it "contains an answer of any variable type" do
-      answer = @short_answer_question.content["answer"]
-
-      expect(answer).to_not eq(nil)
+    it "validates absence of choice" do
+      expect(@short_answer_question["content"]["choices"]).to eq(nil)
+    end
+    it "ensures the answer is present" do
+      expect(@short_answer_question["content"]["answer"]).to_not eq(nil)
     end
   end
 
-  describe 'MultiChoiceQuestion' do
+  describe "MultiChoiceQuestion's content validation" do
+    it "validates the question key/value" do
+      multi_choice_check = @multi_choice_question["content"]
 
-    it "is an instance of MultiChoiceQuestion class" do
-      expect(@multi_choice_question).to be_a(MultiChoiceQuestion) 
+      expect(@multi_choice_question.question_set_id).to eq(@question_set.id)
+      expect(multi_choice_check).to_not eq(nil)
     end
-
-    it "contains at least one choice with corresponding answer" do
-      multi_choices = @multi_choice_question.content["choices"].map do |x|
-        x.keys
-      end
-      multi_answers = @multi_choice_question.content["choices"].map do |x|
-        x.values
-      end
+    it "validates the choices key/value" do
+      multi_choices = @multi_choice_question["content"]["choices"]
 
       expect(multi_choices).to_not eq(nil)
-      expect(multi_answers).to_not eq(nil)
-      expect(multi_choices.count).to eq(multi_answers.count)
+
+      multi_choices_keys = multi_choices.map { |x| x.keys }
+      multi_answers = multi_choices.map { |x| x.values }
+
+      expect(multi_choices_keys.count).to eq(multi_answers.count)
+    end
+
+    it "ensures the answer index is within the number of choices" do
+      multi_choices_check = @multi_choice_question["content"]
+
+      choices = multi_choices_check["choices"]
+      answer = multi_choices_check["answer"]
+
+      confirm = choices.map{ |x| x.keys }.flat_map{ |e| e }.find{ |i| i == answer }
+
+      expect(confirm).to_not eq(nil) 
     end
   end
+
 
 end

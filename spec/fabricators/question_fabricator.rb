@@ -26,5 +26,5 @@ Fabricator(:short_answer_question, from: :question) do
             question: "What rule separates a binary search tree from a regular binary tree?",
             answer: "All children to the left of the node must be smaller than the node, and all children to the right must be larger."
           } }
-  type "MultiChoiceQuestion"
+  type "ShortAnswerQuestion"
 end

@@ -1,27 +1,38 @@
  <!-- Layout C: Add a new question to the question set -->
+<script type="text/javascript">
+  window.p = {};
+  p.questionSet = <%= raw @question_set.to_json %>;
+</script>
   <div class="add-question panel">
     <div>
       <p class="code-font italic">
-        insert question set name here:
+        insert question set name here: {{questionSetName}}. ID: {{questionSetID}} 
+        <!-- {{questionRoute}}  -->
       </p>
+
+      <div ng-repeat="questions in questions">
+      {{questions.id}}: {{questions.content.question}} -- <a href="#">Edit</a><a ng-click="destroy(questions.id)"> Delete</a>
+      </div>
+
+
       <h1 class="gothic-caps-font">add question</h1>
 
-      <form>
-        <input type="text" placeholder="question">
+      <form ng-submit="addQuestion()">
+        <input type="text" placeholder="question" ng-model="question">
 
-      <a href="#/add_choice" id="addchoice">
-        <div class="add-choice">
-          <h5 class="opensans-font">add choice</h5>
+        <a href="#/add_choice" id="addchoice" ng-model="choice">
+          <div class="add-choice">
+            <h5 class="opensans-font">add choice</h5>
+          </div>
+        </a>
+
+        <div>
+          <input type="submit" class="button" id="submit" value="Add Question">
         </div>
-      </a>
 
-      <div>
-        <input type="submit" class="button" id="submit" value="Submit">
-      </div>
-
-      <div>
-        <a href="#"> < Cancel</a>
-      </div>
+        <div>
+          <a href="#"> < Cancel</a>
+        </div>
 
       </form>
     </div>

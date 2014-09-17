@@ -11,15 +11,18 @@ app.factory("QuestionSet", function($resource) {
   .factory("QuestionSetDelete", function($resource) {
    return $resource("/class_groups/:class_group_id/question_sets/:id.json", {class_group_id: "@class_group_id", id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}});
   })
-  .factory("AddQuestions", function($resource) {
-  return $resource("/question_sets/:question_sets_id/questions.json", {question_sets_id: "@question_sets_id"});
+  .factory("AllQuestions", function($resource) {
+    return $resource("/question_sets/:question_sets_id/questions.json", {question_sets_id: "@question_sets_id"});
+  })
+  .factory("AllQuestionsDelete", function($resource) {
+    return $resource("/question_sets/:question_sets_id/questions/:id.json"), {question_sets_id: "@question_sets_id", id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}};
   });
 
 app.config(['$httpProvider', function(provider){
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 }]);
 
-app.controller('QuestionSetCtrl', function($scope, $location, QuestionSet, QuestionSetDelete){
+app.controller('AppCtrl', function($scope, $location, QuestionSet, QuestionSetDelete){
  $scope.questionSets = QuestionSet.query({ class_group_id: g.classGroup.id });
  $scope.addQuestionSet = function(){
   var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
@@ -39,12 +42,34 @@ app.controller('QuestionSetCtrl', function($scope, $location, QuestionSet, Quest
      });
    }
  };
-}).controller('EditCtrl', function($scope) {
+}).controller('EditCtrl', function($scope, $routeParams, AllQuestions, AllQuestionsDelete) {
   $scope.id = g.classGroup.id;
+  $scope.questionSetID = $routeParams.id;
+  $scope.questions = AllQuestions.query({ question_sets_id: $scope.questionSetID });
+  $scope.questionSetName = g.classGroup.name;
+  $scope.destroy = function(id) {
+    if (confirm("Are you sure?")) {
+      AllQuestionsDelete.remove({ question_sets_id: $scope.questionSetID, id: id}, function(response){
+        angular.forEach($scope.questions, function(e, i) {
+          if(e.id === id) {
+            $scope.questions.splice(i, 1);
+            return;
+          }
+        });
+      });
+    }
+  };
 });
 
-app.controller('QuestionsCtrl', function($scope, AddQuestions){
-  $scope.question = 
+app.controller('QuestionsCtrl', function($scope, AllQuestions, $routeParams){
+  $scope.addQuestion = function(){
+   var questions = AllQuestions.save($scope.question,{ class_group_id: g.classGroup.id, question: $scope.question }, function(response){
+     $scope.questions.push(response);
+   });
+   $scope.question = '';
+   $scope.questionRoute = "hello";
+   $scope.hello = $routeParams.id;
+  };
 });
 
 
@@ -54,8 +79,12 @@ app.config(function ($routeProvider) {
       templateUrl: '/angular/display_all_question_sets.html',
       controller: 'AppCtrl'
     })
-    .when('/edit/{g.classGroup.id}', {
-      templateUrl: '/angular/edit_question_set.html',
+    // .when('/edit/:id', {
+    //   templateUrl: '/angular/edit_intro_question.html',
+    //   controller: 'EditCtrl'
+    // })
+    .when('/edit/:id', {
+      templateUrl: '/angular/add_question.html',
       controller: 'EditCtrl'
     })
     // .when('/questions', {
@@ -64,14 +93,14 @@ app.config(function ($routeProvider) {
     // })
     .when('/add', {
       templateUrl: '/angular/add_question_set.html',
-      controller: ''
+      controller: 'QuestionsCtrl'
     })
     .when('/add_question', {
       templateUrl: '/angular/add_question.html',
-      controller: ''
+      controller: 'EditCtrl'
     })
     .when('/add_choice', {
       templateUrl: '/angular/add_answer_choice.html',
-      controller: ''
+      controller: 'QuestionsCtrl'
     });
 });

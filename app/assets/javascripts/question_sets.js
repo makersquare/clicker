@@ -1,8 +1,6 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-
-
 var app = angular.module('app', ["ngResource", "ngRoute"]);
 
 app.factory("QuestionSet", function($resource) {
@@ -28,7 +26,7 @@ app.config(['$httpProvider', function(provider){
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 }]);
 
-app.controller('AppCtrl', function($scope, $location, QuestionSet, QuestionSetDelete){
+app.controller('QuestionSetCtrl', function($scope, $location, QuestionSet, QuestionSetDelete){
  $scope.questionSets = QuestionSet.query({ class_group_id: g.classGroup.id });
  $scope.addQuestionSet = function(){
   var questionSets = QuestionSet.save(
@@ -106,23 +104,15 @@ app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: '/angular/display_all_question_sets.html',
-      controller: 'AppCtrl'
+      controller: 'QuestionSetCtrl'
     })
-    // .when('/edit/:id', {
-    //   templateUrl: '/angular/edit_intro_question.html',
-    //   controller: 'EditCtrl'
-    // })
     .when('/edit/:id', {
       templateUrl: '/angular/add_question.html',
       controller: 'EditCtrl'
     })
-    // .when('/questions', {
-    //   templateUrl: '../angular/questions.html',
-    //   controller: 'QuestionsCtrl'
-    // })
     .when('/add', {
       templateUrl: '/angular/add_question_set.html',
-      controller: 'QuestionsCtrl'
+      controller: 'QuestionSetCtrl'
     })
     .when('/add_question', {
       templateUrl: '/angular/add_question.html',

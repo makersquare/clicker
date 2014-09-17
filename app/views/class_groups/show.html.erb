@@ -2,8 +2,7 @@
   window.g = {};
   g.classGroup = <%= raw @class_group.to_json %>;
 </script>
-<%= javascript_include_tag "angular_application" %>
-<div ng-app="app" ng-controller="QuestionSetCtrl">
+<div ng-app="app">
   <p id="notice"><%= notice %></p>
   <h3 class="gothic-caps-font">manage question sets</h3>
   <!-- class title -->
@@ -17,8 +16,6 @@
   <% end %>
 
   <%= link_to 'Back', class_groups_path %>
-  
-  <ng-view></ng-view>
 
   <div class="ng-qset-show">
     

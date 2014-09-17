@@ -1,66 +1,88 @@
-<div id="class_groups">
+<div id="classes" class="opensans-font">
 
   <div class="header">
     <h1 class="opensans-font">
       Classes
     </h1>
-  </div>
 <!-- displays each class -->
+<div class="all-classes panel">
+  <% if @class_groups.count == 0 %>
+    <div class="no-classes panel">
+      <%= "No current classes.  Please add a class to begin." %>
+    </div>
+  <% end %>
+
+  <% @class_groups.each do |class_group| %>
+    <div class="specific-class panel">
+      <%= link_to class_group do %>
+        <div class="row">
+          <!-- I need a link here to the class show page -->
+            <h3><%= class_group.name %></h3>
+            <p><%= class_group.description %></p>
+        </div>
+      <% end %>
+
+      <div class="row class-options">
+        <ul class="small-block-grid-2">
+          <li><span><%= link_to 'edit class', edit_class_group_path(class_group), class: 'fa fa-pencil fa-2x' %></span></li>
+            <!-- this is not the right link to add students, memberships controller -->
+          <li>
+            <span><%= link_to 'edit students', "class_groups/#{class_group.id}/memberships", class: 'fa fa-users fa-2x' %>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <br>
 
-  <!-- add a new class button -->
-
+<!-- add a new class button -->
   <div class="classes-container">
 
   <!-- displays each class -->
-  <div class="all-classes row" id="all-classes">
+  <div class="all-classes" id="all-classes">
 
-    <div class="add-class row" id="add-class">
-      <button class="opensans-font button" id="add-a-class">ADD A CLASS</button>
-    </div>
-
-      <!-- add a new class form -->
-    <div class="new-class row" id="new-class-div">
-      <h3 class="opensans-font smallcaps">create a class</h3>
-      <% title = 'title' %>
-      <% description = 'description' %>
-      <%= render 'form' %>
-      <p class="new-class-cancel code-font smallcaps"><a>cancel</a></p>
-    </div>
-
-
-    <div class="class-list">
     <% @class_groups.each do |class_group| %>
+      <div class="specific-class row">
 
-    <div class="single-class-padding">
-      <div class="specific-class">
-        
         <%= link_to class_group do %>
           <div class="class-header opensans-font">
               <h3 class="opensans-font class-name"><%= class_group.name %></h3>
               <p class="opensans-font class-desc italic"><%= class_group.description %></p>
           </div>
         <% end %>
-        
-        <div class="row">
-          <div class="class-options small-9 small-centered medium-6 medium-centered large-6 medium-centered columns">
-            <div class="small-6 medium-6 large-6 columns">
-              <%= link_to 'edit class', edit_class_group_path(class_group), class: 'code-font edit-class' %>
-            </div>
-                <!-- this is not the right link to add students, memberships controller -->
-            <div>
-              <%= link_to 'manage members', "class_groups/#{class_group.id}/memberships", class: 'code-font edit-students' %>
-            </div>
+
+        <div class="row class-options">
+          <div>
+            <%= link_to 'edit class', edit_class_group_path(class_group), class: 'code-font edit-class' %>
+          </div>
+              <!-- this is not the right link to add students, memberships controller -->
+          <div>
+            <%= link_to 'edit students', "class_groups/#{class_group.id}/memberships", class: 'code-font edit-students' %>
           </div>
         </div>
 
       </div>
-    </div>
     <% end %>
-    </div>
-
   </div>
+
+  <!-- add a new class button -->
+  <a href="#" id="addclass">
+  <div class="add-class">
+    <h3 class="opensans-font">Add a Class</h3>
+  </div>
+  </a>
+
+  <!-- add a new class form -->
+  <div class="new-class">
+    <h3 class="opensans-font">Create a Class</h3>
+    <% title = 'title' %>
+    <% description = 'description' %>
+    <%= render 'form' %>
+  </div>
+
 </div>
 </div>
 

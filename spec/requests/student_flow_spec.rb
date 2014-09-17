@@ -70,7 +70,7 @@ RSpec.describe "student flow" do
       post "question_sets/#{active_qset.id}/questions/#{active_qset.id}/responses.json", :response => {
         question_id: q3.id, user_id: @student.id, content: {response: "A"}}
       these_responses = Response.where(user_id: @student.id)
-      expect(these_responses[0].content.response).to eq("D")
+      expect(these_responses[0].content["response"]).to eq("D")
       expect(these_responses.count).to eq(3)
     end
   end

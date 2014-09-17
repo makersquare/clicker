@@ -165,7 +165,8 @@ ClassGroup.create([
 QuestionSet.create([
   {
     class_group_id: 1,
-    name: "Algorithms"
+    name: "Algorithms",
+    active: true
   }
   ])
 
@@ -197,7 +198,11 @@ MultiChoiceQuestion.create([
     question_set_id: 1,
     content: {
       question: "Binary trees are cool.",
-      answer: "true"
+      answer: "true",
+      choices: [
+        {"A" => "true"},
+        {"B" => "false"}
+      ]
     }
   }
   ])

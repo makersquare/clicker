@@ -29,29 +29,25 @@ RSpec.describe "student flow" do
     end
   end
 
-  context 'when user is not signed in' do
-    it 'allows a student to sign in with github and redirects to their list of classes' do
+  context 'when student accesses site' do
+    it 'allows a student to sign in with github and redirects to their list of classes then individual class' do
+      #accesses site
       get "/"
       expect(response).to render_template("welcome/index")
-      #signs in
+      
+      #logs in & redirects to class_groups_index
       get "/test_sign_in/#{@student.id}"
       get '/'
       expect(response).to redirect_to('/class_groups')
-      
-      #allow(response).to receive(:create).and_return(session[:user_id] = @student.id)
-      # expect().to receive().with()
-      # expect(response).to redirect_to(class_groups_path)
-    end
-  end
+      follow_redirect!
+      expect(response.body).to include(@student.class_groups.first.name)
+      expect(response.body).to include(@student.class_groups[1].name)
 
-  context 'when user is previously signed in' do
-    xit 'redirects signed in student to their list of classes' do
-      session = {user_id: @student.uid}
-      OmniAuth.config.add_mock(:github, {:uid => @student.uid})
-      get "/"
-      binding.pry
-      expect(response).to render_template("class_groups/index")
-
+      #student views 1 class group on show page
+      get "/class_groups/#{@student.class_groups.first.id}"
+      expect(response).to render_template('class_groups/show')
+      expect(response.body).to include(@student.class_groups.first.name)
+      expect(response.body).to_not include(@student.class_groups[1].name)
     end
   end
 

@@ -41,3 +41,21 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 end
+
+SessionsController.send(:define_method, :test_sign_in) do
+  session[:user_id] = params[:user_id]
+  render :nothing => true
+end
+
+
+
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+  'user_info' => {
+    'name' => 'Mario Brothers',
+    'nickname' => '' },
+  'uid' => '123545',
+  'provider' => 'github',
+  'credentials' => {'token' => 'token'}
+})

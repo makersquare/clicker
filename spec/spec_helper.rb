@@ -3,7 +3,6 @@ require 'rubygems'
 require 'vcr'
 require 'webmock'
 require 'pry-byebug'
-require_relative 'support/request_spec_helper.rb'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'

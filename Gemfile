@@ -48,6 +48,8 @@ gem 'foundation-rails'
 
 gem 'font-awesome-sass', '~> 4.2.0'
 
+gem 'd3js-rails', '~> 3.1.6'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

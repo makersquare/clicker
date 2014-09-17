@@ -13,6 +13,7 @@
 //
 //= require jquery-2.1.1.js
 //= require foundation
+//= require d3
 
 
 $(function(){ $(document).foundation(); });

@@ -17,8 +17,12 @@
 
       <h1 class="gothic-caps-font">add question</h1>
 
-      <form ng-submit="addQuestion()">
+      <form ng-submit="createQuestion()">
         <input type="text" placeholder="question" ng-model="question">
+        <input type="text" placeholder="choiceA" ng-model="choiceA">
+        <input type="text" placeholder="choiceB" ng-model="choiceB">
+        <input type="text" placeholder="choiceC" ng-model="choiceC">
+        <input type="text" placeholder="choiceD" ng-model="choiceD">
 
         <a href="#/add_choice" id="addchoice" ng-model="choice">
           <div class="add-choice">

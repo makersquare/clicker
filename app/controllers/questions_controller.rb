@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = @question_set.questions 
   end
 
   # GET /questions/1
@@ -22,8 +22,8 @@ class QuestionsController < ApplicationController
     @question.question_set_id = params[:question_set_id]
     respond_to do |format|
       if @question.save
-        format.html { redirect_to [@question_set, @question], notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: [@question_set, @question] }
+        format.html { redirect_to question_set_questions_url, notice: 'Question was successfully created.' }
+        format.json { render :show, status: :created, location: question_set_questions_url }
       else
         format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }

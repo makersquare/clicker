@@ -15,7 +15,13 @@ app.factory("QuestionSet", function($resource) {
     return $resource("/question_sets/:question_sets_id/questions.json", {question_sets_id: "@question_sets_id"});
   })
   .factory("AllQuestionsDelete", function($resource) {
-    return $resource("/question_sets/:question_sets_id/questions/:id.json"), {question_sets_id: "@question_sets_id", id: "@id"}, {update: {method: "PUT"}, destroy: {method: "DELETE"}};
+    return $resource("/question_sets/:question_sets_id/questions/:id.json", {
+      question_sets_id: "@question_sets_id",
+      id: "@id"
+    }, {
+      update: {method: "PUT"},
+      destroy: {method: "DELETE"}
+    });
   });
 
 app.config(['$httpProvider', function(provider){
@@ -25,9 +31,13 @@ app.config(['$httpProvider', function(provider){
 app.controller('AppCtrl', function($scope, $location, QuestionSet, QuestionSetDelete){
  $scope.questionSets = QuestionSet.query({ class_group_id: g.classGroup.id });
  $scope.addQuestionSet = function(){
-  var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
-    $scope.questionSets.push(response);
-  });
+  var questionSets = QuestionSet.save(
+    $scope.questionSet, {
+      class_group_id: g.classGroup.id, 
+      name: $scope.name 
+    }, function(response) {
+      $scope.questionSets.push(response);
+    });
   $scope.name = '';
  };
  $scope.destroy = function(id) {
@@ -49,7 +59,9 @@ app.controller('AppCtrl', function($scope, $location, QuestionSet, QuestionSetDe
   $scope.questionSetName = g.classGroup.name;
   $scope.destroy = function(id) {
     if (confirm("Are you sure?")) {
+            console.log("yay");
       AllQuestionsDelete.remove({ question_sets_id: $scope.questionSetID, id: id}, function(response){
+        console.log("yup");
         angular.forEach($scope.questions, function(e, i) {
           if(e.id === id) {
             $scope.questions.splice(i, 1);
@@ -58,6 +70,23 @@ app.controller('AppCtrl', function($scope, $location, QuestionSet, QuestionSetDe
         });
       });
     }
+  };
+  $scope.createQuestion = function() {
+    var thisQuestion = {
+      type: "MultiChoiceQuestion", 
+      content: {
+        question: $scope.question, 
+        choices: {
+          A: $scope.choiceA, 
+          B: $scope.choiceB, 
+          C: $scope.choiceC, 
+          D: $scope.choiceD 
+        }
+      }
+    };
+    var questions = AllQuestions.save({ question_sets_id: $scope.questionSetID, question: thisQuestion });
+    // var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
+    questions.push(thisQuestion); 
   };
 });
 

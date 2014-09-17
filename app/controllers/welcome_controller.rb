@@ -6,11 +6,5 @@ class WelcomeController < ApplicationController
   end
 
   def about
-   
-    
-      # render template: "welcome/about"
-    
-    # render about.html.erb
-    # redirect_to about.html.erb
   end
 end

@@ -2,7 +2,7 @@ class MultiChoiceQuestion < Question
   validate :content_format
 
 
-  # def find_choice(...)
+  # def find_choice()
     
   # end
 
@@ -15,9 +15,8 @@ private
       errors.add(:absent_question, "Question must not be blank")
     elsif self.content["answer"].blank?
       errors.add(:absent_answer, "Answer must not be blank")
-      if self.content["answer"] <= self.content["choices"].count
-        errors.add(:wrong_answer, "Answer must be one of the answer choices")
-      end
+    elsif self.content["answer"] <= self.content["choices"].count
+      errors.add(:wrong_answer, "Answer must be one of the answer choices")
     end
 
   end

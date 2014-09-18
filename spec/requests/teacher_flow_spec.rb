@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe 'Teacher Flow' do
 
   before do
-    @teacher = Fabricate(:verified_user, class_groups: [Fabricate(:class_group)])
-    @question_set = Fabricate(:question_set)
+    @teacher = Fabricate(:verified_user)
+    @class_group = Fabricate(:class_group)
+    Membership.create(kind: "teacher", user_id: @teacher.id, class_group_id: @class_group.id)
+    @question_set = Fabricate(:question_set, class_group_id: @class_group.id)
   end
 
   let(:session) do
@@ -33,13 +35,11 @@ RSpec.describe 'Teacher Flow' do
     
     #make question sets, and questions for question sets. make sure database is lined up.
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
-      question_set_id: @question_set.id, content: {question: "Blah", answer: "D", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
+      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Blah", answer: "D", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
-      question_set_id: @question_set.id, content: {question: "Woo", answer: "A", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
-    # binding.pry
+      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Woo", answer: "A", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
     questions = Question.where(question_set_id: @question_set.id)
     expect(questions.count).to eq(2)
   end
-
 
 end

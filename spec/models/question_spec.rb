@@ -72,27 +72,31 @@ RSpec.describe Question, :type => :model do
     end
 
     describe "Validation" do
-      it "validates the question key/value" do
 
-        # multi_choice_check = @multi_choice_question["content"]
-
-        expect(multi_choice_check).to_not eq(nil)
-
-        
+      it "validates presence of question set id" do
+        model.question_set_id = nil
+        expect(model).to_not be_valid
+        expect(model.errors).to have_key(:absent_question_set_id)
       end
 
-      it "validates the choices key/value" do
+      it "validates the question" do
+        model.content["question"] = nil
+        expect(model).to_not be_valid
+        expect(model.errors).to have_key(:absent_question)
+      end
 
-        expect(model.content["choices"]).to_not eq(nil)
-
-        multi_choices_keys = model.content["choices"].map { |x| x.keys }
-        multi_answers = model.content["answers"].map { |x| x.values }
-binding.pry
-        expect(multi_choices_keys.count).to eq(multi_answers.count)
+      it "validates the answer" do
+        model.content["answer"] = nil
+        expect(model).to_not be_valid
+        expect(model.errors).to have_key(:absent_answer)
       end
 
       it "ensures the answer index is within the number of choices" do
         expect(model.content["answer"]).to be <= model.content["choices"].count
+
+        model.content["answer"] = 5
+        expect(model).to_not be_valid
+        expect(model.errors).to have_key(:wrong_answer)
       end
     end
 
@@ -106,6 +110,7 @@ binding.pry
     #     confirm = choices.map{ |x| x.keys }.flat_map{ |e| e }.find{ |i| i == answer }
 
     #     expect(confirm).to_not eq(nil)
+    #     expect(confirm).to eq(answer)
     #   end
     # end
   end

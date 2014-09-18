@@ -50,10 +50,18 @@ div.teacher-qset-view {
   background-color: $light-black;
 }
 
-body > div:nth-child(2) > div > div > div.student-qset-view > div > div > 
+body > div:nth-child(2) > div > div > div.student-qset-view > div > div > div.align-left.menu-icon {
+  text-align: left;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
 
 .question-yeild {
   h3, h2, h1, p {
     color: $cloud;
   }
+}
+
+body > div:nth-child(2) > div > div > div > div > div > div.question-yield {
+  color: $cloud;
 }

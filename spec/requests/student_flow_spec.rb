@@ -35,7 +35,7 @@ RSpec.describe "student flow" do
   end
 
   context 'when student accesses site' do
-    it 'allows a student to sign in with github and redirects to their list of classes then individual class' do
+    it 'student signs in with github, redirects to their list of classes, then individual class, then create responses' do
       #accesses site
       get "/"
       expect(response).to render_template("welcome/index")
@@ -63,12 +63,15 @@ RSpec.describe "student flow" do
       expect(response).to render_template('question_sets/show')
       
       #student answers questions
-      post "question_sets/#{active_qset.id}/questions/#{active_qset.id}/responses.json", :response => {
+      post "question_sets/#{active_qset.id}/questions/#{q1.id}/responses.json", :response => {
         question_id: q1.id, user_id: @student.id, content: {response: "D"}}
-      post "question_sets/#{active_qset.id}/questions/#{active_qset.id}/responses.json", :response => {
+      post "question_sets/#{active_qset.id}/questions/#{q2.id}/responses.json", :response => {
         question_id: q2.id, user_id: @student.id, content: {response: "C"}}
-      post "question_sets/#{active_qset.id}/questions/#{active_qset.id}/responses.json", :response => {
+      post "question_sets/#{active_qset.id}/questions/#{q3.id}/responses.json", :response => {
         question_id: q3.id, user_id: @student.id, content: {response: "A"}}
+      expect(q1.responses.count).to eq(1)
+      expect(q2.responses.count).to eq(1)
+      expect(q3.responses.count).to eq(1)
       these_responses = Response.where(user_id: @student.id)
       expect(these_responses[0].content["response"]).to eq("D")
       expect(these_responses.count).to eq(3)

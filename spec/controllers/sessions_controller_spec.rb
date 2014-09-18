@@ -29,7 +29,6 @@ RSpec.describe SessionsController, :type => :controller do
     end
  
     it "should successfully create a session" do
-      binding.pry
       expect(session[:user_id]).to_not be_nil
     end
  

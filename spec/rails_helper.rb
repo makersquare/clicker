@@ -47,9 +47,6 @@ SessionsController.send(:define_method, :test_sign_in) do
   render :nothing => true
 end
 
-
-
-
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
   'user_info' => {

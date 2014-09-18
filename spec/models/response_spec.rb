@@ -12,10 +12,10 @@ RSpec.describe Response, :type => :model do
       Fabricate(:response)
     end
 
-    it "validates presence of question set id" do
-      model.question_set_id = nil
+    it "validates presence of question id" do
+      model.question_id = nil
       expect(model).to_not be_valid
-      expect(model.errors).to have_key(:absent_question_set_id)
+      expect(model.errors).to have_key(:absent_question_id)
     end
 
     it "validates presence of response" do

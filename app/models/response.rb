@@ -13,14 +13,12 @@ class Response < ActiveRecord::Base
   def content_format
     response = self.content["response"]
 
-    if self.question_set_id.blank? || self.question_set_id.class != Fixnum
-      errors.add(:absent_question_set_id, "Question Set ID is absent or wrong data type")
+    if self.question_id.blank? || self.question_id.class != Fixnum
+      errors.add(:absent_question_id, "Question Set ID is absent or wrong data type")
     elsif response.blank?
       errors.add(:absent_response, "Question must not be blank")
-    elsif answer.blank?
-      errors.add(:absent_answer, "Answer must not be blank")
-    elsif answer.to_i > self.content["choices"].count
-      errors.add(:wrong_answer, "Answer must be one of the answer choices")
+    elsif self.user_id.blank? || self.user_id.class != Fixnum
+      errors.add(:absent_user_id, "User id must not be blank or wrong data type")
     end
 
   end

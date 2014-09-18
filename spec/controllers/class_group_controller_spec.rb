@@ -65,7 +65,7 @@ RSpec.describe ClassGroupsController, :type => :controller do
 
       expect(ClassGroup.all.count).to eq(original_count)
       expect(response).to render_template 'class_groups/index'
-      expect(response.body).to include "error", ERB::Util.html_escape("Name can't be blank")
+      expect(response.body).to include "error", ERB::Util.html_escape("title can't be blank")
     end
   end
 

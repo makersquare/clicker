@@ -17,6 +17,7 @@ $black-warm: #1D1610;
 $light-black: #1d1d1d;
 $black-home: #141414;
 $escher: #444444;
+$super-light-black: #585441;
 
 div.classes-container {
   margin-right: 2rem;
@@ -24,32 +25,49 @@ div.classes-container {
 }
 
 div.header h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   padding: 1.5rem 0 1.5rem 0;
 }
 
-div.row {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-
 // class div styling
 .specific-class {
-  border-radius: 0.4rem;
-  border: 4px solid $teal;
-  background-color: $cloud;
+  background-color: transparent;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  p {
+    margin-bottom: 0.2rem;
+  }
 }
 
 .class-header {
-
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 1.23rem;
+  }
+  color: $escher;
+  &:hover {
+    h3, p {
+    color: $teal;
+    }
+  }
 }
 
 .class-options {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top: 2px solid $escher;
+  border-radius: 0 0 0.4rem 0.4rem;
+  background-color: $cloud;
   div a {
-    padding-left: 1rem;
+    font-size: 0.8rem;
+    color: $escher;
+    &:hover {
+      color: $teal;
+    }
   }
 }
 
@@ -59,18 +77,56 @@ div.row {
   }
 }
 
+.class-list {
+  margin-top: 1rem;
+}
+
 .add-class {
-  h3 {
-    color: grey;
-  }
-  border: 3px dashed grey;
-  border-radius: 0.4rem;
-  margin: 0.4rem;
-  &:hover {
-    border: 3px dashed $teal;
-    h3 {
-      color: $teal;
+  button {
+    border-radius: 0.4rem;
+    background-color: $teal;
+    &:hover, :active, :focus {
+      background-color: $teal-dark;
     }
   }
 }
 
+.new-class {
+  padding-top: 1.5rem;
+  // add other styling here
+  h3 {
+    font-size: 2rem;
+    color: $teal-dark;
+  }
+  form {
+    input.form-control {
+      border-bottom: 2px solid $super-light-black;
+      width: 45%;
+    }
+    input.button {
+    border-radius: 0.4rem;
+    background-color: $teal;
+      &:hover, :active, :focus {
+        background-color: $teal-dark;
+      }
+    }
+  }
+  p a {
+    font-size: 1.3rem;
+    color: $super-light-black;
+  }
+}
+
+.add-class-width {
+  width: 40%;
+}
+
+@media (max-width: 600px) {
+  .new-class {
+    form {
+      input.form-control {
+        width: 70%;
+      }
+    }
+  }
+}

@@ -13,5 +13,44 @@
 //
 //= require jquery-2.1.1.js
 //= require foundation
+//= require d3
+//= require class_groups.js
+//= reqiure memberships.js
 
 $(function(){ $(document).foundation(); });
+
+console.log('doc loaded in application js');
+
+
+// memberships.js
+
+// hide from view until click/touch actions
+// $('.add-student-form').hide();
+// $('.add-student-confirm').hide();
+// $('.add-student-error').hide();
+
+// -------------------------------------------------- CLICK ACTIONS
+$('#add-student-button').click(function () {
+  $('.add-student-form').animate({
+    height: 'toggle'
+  })
+});
+
+$('.add-student-form-cancel').click(function () {
+  $('.add-student-form').animate({
+    height: 'toggle'
+  })
+});
+
+$('.submit-new-student').click(function () {
+  $('.add-student-confirm').animate({
+    height: 'toggle'
+  });
+  $('.add-student-form').animate({
+    height: 'toggle'
+  })
+})
+
+
+// -------------------------------------------------- TOUCH ACTIONS
+

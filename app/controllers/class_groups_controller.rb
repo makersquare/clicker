@@ -6,6 +6,7 @@ class ClassGroupsController < ApplicationController
   # GET /class_groups
   # GET /class_groups.json
   def index
+      # raise 'c'
     @class_groups = @current_user.class_groups
     @class_group = ClassGroup.new
   end

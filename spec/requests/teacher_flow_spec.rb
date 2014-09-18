@@ -31,7 +31,8 @@ RSpec.describe 'Teacher Flow' do
     get "/class_groups/#{@teacher.class_groups[0].id}/question_sets/#{@question_set.id}"
     expect(response).to render_template('question_sets/show')
 
-        
+    #teacher creates a question
+    
 
   end
 

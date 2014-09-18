@@ -13,10 +13,20 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
-    # question set id name
-    q_set_id= params[:id]
-  end
+      # check if it's a teacher:
+      if !@current_user.teacher?(@class_group.id).empty?
+      # if so, redirect to teacher page
+      else
+        # else, redirect to student page
+        redirect_to 
+      end
+    # if user is not enrolled in that class, redirect them to their class groups main page:
 
+    if !@current_user.enrolled?(@class_group.id)
+      redirect_to class_groups_path
+      return
+    end
+  end
 
   # POST /question_sets
   # POST /question_sets.json

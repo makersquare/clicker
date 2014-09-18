@@ -19,17 +19,31 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   };
   $scope.createQuestion = function() {
     var thisQuestion = {
-      type: "MultiChoiceQuestion", 
+      type: "MultiChoiceQuestion",
       content: {
-        question: $scope.question, 
-        choices: {
-          A: $scope.choiceA, 
-          B: $scope.choiceB, 
-          C: $scope.choiceC, 
-          D: $scope.choiceD 
-        }
+        question: $scope.question,
+        answer: $scope.answer,
+        choices: [
+          $scope.choiceA,
+          $scope.choiceB,
+          $scope.choiceC,
+          $scope.choiceD
+        ]
       }
     };
+    // $scope.createQuestion = function() {
+    //   var thisQuestion = {
+    //     type: "MultiChoiceQuestion", 
+    //     content: {
+    //       question: $scope.question, 
+    //       choices: {
+    //         A: $scope.choiceA, 
+    //         B: $scope.choiceB, 
+    //         C: $scope.choiceC, 
+    //         D: $scope.choiceD 
+    //       }
+    //     }
+    //   };
     var questions = QuestionsRsc.save({ question_sets_id: $scope.questionSetID, question: thisQuestion });
     // var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
     // questions.push(thisQuestion); 

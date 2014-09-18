@@ -39,6 +39,15 @@ RSpec.describe QuestionsController, :type => :controller do
           post :create, {question_set_id: @question_set.id, question: valid_params}, {user_id: @teacher.id}
         }.to change(Question, :count).by(1)
       end
+
+      it "creates a new question" do
+        params ={"question_sets_id"=>@question_set.id, "question"=>{"type"=>"MultiChoiceQuestion", "content"=>{"question"=>"test question", "choices"=>["ayy", "bee", "cee", "dee"]}}, "question_set_id"=>@question_set.id}
+        # expect {
+          post :create, params, {user_id: @teacher.id}
+        # }.to change(Question, :count).by(1)
+        puts "#{response.body.inspect}"
+        expect(response).to be_success
+      end
     end
   end
 

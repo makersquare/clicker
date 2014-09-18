@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   end
 
   def teacher?(class_group_id)
-    response = self.memberships.where(class_group_id: class_group_id, kind: "teacher")
-    response.empty? ? false : true
+    self.memberships.where(class_group_id: class_group_id, kind: "teacher")
+    # response.empty? ? false : true
   end
 
   def enrolled?(class_group_id)

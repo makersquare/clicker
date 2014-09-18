@@ -19,7 +19,15 @@
   <div class="ng-qset-show">
     <!-- yield here to the view -->
 
-    <%= @current_user.teacher?(@class_group.id).inspect %>
+
+    <!-- if the user is a teacher -->
+    <% if !@current_user.teacher?(@class_group.id).empty? %>
+      <!-- yield teacher view -->
+
+    <!-- if user is a student -->
+    <% else %>
+      <!-- yield student view -->
+    <% end %>
 
   <!-- Begin Teacher view Section -->
 

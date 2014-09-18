@@ -33,7 +33,7 @@ RSpec.describe 'Teacher Flow' do
     get "/class_groups/#{@teacher.class_groups[0].id}/question_sets/#{@question_set.id}"
     expect(response).to render_template('question_sets/show')
     
-    #make question sets, and questions for question sets. make sure database is lined up.
+    #allows teacher to create questions
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
       question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Blah", answer: "D", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
     post "/question_sets/#{@question_set.id}/questions.json", :question => {

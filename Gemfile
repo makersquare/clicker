@@ -8,6 +8,7 @@ group :development do
   gem 'hirb'
 end
 
+gem 'activerecord-session_store'
 gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'

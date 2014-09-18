@@ -28,6 +28,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use angular as the JavaScript library
 gem 'angularjs-rails'
+gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

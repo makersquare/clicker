@@ -10,40 +10,87 @@ RSpec.describe Question, :type => :model do
         :content => {
           :question => "Attendance Check",
           :answer => 0,
-          :content => [
+          :choices => [
             "true"
           ]
         }
       )
     end
 
-    it "validates the question key/value" do
-      expect(model.question_set_id).to_not eq(nil)
-      expect(model.content["question"]).to_not eq(nil)
-    end
-    it "validates absence of choice" do
-      expect(model.content["choices"]).to eq(nil)
+    it "validates presence of question set id" do
+      model.question_set_id = nil
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:absent_question_set_id)
     end
 
-    it "ensures the answer set to 'true'" do
-      # expect(@attendance_question["content"]["answer"]).to eq(0)
-      expect(model.content["answer"]).to eq(0)
+    it "validates presence of question" do
+      model.content["question"] = nil
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:absent_question)
     end
+
+    it "validates quesiton title as Attendance Check" do
+      model.content["question"] = 2298357298357
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:attendance_title)
+    end
+
+    it "validates presence of answer" do
+      model.content["answer"] = nil
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:absent_answer)
+    end
+    
+    it "validates the answer as true only" do
+      model.content["answer"] = "false"
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:attendance_wrong_answer)
+    end
+
   end
 
   describe "ShortAnswerQuestion's content validation" do
-    it "validates the question key/value" do
-      short_answer_check = @short_answer_question["content"]
 
-      expect(@short_answer_question.question_set_id).to eq(@question_set.id)
-      expect(short_answer_check).to_not eq(nil)
+    let(:model) do
+      ShortAnswerQuestion.new(
+        :question_set_id => 1,
+        :content => {
+          :question => "What is the Coppersmith–Winograd algorithm?",
+          :answer => "It was the asymptotically fastest known algorithm for square matrix multiplication until 2010.",
+          :choices => []
+        }
+      )
     end
-    it "validates absence of choice" do
-      expect(@short_answer_question["content"]["choices"]).to eq(nil)
+
+    it "validates presence of question set id" do
+      model.question_set_id = nil
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:absent_question_set_id)
     end
-    it "ensures the answer is present" do
-      expect(@short_answer_question["content"]["answer"]).to_not eq(nil)
+
+    it "validates presence of question" do
+      model.content["question"] = nil
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:absent_question)
     end
+
+    it "validates presence of answer" do
+      model.content["answer"] = nil
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:absent_answer)
+    end
+
+    it "validates absence of choices" do
+      model.content["choices"] = [
+        "42",
+        "Irrationalism is the absence of irrational",
+        "This sentence is false"
+      ]
+
+      expect(model).to_not be_valid
+      expect(model.errors).to have_key(:present_choices)
+    end
+
   end
 
   describe "MultiChoiceQuestion's content validation" do
@@ -66,9 +113,6 @@ RSpec.describe Question, :type => :model do
     
     it "validates with a perfect format" do
       expect(model).to be_valid
-      # expect(model).to_not be_valid
-      # expect(model.errors).to have_key(:nope)
-
     end
 
     describe "Validation" do
@@ -79,13 +123,13 @@ RSpec.describe Question, :type => :model do
         expect(model.errors).to have_key(:absent_question_set_id)
       end
 
-      it "validates the question" do
+      it "validates presence of question" do
         model.content["question"] = nil
         expect(model).to_not be_valid
         expect(model.errors).to have_key(:absent_question)
       end
 
-      it "validates the answer" do
+      it "validates presence of answer" do
         model.content["answer"] = nil
         expect(model).to_not be_valid
         expect(model.errors).to have_key(:absent_answer)
@@ -94,25 +138,13 @@ RSpec.describe Question, :type => :model do
       it "ensures the answer index is within the number of choices" do
         expect(model.content["answer"]).to be <= model.content["choices"].count
 
+        # Now set answer to a value beyond number of choices
         model.content["answer"] = 5
         expect(model).to_not be_valid
         expect(model.errors).to have_key(:wrong_answer)
       end
     end
 
-    # describe "#find_choice" do
-    #   it "finds a choice by .." do
-    #     multi_choices_check = @multi_choice_question["content"]
-
-    #     choices = multi_choices_check["choices"]
-    #     answer = multi_choices_check["answer"]
-
-    #     confirm = choices.map{ |x| x.keys }.flat_map{ |e| e }.find{ |i| i == answer }
-
-    #     expect(confirm).to_not eq(nil)
-    #     expect(confirm).to eq(answer)
-    #   end
-    # end
   end
 
 

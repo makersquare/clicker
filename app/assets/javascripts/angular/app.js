@@ -6,23 +6,23 @@ app.config(['$httpProvider', function(provider){
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/angular/display_all_question_sets.html',
+        templateUrl: '/angular/edit_question_sets/display_all_question_sets.html',
         controller: 'QuestionSetCtrl'
       })
       .when('/edit/:id', {
-        templateUrl: '/angular/add_question.html',
+        templateUrl: '/angular/edit_question_sets/add_question.html',
         controller: 'EditCtrl'
       })
       .when('/add_question', {
-        templateUrl: '/angular/add_question.html',
+        templateUrl: '/angular/edit_question_sets/add_question.html',
         controller: 'EditCtrl'
       })
       .when('/add_choice', {
-        templateUrl: '/angular/add_answer_choice.html',
+        templateUrl: '/angular/edit_question_sets/add_answer_choice.html',
         controller: 'QuestionsCtrl'
       })
       .when('/show_question/:id', {
-        templateUrl: '/angular/show_question.html',
+        templateUrl: '/angular/edit_question_sets/show_question.html',
         controller: 'EditQuestionCtrl'
       });
   });

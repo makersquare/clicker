@@ -1,11 +1,6 @@
 class MultiChoiceQuestion < Question
   validate :content_format
 
-
-  # def find_choice()
-    
-  # end
-
 private
 
   def content_format

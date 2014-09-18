@@ -13,6 +13,7 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
+    # question set id name
   end
 
 

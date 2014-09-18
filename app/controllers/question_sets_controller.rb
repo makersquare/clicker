@@ -46,6 +46,7 @@ class QuestionSetsController < ApplicationController
   def update
     respond_to do |format|
       if @question_set.update(question_set_params)
+        binding.pry
         @question_set = QuestionSet.new(question_set_params)
         @question_set.class_group_id = params[:class_group_id]
         
@@ -80,6 +81,6 @@ class QuestionSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_set_params
-      params.require(:question_set).permit(:name)
+      params.require(:question_set).permit!
     end
 end

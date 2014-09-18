@@ -14,6 +14,7 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1.json
   def show
     # question set id name
+    q_set_id= params[:id]
   end
 
 

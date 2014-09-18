@@ -65,48 +65,49 @@ RSpec.describe Question, :type => :model do
     end
     
     it "validates with a perfect format" do
-    # binding.pry
       expect(model).to be_valid
       # expect(model).to_not be_valid
       # expect(model.errors).to have_key(:nope)
+
     end
 
     describe "Validation" do
       it "validates the question key/value" do
-        multi_choice_check = @multi_choice_question["content"]
 
-        expect(@multi_choice_question.question_set_id).to eq(@question_set.id)
+        # multi_choice_check = @multi_choice_question["content"]
+
         expect(multi_choice_check).to_not eq(nil)
+
+        
       end
 
       it "validates the choices key/value" do
-        model.choices = []
-        multi_choices = @multi_choice_question["content"]["choices"]
 
-        expect(multi_choices).to_not eq(nil)
+        expect(model.content["choices"]).to_not eq(nil)
 
-        multi_choices_keys = multi_choices.map { |x| x.keys }
-        multi_answers = multi_choices.map { |x| x.values }
-
+        multi_choices_keys = model.content["choices"].map { |x| x.keys }
+        multi_answers = model.content["answers"].map { |x| x.values }
+binding.pry
         expect(multi_choices_keys.count).to eq(multi_answers.count)
       end
 
       it "ensures the answer index is within the number of choices" do
+        expect(model.content["answer"]).to be <= model.content["choices"].count
       end
     end
 
-    describe "#find_choice" do
-      it "finds a choice by .." do
-        multi_choices_check = @multi_choice_question["content"]
+    # describe "#find_choice" do
+    #   it "finds a choice by .." do
+    #     multi_choices_check = @multi_choice_question["content"]
 
-        choices = multi_choices_check["choices"]
-        answer = multi_choices_check["answer"]
+    #     choices = multi_choices_check["choices"]
+    #     answer = multi_choices_check["answer"]
 
-        confirm = choices.map{ |x| x.keys }.flat_map{ |e| e }.find{ |i| i == answer }
+    #     confirm = choices.map{ |x| x.keys }.flat_map{ |e| e }.find{ |i| i == answer }
 
-        expect(confirm).to_not eq(nil)
-      end
-    end
+    #     expect(confirm).to_not eq(nil)
+    #   end
+    # end
   end
 
 

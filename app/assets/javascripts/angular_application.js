@@ -16,4 +16,4 @@
 //= require angular-resource
 //= require angular-route
 
-//= require question_sets.js
+//= require_tree ./angular

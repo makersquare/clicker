@@ -1,18 +1,44 @@
 <div class="memberships">
 
-  <div>
-    <h2>Manage</h2><br>
-    <a href="#">
-      <div class="memberships-header">
-        <h1><%= @class_group.name %></h1>
-        <h4><%= @class_group.description %></h4>
-      </div>
-    </a>
+<div>
+  <h2>Members</h2>
+</div>
+
+<div data-equalizer class="memberships">
+  <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+    <h3>Instructors</h3>
+    <p>
+      <table>
+        <% @teacher_memberships.each do |teach_mem| %>
+          <tr data-id= <%= teach_mem.id %>>
+            <td><%= teach_mem.user.name %></td>
+            <!-- this should link to their github account -->
+            <td>@<%= teach_mem.user.nickname %></td>
+            <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
+          </tr>
+          <!-- Instructor Gravatar placeholder -->
+          <tr data-id-pic= <%= teach_mem.id %>>
+            <td colspan="3" class="medium-centered large-centered"><img src="http://lorempixel.com/output/cats-q-c-479-200-8.jpg" alt="Pretticky Kittickidy" title="Pretticky Kittickidy"></td>
+          </tr>
+        <% end %>
+      </table>
+    </p>
   </div>
 
-  <!-- button to add a student - starts a jQuery loop for adding a member -->
-  <div class="add-student-button">
-    <button class="button open-sans-font smallcaps" id="add-student-button">add member</button>
+  <div class="small-12 medium-6 large-6columns" data-equalizer-watch>
+    <h3>Students</h3>
+    <p>
+      <table>
+        <% @student_memberships.each do |stud_mem| %>
+          <tr data-id= <%= stud_mem.id %>>
+            <td><%= stud_mem.user.name %></td>
+            <!-- this should link to their github account -->
+            <td>@<%= stud_mem.user.nickname %></td>
+            <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
+          </tr>
+        <% end %>
+      </table>
+    </p>
   </div>
 
   

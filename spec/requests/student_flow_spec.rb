@@ -7,7 +7,7 @@ RSpec.describe "student flow" do
     @student = Fabricate(:user, class_groups: [
       Fabricate(:class_group, question_sets: [
         Fabricate(:question_set),
-        Fabricate(:question_set, active: true, questions: [
+        Fabricate(:question_set, questions: [
           Fabricate(:attendance_question),
           Fabricate(:multi_choice_question),
           Fabricate(:multi_choice_question)

@@ -20,6 +20,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.question_set_id = params[:question_set_id]
+    
     respond_to do |format|
       if @question.save
         format.html { redirect_to question_set_questions_url, notice: 'Question was successfully created.' }

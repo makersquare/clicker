@@ -1,3 +1,51 @@
 // Place all the styles related to the Memberships controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$teal: #54BC9E;
+$teal-dark: #316858;
+$lime: #A4F7C0;
+$lime-dark: #90D8A8;
+$cloud: #ecf0f1;
+$dark-grey: #434234;
+$bright-yellow: #FBF963;
+$light-yellow: #FCFBBE;
+$grey-yellow: #7F7F61;
+$black-yellow: #303018;
+$black-warm: #1D1610;
+$light-black: #1d1d1d;
+$black-home: #141414;
+$escher: #444444;
+$super-light-black: #585441;
+
+.memberships {
+  form {
+    input.form-control {
+      border-bottom: 2px solid $super-light-black;
+      width: 55%;
+    }
+    input.button {
+    border-radius: 0.4rem;
+    background-color: $teal;
+      &:hover, :active, :focus {
+        background-color: $teal-dark;
+      }
+    }
+  }
+  p a {
+    font-size: 1.3rem;
+    color: $super-light-black;
+  }
+  .button {
+    border-radius: 0.4rem;
+    background-color: $teal;
+    &:hover, :active, :focus {
+      background-color: $teal-dark;
+    }
+  }
+  img.gravatar-radius {
+    border-radius: 50%;
+  }
+  table, table td {
+    text-align: center;
+  }
+} 

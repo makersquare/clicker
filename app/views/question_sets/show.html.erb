@@ -19,6 +19,8 @@
   <div class="ng-qset-show">
     <!-- yield here to the view -->
 
+    <%= @current_user.teacher?(@class_group.id).inspect %>
+
   <!-- Begin Teacher view Section -->
 
     <div class="teacher-qset-view">
@@ -105,15 +107,6 @@
 
         </div>
       </div>  
-    </div>
-
-    <div class="row">
-      <div class="small-10 columns">
-        <input type="text">
-      </div>
-      <div class="small-2 columns">
-        <button>submit</button>
-      </div>
     </div>
   
   </div> <!-- end of ng-q-set-show -->

@@ -14,6 +14,8 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/*.log
+/node/*.log
 /tmp
 
 /config/_github.yml
@@ -21,3 +23,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore node's express module
+/node/node_modules

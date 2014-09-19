@@ -27,7 +27,7 @@ RSpec.describe 'Teacher Flow' do
  
     # takes teacher to show page when they click on a class group
     get "/class_groups/#{@teacher.class_groups[0].id}"
-    expect(response).to render_template('class_groups/show')
+    expect(response).to render_template('class_groups/teacher_show')
 
     #takes teacher to question set show page after they create a question set
     get "/class_groups/#{@teacher.class_groups[0].id}/question_sets/#{@question_set.id}"

@@ -9,7 +9,8 @@
   <!-- class title -->
   <h1 class="opensans-font"><%= link_to @class_group.name, class_group_path %></h1>
   <p class="code-font italic"><%= @class_group.description %></p>
-
+  <%= @current_user.teacher?(@class_group.id).inspect %>
+  <%= @class_group.inspect %>
   <% if @class_group.errors.any? %>
     <div id="error_explanation">
       <p> <%= @class_group.errors %> </p>

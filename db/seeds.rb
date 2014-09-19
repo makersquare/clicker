@@ -126,7 +126,7 @@ Membership.create([
   {
     user_id: 6,
     class_group_id: 1,
-    kind: "teacher"
+    kind: "student"
   },
   {
     user_id: 7,

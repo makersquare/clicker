@@ -24,6 +24,7 @@ class ResponsesController < ApplicationController
     if @response.content.nil?
       render json: {errors: :missing_content}, status: :unprocessable_entity    
     elsif @response.save
+      @response.notify
       render :show, {question_set_id: @question_set.id, question_id: @question.id, id: @response.id, status: :created}
     else
       render json: @response.errors, status: :unprocessable_entity

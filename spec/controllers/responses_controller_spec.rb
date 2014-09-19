@@ -88,6 +88,14 @@ RSpec.describe ResponsesController, :type => :controller do
           post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
         }.to change(Response, :count).by(1)
       end
+
+        it "notifies its existence", :no_database_cleaner => true do
+          valid_params = {content: {response: "D"}}
+          expect {
+            post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
+          binding.pry
+          }.to notify('new_responses', Response.where(question_id: @question1.id, user_id: @studenta.id))
+        end
     end
 
     context 'with invalid attributes' do

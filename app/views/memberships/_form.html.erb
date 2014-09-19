@@ -1,4 +1,4 @@
-<%= form_tag class_group_memberships_path, method: :post, remote: true do %>
+<%= form_tag class_group_memberships_path, id: "new-member-form", method: :post, remote: true do %>
 
   <div class="field row">
   <%= text_field_tag( 'membership[nickname]', '', placeholder: 'github username', class: 'form-control small-centered medium-centered large-centered columns' )%>

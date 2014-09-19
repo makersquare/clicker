@@ -16,7 +16,7 @@
 //= require foundation
 //= require d3
 //= require class_groups.js
-//= reqiure memberships.js
+//= require memberships.js
 
 $(function(){ $(document).foundation(); });
 

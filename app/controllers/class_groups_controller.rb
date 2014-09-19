@@ -35,6 +35,7 @@ class ClassGroupsController < ApplicationController
     end
     @class_group = ClassGroup.new(class_group_params)
 
+
     respond_to do |format|
       if @class_group.save
         Membership.create(

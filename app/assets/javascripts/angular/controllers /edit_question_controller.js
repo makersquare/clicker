@@ -42,8 +42,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   };
 });
 
-app.controller('EditQuestionCtrl', function($scope, $routeParams, QuestionsRsc) {
-  $scope.id = g.classGroup.id;
-  $scope.questionSetID = $routeParams.id;
-  $scope.questionSetName = g.classGroup.name;
-});
+// app.controller('EditQuestionCtrl', function($scope, $routeParams, QuestionsRsc) {
+//   $scope.id = g.classGroup.id;
+//   $scope.questionSetID = $routeParams.id;
+// });

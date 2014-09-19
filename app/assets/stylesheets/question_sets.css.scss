@@ -1,3 +1,59 @@
 // Place all the styles related to the QuestionSets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// our colors
+$teal: #54BC9E;
+$teal-dark: #316858;
+$lime: #A4F7C0;
+$lime-dark: #90D8A8;
+$cloud: #ecf0f1;
+$dark-grey: #434234;
+$bright-yellow: #FBF963;
+$light-yellow: #FCFBBE;
+$grey-yellow: #7F7F61;
+$black-yellow: #303018;
+$black-warm: #1D1610;
+$light-black: #1d1d1d;
+$black-home: #141414;
+$escher: #444444;
+$super-light-black: #585441;
+
+div.question-set-show-style{
+  .cloud {
+    color: $cloud;
+  }
+  div.question-yield > h3, h2 {
+    color: $cloud;
+  }
+  div.align-left.menu-icon {
+    text-align: left;
+    padding-left: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+.ng-qset-show {
+  margin: 0;
+  div.inner-wrap {
+    
+  }
+}
+
+body > div:nth-child(2) > div > div > div.teacher-qset-view > div.off-canvas-wrap > div > div.menu-icon {
+  text-align: left;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
+div.teacher-qset-view {
+  background-color: $light-black;
+}
+
+body > div:nth-child(2) > div > div > div.student-qset-view > div > div > 
+
+.question-yeild {
+  h3, h2, h1, p {
+    color: $cloud;
+  }
+}

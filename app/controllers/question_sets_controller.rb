@@ -13,9 +13,17 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
-    # question set id name
+    if @current_user.enrolled?(@class_group.id)
+      if !@current_user.teacher?(@class_group.id).empty?
+        render "teacher_show"
+      else
+        render "student_show"
+      end
+    else
+      redirect_to class_groups_path
+      return
+    end
   end
-
 
   # POST /question_sets
   # POST /question_sets.json
@@ -79,6 +87,6 @@ class QuestionSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_set_params
-      params.require(:question_set).permit(:name)
+      params.require(:question_set).permit!
     end
 end

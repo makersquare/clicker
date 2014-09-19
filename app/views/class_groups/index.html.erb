@@ -11,10 +11,10 @@
       <%= "No current classes.  Please add a class to begin." %>
     </div>
   <% end %>
-
+  
   <% @class_groups.each do |class_group| %>
     <div class="specific-class panel">
-      <%= link_to class_group do %>
+      <%= link_to "class_groups/#{class_group.id}/#display" do %>
         <div class="row">
           <!-- I need a link here to the class show page -->
             <h3><%= class_group.name %></h3>
@@ -24,7 +24,7 @@
 
       <div class="row class-options">
         <ul class="small-block-grid-2">
-          <li><span><%= link_to 'edit class', edit_class_group_path(class_group), class: 'fa fa-pencil fa-2x' %></span></li>
+          <li><span><%= link_to 'edit class', "class_groups/#{class_group.id}/#display" , class: 'fa fa-pencil fa-2x' %></span></li>
             <!-- this is not the right link to add students, memberships controller -->
           <li>
             <span><%= link_to 'edit students', "class_groups/#{class_group.id}/memberships", class: 'fa fa-users fa-2x' %>
@@ -38,7 +38,6 @@
 
 <br>
 
-<!-- add a new class button -->
   <div class="classes-container">
 
   <!-- displays each class -->
@@ -70,13 +69,13 @@
 
   <!-- add a new class button -->
   <a href="#" id="addclass">
-  <div class="add-class">
+  <div class="add-class row">
     <h3 class="opensans-font">Add a Class</h3>
   </div>
   </a>
 
   <!-- add a new class form -->
-  <div class="new-class">
+  <div class="new-class row">
     <h3 class="opensans-font">Create a Class</h3>
     <% title = 'title' %>
     <% description = 'description' %>

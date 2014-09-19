@@ -1,12 +1,14 @@
 <script type="text/javascript">
   window.g = {};
   g.classGroup = <%= raw @class_group.to_json %>;
+  g.questionSet = <%= raw @question_set.to_json %>;
+  g.questions = <%= raw @question.to_json %>;
 </script>
-<div ng-app="app">
+<div ng-app="app" ng-controller="QuestionSetCtrl">
   <p id="notice"><%= notice %></p>
   <!-- class title -->
-  <h1 class="opensans-font"><%= link_to @class_group.name, class_group_path %></h1>
-  <p class="code-font italic"><%= @class_group.description %></p>
+  <p class="code-font smallcaps"><%= link_to @class_group.name.upcase, @class_group %></p>
+  <h1 class="opensans-font"><%= @question_set.name %></h1>
 
   <% if @class_group.errors.any? %>
     <div id="error_explanation">
@@ -14,15 +16,18 @@
     </div>
   <% end %>
 
-  <!-- used to be: link_to 'Back', class_groups_path -->
- <%= link_to 'Back', :back %>
+  <div class="question-set-show-style" id="question-set-show-style">
+    <%= link_to 'Back', :back %>
+ 
+    <div>
+      <% if !@current_user.teacher?(@class_group.id).empty? %>
+        <%= render 'teacher_show' %>
+      <% else %>
+        <%= render 'student_show' %>
+      <% end %>
+    </div>
 
-  <div class="ng-qset-show">
-    
-  <!-- yield here to the view -->
-  <!--   <ng-view></ng-view> -->
-  
-  </div> 
+  </div>
+
   <%= javascript_include_tag "angular_application" %>
-  Hi! This is the angular part 2 page :)
-</div>
+</div> <!-- end of ng-app -->

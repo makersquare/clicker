@@ -1,0 +1,65 @@
+<script type="text/javascript">
+  window.g = {};
+  g.classGroup = <%= raw @class_group.to_json %>;
+
+  window.p = {};
+  p.questionSet = <%= raw @question_set.to_json %>;
+</script>
+<div ng-app="app" ng-controller='StudentViewCtrl'>
+  <p id="notice"><%= notice %></p>
+  <!-- class title -->
+  <p class="code-font smallcaps"><%= link_to @class_group.name.upcase, @class_group %></p>
+  <h1 class="opensans-font"><%= @question_set.name %></h1>
+  <% if @class_group.errors.any? %>
+    <div id="error_explanation">
+      <p> <%= @class_group.errors %> </p>
+    </div>
+  <% end %>
+
+  <div class="question-set-show-style" id="question-set-show-style">
+    <%= link_to 'Back', :back %>
+  <div>
+<!-- begin student view section -->
+    <div class="student-qset-view">
+      <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+
+          <div class="align-left menu-icon">
+            <a class="left-off-canvas-toggle" href="#" >
+              <i class="fa fa-bars fa-3x"></i>
+            </a>
+          </div>
+
+          <!-- Off Canvas Menu -->
+          <aside class="left-off-canvas-menu">
+            <!-- whatever you want goes here -->
+            <ul>
+              <li ng-repeat="question in questions"><a ng-click="setTab(questions.indexOf(question))" class="cloud">{{question.content.question}}</a></li>
+            </ul>
+          </aside>
+
+          <!-- Question content for Teacher (with control options) goes here -->
+          <div ng-repeat="question in questions" class="current-lecture-question show" ng-show="showTab == {{questions.indexOf(question)}}">
+            <div class="question-yield">
+              <h2>{{question.content.question}}</h2>
+              <div ng-repeat="choice in question.content.choices">
+                <button class="button radius">{{choice}}</button>
+              </div>
+            </div>
+          </div>
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+
+        </div> <!-- close of class="ineer-wrap" -->
+
+      </div>  
+    </div> <!-- END STUDENT question set view -->
+
+    <div id="the-pie-chart">
+    <pie-chart data="pieChartData" options="pieOptions"></pie-chart>
+    </div>
+
+  </div>
+
+  <%= javascript_include_tag "angular_application" %>
+</div> <!-- end of ng-app -->

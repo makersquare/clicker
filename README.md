@@ -60,8 +60,14 @@ Clicker is a web app that allows teachers to create questions to survey the clas
 
 ### Development: Using Figaro Gem for OmniAuth authentication with Github
 
-1. Add the `gem 'figaro'` to your Gemfile
+1. Add the `gem 'figaro'` to your Gemfile.
 2. Type `rails generate figaro:install` in terminal to generate '/config/application.yml' file. This will also add this file to the .gitignore file.
-3. Add your Github ID and Github SECRET to the application.yml file
-4. Ensure ENV hash values are referenced in initializer file 'omniauth.rb'
-5. If you are configuring for NGINX multiple servers, run your rails server and use "http://app.clicker.dev" for the app.
+3. Add your Github ID and Github SECRET to the application.yml file.
+4. Ensure ENV hash values are referenced in initializer file 'omniauth.rb'.
+5. Run rails server and go to http://localhost:3000 for the app. 
+
+#### For NGINX Configuration for Multiple Servers for Development
+
+6. If you are configuring for NGINX multiple servers, type `export HOSTNAME=app.clicker.dev` in your terminal.
+7. Add `OmniAuth.config.full_host = "http://#{ENV['HOSTNAME']}"` to the initializer file 'omniauth.rb'.
+8. Run your rails server and use http://app.clicker.dev for the app.

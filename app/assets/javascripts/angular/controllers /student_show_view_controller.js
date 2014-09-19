@@ -1,4 +1,8 @@
-app.controller('StudentViewCtrl', function($scope, QuestionSetRsc){
-  $scope.questionSets = QuestionSetRsc.query({ class_group_id: g.classGroup.id });
-
+app.controller('StudentViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc){
+  $scope.questionSet = p.questionSet;
+  $scope.questions = QuestionsRsc.query({ question_sets_id: $scope.questionSet.id });
+  $scope.showTab = 0;
+  $scope.setTab = function(num){
+    $scope.showTab = num;
+  };
 });

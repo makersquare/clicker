@@ -3,39 +3,73 @@
   <div class="edit-question panel">
     <p class="code-font italic">
     <!-- TODO: insert question set title below {{}} -->
-      insert question set name here:
     </p>
-    
-    <!-- TODO: insert question number at end {{}} -->
-    <h1 class="gothic-caps-font">edit question 1</h1>
 
-    <form action="">
-      <!-- TODO: insert current question string into the placeholder text {{}} -->
-      <input type="text" placeholder="What is an Object?">
+    <h1 class="gothic-caps-font">edit question</h1>
 
-      <!-- a choice -->
-      <div class="row a-choice">
-        <div class="small-3 large-3 columns">
-        <!-- TODO: alphabetize stuff -->
-          <span>A.</span>
+    <form ng-submit="createQuestion()">
+
+    <div class="row">
+
+      <div class="row">
+        <div class="small-10 columns">
+          <input type="text" placeholder="question" ng-model="question">
         </div>
-        <!-- choices that are wrong have class of 'wrong answer', correct ones have 'right-answer' -->
-        <div class="small-9 large-9 columns wrong-answer">
-          <p>A Thingy.</p>
+        <div class="small-2 columns">
+          <span class="code-font">set answer:</span>
         </div>
       </div>
 
-      <a href="#" id="addchoice">
-        <div class="add-choice">
-          <h5 class="opensans-font">add choice</h5>
+      <div class="row">
+        <div class="small-10 columns">
+          <input type="text" placeholder="choice" ng-model="choiceA">
         </div>
-      </a>
+          <div class="switch small-2 columns">
+            <span class="code-font"></span><input name="choices" id="A" value="0" type="radio" ng-model="answer">
+            <label for="A"></label>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="small-10 columns">
+          <input type="text" placeholder="choice" ng-model="choiceB">
+        </div>
+        <div class="switch small-2 columns">
+          <span class="code-font"></span><input name="choices" id="B" value="1" type="radio" ng-model="answer">
+          <label for="B"></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-10 columns">
+          <input type="text" placeholder="choice" ng-model="choiceC">
+        </div>
+        <div class="switch small-2 columns">
+          <span class="code-font"></span><input name="choices" id="C" value="2" type="radio" ng-model="answer">
+          <label for="C"></label>
+        </div>
+      </div> 
+
+      <div class="row">
+        <div class="small-10 columns">
+          <input type="text" placeholder="choice" ng-model="choiceD">
+        </div>
+        <div class="switch small-2 columns">
+          <span class="code-font"></span><input name="choices" id="D" value="3" type="radio" ng-model="answer">
+          <label for="D"></label>
+        </div>
+      </div>
+
+    </div>
 
       <div>
-        <input type="submit" class="button" id="submit" value="Submit">
+        <input type="submit" class="button" id="submit" value="Save">
       </div>
+
       <div>
         <a href="#"> < Cancel</a>
       </div>
+
     </form>
+
   </div>

@@ -5,9 +5,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   $scope.questionSetName = g.classGroup.name;
   $scope.destroy = function(id) {
     if (confirm("Are you sure?")) {
-            console.log("yay");
       QuestionsRsc.remove({ question_sets_id: $scope.questionSetID, id: id}, function(response){
-        console.log("yup");
         angular.forEach($scope.questions, function(e, i) {
           if(e.id === id) {
             $scope.questions.splice(i, 1);
@@ -19,24 +17,33 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   };
   $scope.createQuestion = function() {
     var thisQuestion = {
-      type: "MultiChoiceQuestion", 
+      type: "MultiChoiceQuestion",
       content: {
-        question: $scope.question, 
-        choices: {
-          A: $scope.choiceA, 
-          B: $scope.choiceB, 
-          C: $scope.choiceC, 
-          D: $scope.choiceD 
-        }
+        question: $scope.question,
+        answer: $scope.answer,
+        choices: [
+          $scope.choiceA,
+          $scope.choiceB,
+          $scope.choiceC,
+          $scope.choiceD
+        ]
       }
     };
+
     var questions = QuestionsRsc.save({ question_sets_id: $scope.questionSetID, question: thisQuestion });
     // var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
-    // questions.push(thisQuestion); 
+    $scope.questions.push(thisQuestion);
+    
+    $scope.question = "";
+    $scope.choiceA = "";
+    $scope.choiceB = "";
+    $scope.choiceC = "";
+    $scope.choiceD = "";
   };
 });
 
 app.controller('EditQuestionCtrl', function($scope, $routeParams, QuestionsRsc) {
   $scope.id = g.classGroup.id;
   $scope.questionSetID = $routeParams.id;
+  $scope.questionSetName = g.classGroup.name;
 });

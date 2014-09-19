@@ -27,13 +27,21 @@ RSpec.describe QuestionSetsController, :type => :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "GET #show for student and teachers" do
+    before do
+      request.env["HTTP_ACCEPT"] = 'text/html'
+    end
+    
     it "responds successfully with an HTTP 200 status code" do
       new_param_hash = { 
         class_group_id: @class_group.id,
         id: @question_set.id
         }
       get :show, new_param_hash, { user_id: @student.id }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+
+      get :show, new_param_hash, { user_id: @teacher.id }
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end

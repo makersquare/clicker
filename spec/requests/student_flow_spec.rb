@@ -62,7 +62,7 @@ RSpec.describe "student flow" do
 
       #if a question set is active the student can view the page for that question set
       get "/class_groups/#{@class_group1.id}/question_sets/#{@qset2.id}"
-      expect(response).to render_template('question_sets/show')
+      expect(response).to render_template('question_sets/student_show')
       
       #student answers questions
       post "question_sets/#{@qset2.id}/questions/#{@q1.id}/responses.json", :response => {

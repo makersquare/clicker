@@ -9,28 +9,6 @@ RSpec.describe 'Teacher Flow' do
     @question_set = Fabricate(:question_set, class_group_id: @class_group.id)
   end
 
-  before do
-    @teacher = Fabricate(:verified_user)
-    @class_group1 = Fabricate(:class_group)
-    @qset1 = Fabricate(:question_set, class_group_id: @class_group1.id)
-    @qset2 = Fabricate(:question_set, class_group_id: @class_group1.id, state: 'open')
-    
-    @q1 = Fabricate(:attendance_question, question_set_id: @qset2.id)
-    @q2 = Fabricate(:multi_choice_question, question_set_id: @qset2.id)
-    @q3 = Fabricate(:multi_choice_question, question_set_id: @qset2.id)
-  
-    @class_group2 = Fabricate(:class_group)
-
-    Membership.create(
-      class_group_id: @class_group1.id,
-      user_id: @student.id,
-      kind: 'student')
-    Membership.create(
-      class_group_id: @class_group2.id,
-      user_id: @student.id,
-      kind: 'student')
-  end
-
   let(:session) do
     { user_id: @teacher.id }
   end
@@ -53,7 +31,7 @@ RSpec.describe 'Teacher Flow' do
 
     #takes teacher to question set show page after they create a question set
     get "/class_groups/#{@teacher.class_groups[0].id}/question_sets/#{@question_set.id}"
-    expect(response).to render_template('question_sets/show')
+    expect(response).to render_template('question_sets/teacher_show')
     
     #allows teacher to create questions
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
@@ -65,3 +43,4 @@ RSpec.describe 'Teacher Flow' do
   end
 
 end
+

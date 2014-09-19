@@ -42,9 +42,23 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   };
 });
  
-app.controller('EditQuestionCtrl', function($scope, $routeParams, QuestionsRsc) {
+app.controller('EditQuestionCtrl', function($http,$scope, $routeParams, QuestionsRsc) {
+  
+  url =  window.domain_url + '/question_sets/' + $routeParams.question_set_id + '/questions/' + $routeParams.id
+  $http.get(url)
+    .then(function(response){
+    $scope.updatedquestion = response.data.content.question;
+    $scope.updatedchoiceA = response.data.content.choices[0];
+    $scope.updatedchoiceB = response.data.content.choices[1];
+    $scope.updatedchoiceC = response.data.content.choices[2];
+    $scope.updatedchoiceD = response.data.content.choices[3];
+    // console.log('response',response);
+  },function(err){
+    console.log('error!!');
+  });
   $scope.id = g.classGroup.id;
   $scope.questionSetID = $routeParams.question_set_id;
+
   // $scope.questionSetName = g.classGroup.name;
 
   $scope.updateQuestion = function() {

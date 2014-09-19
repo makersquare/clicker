@@ -2,9 +2,11 @@
 <script type="text/javascript">
   window.p = {};
   p.questionSet = <%= raw @question_set.to_json %>;
+  p.question = <%= raw @question.to_json %>
 </script>
   <div class="edit-question panel">
     <div>
+    {{question_test}}
       <p class="code-font italic">
       <!-- TODO: insert question set title below {{}} -->
       </p>
@@ -17,7 +19,7 @@
 
         <div class="row">
           <div class="small-10 columns">
-            <input type="text" ng-init="updatedquestion='question'" ng-model="updatedquestion">
+            <input type="text" ng-model="updatedquestion">
           </div>
           <div class="small-2 columns">
             <span class="code-font">set answer:</span>
@@ -26,7 +28,7 @@
 
         <div class="row">
           <div class="small-10 columns">
-            <input type="text" placeholder="updated choice" ng-model="updatedchoiceA">
+            <input type="text" ng-model="updatedchoiceA">
           </div>
             <div class="switch small-2 columns">
               <span class="code-font"></span><input name="choices" id="A" value="0" type="radio" ng-model="updatedanswer">
@@ -36,7 +38,7 @@
 
         <div class="row">
           <div class="small-10 columns">
-            <input type="text" placeholder="updated choice" ng-model="updatedchoiceB">
+            <input type="text" ng-model="updatedchoiceB">
           </div>
           <div class="switch small-2 columns">
             <span class="code-font"></span><input name="choices" id="B" value="1" type="radio" ng-model="updatedanswer">
@@ -46,7 +48,7 @@
 
         <div class="row">
           <div class="small-10 columns">
-            <input type="text" placeholder="updated choice" ng-model="updatedchoiceC">
+            <input type="text" ng-model="updatedchoiceC">
           </div>
           <div class="switch small-2 columns">
             <span class="code-font"></span><input name="choices" id="C" value="2" type="radio" ng-model="updatedanswer">
@@ -56,7 +58,7 @@
 
         <div class="row">
           <div class="small-10 columns">
-            <input type="text" placeholder="updated choice" ng-model="updatedchoiceD">
+            <input type="text" ng-model="updatedchoiceD">
           </div>
           <div class="switch small-2 columns">
             <span class="code-font"></span><input name="choices" id="D" value="3" type="radio" ng-model="updatedanswer">

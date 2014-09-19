@@ -12,7 +12,7 @@
       </p>
 
       <div ng-repeat="question in questions">
-      {{question.content.question}} -- <a href="#/show_question/{{question.id}}">Edit</a><a ng-click="destroy(question.id)"> Delete</a>
+      {{question.content.question}} -- <a href="#/edit_question/{{question.id}}">Edit</a><a ng-click="destroy(question.id)"> Delete</a>
       </div>
 
       <h1 class="gothic-caps-font">add question</h1>

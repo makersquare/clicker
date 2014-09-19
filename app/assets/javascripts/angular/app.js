@@ -24,5 +24,9 @@ app.config(['$httpProvider', function(provider){
       .when('/show_question/:id', {
         templateUrl: '/angular/edit_question_sets/show_question.html',
         controller: 'EditQuestionCtrl'
+      })
+      .when('/edit_question/:id', {
+        templateUrl: '/angular/edit_question_sets/edit_question.html',
+        controller: 'EditQuestionCtrl'
       });
   });

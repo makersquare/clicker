@@ -27,19 +27,20 @@ RSpec.describe 'Teacher Flow' do
  
     # takes teacher to show page when they click on a class group
     get "/class_groups/#{@teacher.class_groups[0].id}"
-    expect(response).to render_template('class_groups/show')
+    expect(response).to render_template('class_groups/teacher_show')
 
     #takes teacher to question set show page after they create a question set
     get "/class_groups/#{@teacher.class_groups[0].id}/question_sets/#{@question_set.id}"
-    expect(response).to render_template('question_sets/show')
+    expect(response).to render_template('question_sets/teacher_show')
     
     #allows teacher to create questions
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
-      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Blah", answer: "D", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
+      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Blah", answer: 0, choices: ["a", "b", "c", "d"]}}
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
-      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Woo", answer: "A", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
+      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Woo", answer: 1, choices: ["e", "f", "g", "h"]}}
     questions = Question.where(question_set_id: @question_set.id)
     expect(questions.count).to eq(2)
   end
 
 end
+

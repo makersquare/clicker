@@ -13,14 +13,27 @@ RSpec.describe ClassGroupsController, :type => :controller do
       user_id: @student.id,
       kind: "student"
     )
+    @class_group.memberships.create(
+      user_id: @teacher.id,
+      kind: "teacher"
+    )
   end
 
   describe "GET #show" do
-    it "responds successfully with an HTTP 200 status code" do
+    it "responds successfully with HTTP 200 status code for student" do
       get :show, {id: @class_group.id}, {user_id: @student.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
-      expect(response).to render_template(:show)      
+      expect(response).to render_template('class_groups/student_show')
+      expect(response).to_not render_template('class_groups/teacher_show')
+    end
+
+    it "responds successfully with HTTP 200 status code for teacher" do
+      get :show, {id: @class_group.id}, {user_id: @teacher.id}
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template('class_groups/teacher_show')
+      expect(response).to_not render_template('class_groups/student_show')
     end
 
     it "does not allow users that are not members of the class to view the class and redirects to index" do

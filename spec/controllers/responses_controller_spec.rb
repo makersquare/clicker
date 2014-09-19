@@ -91,14 +91,14 @@ RSpec.describe ResponsesController, :type => :controller do
 
         it "notifies its existence", :no_database_cleaner => true do
           valid_params = {content: {response: "D"}}
-          # response = post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
-          # created_item = Response.where(question_id: @question1.id, user_id: @studenta.id).first
-          expected_response = Response.new(question_id: @question1.id, user_id: @studenta.id, response: valid_params)
-          binding.pry
-          # expect(response).to include(created_item.to_json)
+          id = @studenta.id
           expect {
-            post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params}, {user_id: @studenta}
-          }.to notify('new_responses', expected_response.to_json)
+            post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params, user_id: @studenta.id}, {user_id: @studenta}
+          }.to notify('new_responses') {|payload|
+            data = JSON.parse(payload)
+            expect(data["question_id"]).to eq @question1.id
+            expect(data["user_id"]).to eq @studenta.id
+          }
         end
     end
 

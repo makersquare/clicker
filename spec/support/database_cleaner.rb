@@ -23,7 +23,10 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do |test|
-    unless test.metadata[:no_database_cleaner]
+    if test.metadata[:no_database_cleaner]
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.clean      
+    else
       DatabaseCleaner.clean
     end
   end

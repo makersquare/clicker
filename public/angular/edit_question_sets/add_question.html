@@ -1,4 +1,4 @@
- <!-- Layout C: Add a new question to the question set -->
+  <!-- Layout C: Add a new question to the question set -->
 <script type="text/javascript">
   window.g = {};
   g.questionSet = <%= raw @question_set.to_json %>;
@@ -12,7 +12,7 @@
       </p>
 
       <div ng-repeat="question in questions">
-      {{question.content.question}} -- <a href="#/edit_question/{{question.id}}">Edit</a><a ng-click="destroy(question.id)"> Delete</a>
+      {{question.content.question}} -- <a href="#/qsets/{{questionSetID}}/questions/{{question.id}}">Edit</a><a ng-click="destroy(question.id)"> Delete</a>
       </div>
 
       <h1 class="gothic-caps-font">add question</h1>

@@ -1,75 +1,79 @@
-
   <!-- Layout D: Edit Specific Question Template -->
+<script type="text/javascript">
+  window.p = {};
+  p.questionSet = <%= raw @question_set.to_json %>;
+</script>
   <div class="edit-question panel">
-    <p class="code-font italic">
-    <!-- TODO: insert question set title below {{}} -->
-    </p>
+    <div>
+      <p class="code-font italic">
+      <!-- TODO: insert question set title below {{}} -->
+      </p>
 
-    <h1 class="gothic-caps-font">edit question</h1>
+      <h1 class="gothic-caps-font">edit question</h1>
 
-    <form ng-submit="createQuestion()">
-
-    <div class="row">
-
-      <div class="row">
-        <div class="small-10 columns">
-          <input type="text" placeholder="question" ng-model="question">
-        </div>
-        <div class="small-2 columns">
-          <span class="code-font">set answer:</span>
-        </div>
-      </div>
+      <form ng-submit="updateQuestion()">
 
       <div class="row">
-        <div class="small-10 columns">
-          <input type="text" placeholder="choice" ng-model="choiceA">
-        </div>
-          <div class="switch small-2 columns">
-            <span class="code-font"></span><input name="choices" id="A" value="0" type="radio" ng-model="answer">
-            <label for="A"></label>
+
+        <div class="row">
+          <div class="small-10 columns">
+            <input type="text" ng-init="updatedquestion='question'" ng-model="updatedquestion">
           </div>
+          <div class="small-2 columns">
+            <span class="code-font">set answer:</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-10 columns">
+            <input type="text" placeholder="updated choice" ng-model="updatedchoiceA">
+          </div>
+            <div class="switch small-2 columns">
+              <span class="code-font"></span><input name="choices" id="A" value="0" type="radio" ng-model="updatedanswer">
+              <label for="A"></label>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="small-10 columns">
+            <input type="text" placeholder="updated choice" ng-model="updatedchoiceB">
+          </div>
+          <div class="switch small-2 columns">
+            <span class="code-font"></span><input name="choices" id="B" value="1" type="radio" ng-model="updatedanswer">
+            <label for="B"></label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-10 columns">
+            <input type="text" placeholder="updated choice" ng-model="updatedchoiceC">
+          </div>
+          <div class="switch small-2 columns">
+            <span class="code-font"></span><input name="choices" id="C" value="2" type="radio" ng-model="updatedanswer">
+            <label for="C"></label>
+          </div>
+        </div> 
+
+        <div class="row">
+          <div class="small-10 columns">
+            <input type="text" placeholder="updated choice" ng-model="updatedchoiceD">
+          </div>
+          <div class="switch small-2 columns">
+            <span class="code-font"></span><input name="choices" id="D" value="3" type="radio" ng-model="updatedanswer">
+            <label for="D"></label>
+          </div>
+        </div>
+
       </div>
 
-      <div class="row">
-        <div class="small-10 columns">
-          <input type="text" placeholder="choice" ng-model="choiceB">
+        <div>
+          <input type="submit" class="button" id="submit" value="Save">
         </div>
-        <div class="switch small-2 columns">
-          <span class="code-font"></span><input name="choices" id="B" value="1" type="radio" ng-model="answer">
-          <label for="B"></label>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="small-10 columns">
-          <input type="text" placeholder="choice" ng-model="choiceC">
+        <div>
+          <a href="#"> < Cancel</a>
         </div>
-        <div class="switch small-2 columns">
-          <span class="code-font"></span><input name="choices" id="C" value="2" type="radio" ng-model="answer">
-          <label for="C"></label>
-        </div>
-      </div> 
 
-      <div class="row">
-        <div class="small-10 columns">
-          <input type="text" placeholder="choice" ng-model="choiceD">
-        </div>
-        <div class="switch small-2 columns">
-          <span class="code-font"></span><input name="choices" id="D" value="3" type="radio" ng-model="answer">
-          <label for="D"></label>
-        </div>
-      </div>
-
+      </form>
     </div>
-
-      <div>
-        <input type="submit" class="button" id="submit" value="Save">
-      </div>
-
-      <div>
-        <a href="#"> < Cancel</a>
-      </div>
-
-    </form>
-
   </div>

@@ -41,8 +41,35 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
     $scope.choiceD = "";
   };
 });
+ 
+app.controller('EditQuestionCtrl', function($scope, $routeParams, QuestionsRsc) {
+  $scope.id = g.classGroup.id;
+  $scope.questionSetID = $routeParams.question_set_id;
+  // $scope.questionSetName = g.classGroup.name;
 
-// app.controller('EditQuestionCtrl', function($scope, $routeParams, QuestionsRsc) {
-//   $scope.id = g.classGroup.id;
-//   $scope.questionSetID = $routeParams.id;
-// });
+  $scope.updateQuestion = function() {
+    var thisQuestion = {
+      type: "MultiChoiceQuestion",
+      content: {
+        question: $scope.updatedquestion,
+        answer: $scope.updatedanswer,
+        choices: [
+          $scope.updatedchoiceA,
+          $scope.updatedchoiceB,
+          $scope.updatedchoiceC,
+          $scope.updatedchoiceD
+        ]
+      }
+    };
+
+  var questions = QuestionsRsc.update({ question_sets_id: $scope.questionSetID, id: $routeParams.id , question: thisQuestion });
+  // $scope.questions.push(thisQuestion);
+
+  // $scope.updatedquestion = "";
+  // $scope.updatedchoiceA = "";
+  // $scope.updatedchoiceB = "";
+  // $scope.updatedchoiceC = "";
+  // $scope.updatedchoiceD = "";
+
+  };
+});

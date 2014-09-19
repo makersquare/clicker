@@ -9,23 +9,23 @@ app.config(['$httpProvider', function(provider){
         templateUrl: '/angular/edit_question_sets/display_all_question_sets.html',
         controller: 'QuestionSetCtrl'
       })
-      .when('/edit/:id', {
+      .when('/qsets/:id', {
         templateUrl: '/angular/edit_question_sets/add_question.html',
         controller: 'EditCtrl'
       })
-      .when('/add_question', {
+      .when('/qsets/questions/new', {
         templateUrl: '/angular/edit_question_sets/add_question.html',
         controller: 'EditCtrl'
       })
-      .when('/add_choice', {
-        templateUrl: '/angular/edit_question_sets/add_answer_choice.html',
-        controller: 'QuestionsCtrl'
-      })
-      .when('/show_question/:id', {
-        templateUrl: '/angular/edit_question_sets/show_question.html',
-        controller: 'EditQuestionCtrl'
-      })
-      .when('/edit_question/:id', {
+      // .when('/add_choice', {
+      //   templateUrl: '/angular/edit_question_sets/add_answer_choice.html',
+      //   controller: 'QuestionsCtrl'
+      // })
+      // .when('/show_question/:id', {
+      //   templateUrl: '/angular/edit_question_sets/show_question.html',
+      //   controller: 'EditQuestionCtrl'
+      // })
+      .when('/qsets/:question_set_id/questions/:id', {
         templateUrl: '/angular/edit_question_sets/edit_question.html',
         controller: 'EditQuestionCtrl'
       });

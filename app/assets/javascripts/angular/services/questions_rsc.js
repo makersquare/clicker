@@ -4,3 +4,8 @@ app.factory("QuestionsRsc", function($resource) {
       {update: {method: "PUT"}
     });
   });
+
+// app.factory("EditQuestionsRsc", function($resource) {
+//   return $resource("/question_sets/:question_sets_id/questions/:id.json"),
+  
+// })

@@ -17,61 +17,62 @@
   <% end %>
 
   <div class="question-set-show-style" id="question-set-show-style">
+  
     <%= link_to 'Back', :back %><!-- Begin Teacher view Section -->
 
-<div class="teacher-qset-view">
-  <div class="off-canvas-wrap" data-offcanvas>
-    <div class="inner-wrap">
+  <div class="teacher-qset-view">
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
 
-      <div class="align-left menu-icon">
-      <a class="left-off-canvas-toggle" href="#" >
-        <i class="fa fa-bars fa-3x"></i>
-      </a>
-      </div>
-      <!-- Off Canvas Menu -->
-      <aside class="left-off-canvas-menu">
-          <!-- whatever you want goes here -->
-          <ul>
-            <li ng-repeat="question in questions"><a ng-click="setTab(questions.indexOf(question))" class="cloud">{{question.content.question}}</a></li>
-          </ul>
-      </aside>
-
-      <!-- Question content for Teacher (with control options) goes here -->
-      <div ng-repeat="question in questions" class="current-lecture-question show" ng-show="showTab == {{questions.indexOf(question)}}">
-        <div class="question-yield">
-          <h2>{{question.content.question}}</h2>
-          <div ng-repeat="choice in question.content.choices">
-            <button class="button radius">{{choice}}</button>
-          </div>
+        <div class="align-left menu-icon">
+        <a class="left-off-canvas-toggle" href="#" >
+          <i class="fa fa-bars fa-3x"></i>
+        </a>
         </div>
+        <!-- Off Canvas Menu -->
+        <aside class="left-off-canvas-menu">
+            <!-- whatever you want goes here -->
+            <ul>
+              <li ng-repeat="question in questions"><a ng-click="setTab(questions.indexOf(question))" class="cloud">{{question.content.question}}</a></li>
+            </ul>
+        </aside>
 
-        <div class="teacher-control-options row">
-          <div class="small-10 small-centered medium-6 medium-centered large-6 large-centered columns panel">
-            <div class="row">
-              <div class="small-6 medium-6 large-6 columns panel">
-                <a href="#">
-                  <i class="fa fa-play fa-3x"></i>
-                  <p>start</p>
-                </a>
-              </div>
-              <div class="small-6 medium-6 large-6 columns panel">
-                <a href="#">
-                  <i class="fa fa-stop fa-3x"></i>
-                  <p>stop</p>
-                </a>
+        <!-- Question content for Teacher (with control options) goes here -->
+        <div ng-repeat="question in questions" class="current-lecture-question show" ng-show="showTab == {{questions.indexOf(question)}}">
+          <div class="question-yield">
+            <h2>{{question.content.question}}</h2>
+            <div ng-repeat="choice in question.content.choices">
+              <button class="button radius">{{choice}}</button>
+            </div>
+          </div>
+
+          <div class="teacher-control-options row">
+            <div class="small-10 small-centered medium-6 medium-centered large-6 large-centered columns panel">
+              <div class="row">
+                <div class="small-6 medium-6 large-6 columns panel">
+                  <a href="#">
+                    <i class="fa fa-play fa-3x"></i>
+                    <p>start</p>
+                  </a>
+                </div>
+                <div class="small-6 medium-6 large-6 columns panel">
+                  <a href="#">
+                    <i class="fa fa-stop fa-3x"></i>
+                    <p>stop</p>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      <!-- close the off-canvas menu -->
+      <a class="exit-off-canvas"></a>
+
       </div>
-    <!-- close the off-canvas menu -->
-    <a class="exit-off-canvas"></a>
+    </div>  
+  </div> <!-- END teacher question control panel -->
 
-    </div>
-  </div>  
-</div> <!-- END teacher question control panel -->
-
-</div>
+  </div>
 
   <%= javascript_include_tag "angular_application" %>
 </div> <!-- end of ng-app -->

@@ -1,4 +1,4 @@
-var app = angular.module('app', ["ngResource", "ngRoute"]);
+var app = angular.module('app', ["ngResource", "ngRoute", 'n3-pie-chart']);
 
 app.config(['$httpProvider', function(provider){
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');

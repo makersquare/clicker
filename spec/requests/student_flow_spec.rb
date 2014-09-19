@@ -53,8 +53,6 @@ RSpec.describe "student flow" do
       get '/'
       expect(response).to redirect_to('/class_groups')
       follow_redirect!
-      expect(response.body).to include(@class_group1.name)
-      expect(response.body).to include(@class_group2.name)
 
       #student views 1 class group on show page and the question sets for that class
       get "/class_groups/#{@class_group1.id}"

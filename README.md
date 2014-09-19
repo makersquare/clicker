@@ -63,7 +63,7 @@ Clicker is a web app that allows teachers to create questions to survey the clas
 1. Add the `gem 'figaro'` to your Gemfile.
 2. Type `rails generate figaro:install` in terminal to generate '/config/application.yml' file. This will also add this file to the .gitignore file.
 3. Add your Github ID and Github SECRET to the application.yml file.
-4. Ensure ENV hash values are referenced in initializer file 'omniauth.rb'.
+4. Ensure ENV hash values are referencing the Github ID and Github SECRET in initializer file 'omniauth.rb'.
 5. Run rails server and go to http://localhost:3000 for the app. 
 
 #### For NGINX Configuration for Multiple Servers for Development

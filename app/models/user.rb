@@ -22,4 +22,18 @@ class User < ActiveRecord::Base
     response = self.memberships.where(class_group_id: class_group_id)
     response.empty? ? false : true
   end
+
+  #For setting verified users and accessing user panel
+  def admin? 
+    approved_admins = [
+      "cath-oneill", 
+      "mindeavor", 
+      "christineoen", 
+      "allizad", 
+      "lolptdr", 
+      "RandyDavis", 
+      "forwardinnovations", 
+      "brianpatterson"]
+    approved_admins.include?(self.nickname)
+  end
 end

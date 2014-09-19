@@ -13,6 +13,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    unless current_user.admin?
+      flash[:error_github] = "You must be admin to access this section"
+      redirect_to root_url # halts request cycle
+    end      
+  end
+
   def logged_in?
     !!current_user
   end

@@ -70,4 +70,5 @@ Clicker is a web app that allows teachers to create questions to survey the clas
 
 6. If you are configuring for NGINX multiple servers, type `export HOSTNAME=app.clicker.dev` in your terminal.
 7. Add `OmniAuth.config.full_host = "http://#{ENV['HOSTNAME']}"` to the initializer file 'omniauth.rb'.
-8. Run your rails server and use http://app.clicker.dev for the app.
+8. Run "export DATABASE_URL='postgres://localhost/clicker_dev'" in your terminal.
+9. Run your rails server and use http://app.clicker.dev for the app.

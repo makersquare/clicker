@@ -1,8 +1,10 @@
 <script type="text/javascript">
   window.g = {};
   g.classGroup = <%= raw @class_group.to_json %>;
+  g.questionSet = <%= raw @question_set.to_json %>;
+  g.questions = <%= raw @question.to_json %>;
 </script>
-<div ng-app="app">
+<div ng-app="app" ng-controller="QuestionSetCtrl">
   <p id="notice"><%= notice %></p>
   <!-- class title -->
   <p class="code-font smallcaps"><%= link_to @class_group.name.upcase, @class_group %></p>

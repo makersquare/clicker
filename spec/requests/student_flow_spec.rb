@@ -60,7 +60,9 @@ RSpec.describe "student flow" do
       q2 = active_qset.questions[1]
       q3 = active_qset.questions[2]
       get "/class_groups/#{class1.id}/question_sets/#{active_qset.id}"
-      expect(response).to render_template('question_sets/show')
+
+      binding.pry
+      expect(response).to render_template('question_sets/student_show')
       
       #student answers questions
       post "question_sets/#{active_qset.id}/questions/#{q1.id}/responses.json", :response => {

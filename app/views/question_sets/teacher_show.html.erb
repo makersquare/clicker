@@ -42,7 +42,7 @@
         <div ng-repeat="question in questions" class="current-lecture-question show" ng-show="showTab == {{questions.indexOf(question)}}">
           <div class="question-yield">
             <h2>{{question.content.question}}</h2>
-            <div ng-repeat="choice in question.content.choices">
+            <div ng-repeat="choice in question.content.choices track by $index">
               <button class="button radius">{{choice}}</button>
             </div>
           </div>

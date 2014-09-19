@@ -8,7 +8,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
             console.log("yay");
       QuestionsRsc.remove({ question_sets_id: $scope.questionSetID, id: id}, function(response){
         console.log("yup");
-        angular.forEach($scope.questions, function(e, i) {
+        angular.forEach($scope.question, function(e, i) {
           if(e.id === id) {
             $scope.questions.splice(i, 1);
             return;
@@ -46,7 +46,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
     //   };
     var questions = QuestionsRsc.save({ question_sets_id: $scope.questionSetID, question: thisQuestion });
     // var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
-    // questions.push(thisQuestion); 
+    $scope.questions.push(thisQuestion);
   };
 });
 

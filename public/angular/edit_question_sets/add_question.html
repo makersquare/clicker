@@ -11,8 +11,8 @@
         <!-- {{questionRoute}}  -->
       </p>
 
-      <div ng-repeat="questions in questions">
-      {{questions.content.question}} -- <a href="#/show_question/{{questions.id}}">Edit</a><a ng-click="destroy(questions.id)"> Delete</a>
+      <div ng-repeat="question in questions">
+      {{question.content.question}} -- <a href="#/show_question/{{questions.id}}">Edit</a><a ng-click="destroy(questions.id)"> Delete</a>
       </div>
 
       <h1 class="gothic-caps-font">add question</h1>

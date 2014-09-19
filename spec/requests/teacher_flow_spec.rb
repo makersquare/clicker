@@ -35,9 +35,9 @@ RSpec.describe 'Teacher Flow' do
     
     #allows teacher to create questions
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
-      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Blah", answer: "D", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
+      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Blah", answer: 0, choices: ["a", "b", "c", "d"]}}
     post "/question_sets/#{@question_set.id}/questions.json", :question => {
-      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Woo", answer: "A", choices: [{"A" => "La"}, {"B" => "De"}, {"C" => "Da"}, {"D" => "Fa"}]}}
+      question_set_id: @question_set.id, type: MultiChoiceQuestion, content: {question: "Woo", answer: 1, choices: ["e", "f", "g", "h"]}}
     questions = Question.where(question_set_id: @question_set.id)
     expect(questions.count).to eq(2)
   end

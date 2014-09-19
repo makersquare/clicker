@@ -12,13 +12,13 @@
 
   <!-- Successful Student Added - confirm -->
   <div class="add-student-confirm panel">
-    <h3>Do you want to add Catherine O'Neil to Ruby Course?</h3>
+    <h3>You have just added Catherine O'Neil to Ruby Course</h3>
     <div class="row">
       <a href="#"><img alt="Gravatar for user" src="https://avatars.githubusercontent.com/u/5787114?size=100" class="gravatar"></a>
 
       <ul class="small-block-grid-2">
-        <li><button class="button open-sans-font smallcaps">yes</button></li>
-        <li><button class="button open-sans-font smallcaps"> no </button></li>
+        <li><button class="button open-sans-font smallcaps">ok</button></li>
+        <li><button class="button open-sans-font smallcaps"> undo </button></li>
       </ul>
     </div>
   </div>
@@ -50,12 +50,14 @@
           <% end %>
 
           <% @teacher_memberships.each do |teach_mem| %>
+          <!-- Render partial for the following tr -->
+          <!-- add the partial to create.js.erb script -->
             <tr data-id= <%= teach_mem.id %>>
               <td>@<%= teach_mem.user.nickname %></td>
               <td class="gravatar-container" data-id-pic= <%= teach_mem.id %>><img src="http://www.gravatar.com/avatar/<%= teach_mem.user.gravatar_id %>?size=60" alt="<%= teach_mem.user.name %> Gravatar" title="<%= teach_mem.user.name %> Gravatar" class="gravatar-radius"></td>
               <!-- this should link to their github account -->
               <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
-            </tr>  
+            </tr>
           <% end %>
         </table>
       </p>

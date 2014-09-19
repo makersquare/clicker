@@ -1,4 +1,4 @@
-<%= form_tag class_group_memberships_path, method: :post do %>
+<%= form_tag class_group_memberships_path, method: :post, remote: true do %>
 
   <div class="field row">
   <%= text_field_tag( 'membership[nickname]', '', placeholder: 'github username', class: 'form-control small-centered medium-centered large-centered columns' )%>
@@ -10,6 +10,6 @@
     <label for="membership[kind]"></label>
   </div> 
 
-<%= submit_tag("Submit", class: 'button submit-new-student') %>
+<%= submit_tag("Add", class: 'button submit-new-student', remote: true )%>
 
 <% end %>

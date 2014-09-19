@@ -21,6 +21,7 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @user = GetUserInfo.run(membership_params)
+    # find if user_id is a valid github id; if not then return error
     @membership = Membership.new(
       user_id: @user.id,
       kind: membership_params['kind'],
@@ -29,6 +30,7 @@ class MembershipsController < ApplicationController
       if @membership.save
         format.html { redirect_to class_group_memberships_url, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
+        format.js { render :layout => false }
       else
         format.html { render :new }
         format.json { render json: @membership.errors, status: :unprocessable_entity }

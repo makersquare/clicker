@@ -1,0 +1,6 @@
+<tr data-id= <%= teach_mem.id %>>
+  <td>@<%= teach_mem.user.nickname %></td>
+  <td class="gravatar-container" data-id-pic= <%= teach_mem.id %>><img src="http://www.gravatar.com/avatar/<%= teach_mem.user.gravatar_id %>?size=60" alt="<%= teach_mem.user.name %> Gravatar" title="<%= teach_mem.user.name %> Gravatar" class="gravatar-radius"></td>
+  <!-- this should link to their github account -->
+  <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
+</tr>

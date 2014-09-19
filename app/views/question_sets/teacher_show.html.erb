@@ -10,7 +10,6 @@
   <!-- class title -->
   <p class="code-font smallcaps"><%= link_to @class_group.name.upcase, @class_group %></p>
   <h1 class="opensans-font"><%= @question_set.name %></h1>
-  {{questions[0]}}
   <% if @class_group.errors.any? %>
     <div id="error_explanation">
       <p> <%= @class_group.errors %> </p>

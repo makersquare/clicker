@@ -53,7 +53,6 @@ class QuestionSetsController < ApplicationController
   def update
     respond_to do |format|
       if @question_set.update(question_set_params)
-        binding.pry
         @question_set = QuestionSet.new(question_set_params)
         @question_set.class_group_id = params[:class_group_id]
         

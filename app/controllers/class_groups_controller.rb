@@ -14,7 +14,11 @@ class ClassGroupsController < ApplicationController
   # GET /class_groups/1.json
   def show
     if @current_user.enrolled?(@class_group.id)
-      @question_sets = @class_group.question_sets   
+      if !@current_user.teacher?(@class_group.id).empty?
+        render "teacher_show"
+      else
+        render "student_show"
+      end
     else
       redirect_to class_groups_path
       return

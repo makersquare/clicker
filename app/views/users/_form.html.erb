@@ -10,23 +10,12 @@
       </ul>
     </div>
   <% end %>
+  
+    <div class="field">
+      <h3>Verified?</h3>
+      <%= f.check_box :verified %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label "Github ID" %><br>
-    <%= f.number_field :uid %>
-  </div>
-  <div class="field">
-    <%= f.label "Github Nickname" %><br>
-    <%= f.text_field :nickname %>
-  </div>
-  <div class="field">
-    <%= f.label :verified %><br>
-    <%= f.check_box :verified %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

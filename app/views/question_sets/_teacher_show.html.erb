@@ -14,12 +14,13 @@
       <aside class="left-off-canvas-menu">
           <!-- whatever you want goes here -->
           <ul>
-            <li><a href="#">Attendance Check</a></li>
-            <li><a href="#">Q1</a></li>
+            <li><a ng-click="show = 1" class="cloud">Attendance Check</a></li>
+            <li><a ng-click="show = 2" class="cloud">Q1</a></li>
           </ul>
       </aside>
 
       <!-- Question content for Teacher (with control options) goes here -->
+      <div class="current-lecture-question show" ng-show="show = 1">
       <div class="question-yield">
         <h3>Attendance Check:teacher view</h3>
         <h2>Are you here?</h2>
@@ -41,6 +42,20 @@
                 <p>stop</p>
               </a>
             </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="current-lecture-question show" ng-show="show = 2">
+        <div class="question-and-options">    
+          <h3>Q1:</h3>
+          <h2>What is an Object?</h2>
+          <div class="choice-buttons">
+            <div><button class="button radius">A. A thingy.</button></div>
+            <div><button class="button radius">B. stuff with attributes.</button></div>
+            <div><button class="button radius">C. A structure.</button></div>
+            <div><button class="button radius">D. glasses.</button></div>
           </div>
         </div>
       </div>

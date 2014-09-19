@@ -3,44 +3,6 @@
 <div>
   <h2>Members</h2>
 </div>
-
-<div data-equalizer class="memberships">
-  <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
-    <h3>Instructors</h3>
-    <p>
-      <table>
-        <% @teacher_memberships.each do |teach_mem| %>
-          <tr data-id= <%= teach_mem.id %>>
-            <td><%= teach_mem.user.name %></td>
-            <!-- this should link to their github account -->
-            <td>@<%= teach_mem.user.nickname %></td>
-            <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
-          </tr>
-          <!-- Instructor Gravatar placeholder -->
-          <tr data-id-pic= <%= teach_mem.id %>>
-            <td colspan="3" class="medium-centered large-centered"><img src="http://lorempixel.com/output/cats-q-c-479-200-8.jpg" alt="Pretticky Kittickidy" title="Pretticky Kittickidy"></td>
-          </tr>
-        <% end %>
-      </table>
-    </p>
-  </div>
-
-  <div class="small-12 medium-6 large-6columns" data-equalizer-watch>
-    <h3>Students</h3>
-    <p>
-      <table>
-        <% @student_memberships.each do |stud_mem| %>
-          <tr data-id= <%= stud_mem.id %>>
-            <td><%= stud_mem.user.name %></td>
-            <!-- this should link to their github account -->
-            <td>@<%= stud_mem.user.nickname %></td>
-            <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
-          </tr>
-        <% end %>
-      </table>
-    </p>
-  </div>
-
   
   <div class="add-student-form panel">
     <h2>Add Student</h2>
@@ -81,28 +43,39 @@
       <h3>Instructors</h3>
       <p>
         <table>
+          <% if @teacher_memberships.count == 0 %>
+            <div class="no-members panel">
+              <%= "No Instructors Assigned" %>
+            </div>
+          <% end %>
+
           <% @teacher_memberships.each do |teach_mem| %>
-            <tr>
+            <tr data-id= <%= teach_mem.id %>>
               <td>@<%= teach_mem.user.nickname %></td>
-              <td class="gravatar-container"><img src="http://www.gravatar.com/avatar/<%= teach_mem.user.gravatar_id %>?size=60" alt="<%= teach_mem.user.name %> Gravatar" title="<%= teach_mem.user.name %> Gravatar" class="gravatar-radius"></td>
+              <td class="gravatar-container" data-id-pic= <%= teach_mem.id %>><img src="http://www.gravatar.com/avatar/<%= teach_mem.user.gravatar_id %>?size=60" alt="<%= teach_mem.user.name %> Gravatar" title="<%= teach_mem.user.name %> Gravatar" class="gravatar-radius"></td>
               <!-- this should link to their github account -->
-              <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'remove', class_group_membership_path(@class_group, teach_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
             </tr>  
           <% end %>
         </table>
       </p>
     </div>
 
-    <div class="small-12 medium-6 large-6columns" data-equalizer-watch>
+    <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
       <h3>Students</h3>
       <p>
         <table>
+          <% if @student_memberships.count == 0 %>
+            <div class="no-members row panel">
+              <%= "No Students Members" %>
+            </div>
+          <% end %>
           <% @student_memberships.each do |stud_mem| %>
-            <tr>
+            <tr data-id= <%= stud_mem.id %>>
               <td><%= stud_mem.user.name %></td>
               <!-- this should link to their github account -->
               <td>@<%= stud_mem.user.nickname %></td>
-              <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'remove', class_group_membership_path(@class_group, stud_mem), method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
             </tr>
           <% end %>
         </table>

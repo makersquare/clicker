@@ -61,7 +61,6 @@ RSpec.describe "student flow" do
       q3 = active_qset.questions[2]
       get "/class_groups/#{class1.id}/question_sets/#{active_qset.id}"
 
-      binding.pry
       expect(response).to render_template('question_sets/student_show')
       
       #student answers questions

@@ -102,6 +102,16 @@ RSpec.describe ResponsesController, :type => :controller do
         end
     end
 
+    it "does not allow student to submit response for another student" do
+      #studentb logged in; studenta id in params for response#create
+      params = {content: {response: "D", user_id: @studenta.id}}
+      post :create, {question_set_id: @questionset, question_id: @question1, response: params, user_id: @studenta.id}, {user_id: @studentb}
+      student_a_response = Response.where(question_id: @question1.id, user_id: @studenta.id)
+      student_b_response = Response.where(question_id: @question1.id, user_id: @studentb.id)
+      expect(student_a_response.length).to eq(0)
+      expect(student_b_response.length).to eq(1)
+    end
+
     context 'with invalid attributes' do
       it "does not create a new response" do
         invalid_params = {invalid: "D"}

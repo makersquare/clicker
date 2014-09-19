@@ -1,6 +1,7 @@
 <script type="text/javascript">
   window.g = {};
   g.classGroup = <%= raw @class_group.to_json %>;
+  g.questionSet = <%= raw @question_sets.to_json %>;
 </script>
 
 <div ng-app="app" ng-controller="QuestionSetCtrl">

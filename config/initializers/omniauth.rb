@@ -8,4 +8,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   # If using "config/_github.yml", use the following declaration with the the YAML load file call above:
   # provider :github, GITHUB_CONFIG['app_id'], GITHUB_CONFIG['secret'], scope: "user:email,user:follow"
+
+  OmniAuth.config.full_host = "http://#{ENV['HOSTNAME']}"
 end

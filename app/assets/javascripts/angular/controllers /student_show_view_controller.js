@@ -1,4 +1,4 @@
-app.controller('StudentViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc){
+app.controller('StudentViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc, ResponsesRsc){
   $scope.questionSet = p.questionSet;
   $scope.questions = QuestionsRsc.query({ question_sets_id: $scope.questionSet.id });
   $scope.showTab = 0;
@@ -12,5 +12,41 @@ app.controller('StudentViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc)
     ];
   $scope.pieOptions = {
     thickness: 10
+  };
+  $scope.submitResponse = function(question_id, choice) {
+    $scope.responses = ResponsesRsc.query({question_sets_id: $scope.questionSet.id, id: question_id});
+    
+    var submittedResponse = ResponsesRsc.save({question_sets_id: $scope.questionSet.id, id: question_id}, {
+      content: {
+        response: choice
+      }
+    });
+
+    $scope.responses.push(submittedResponse);
+    
+    // ResponsesRsc.save({question_sets_id: $scope.questionSet.id, id: question_id},
+    //   function(response) {
+    //     $;
+    // var responses = ResponsesRsc.save({question_sets_id: $scope.questionSet.id, id: question_id},
+    //   $scope.ResponsesRsc, {
+    //     content: {
+    //       response: choice
+    //     }
+    //   }, function(response) {
+    //     $scope.responses.push(response);
+    //   });
+
+    // ResponsesRsc.save({question_sets_id: $scope.questionSet.id, id: question_id});
+    // $scope.choice = choice;
+
+  //   var questionSets = QuestionSetRsc.save(
+  //   $scope.QuestionSetRsc, {
+  //     class_group_id: g.classGroup.id, 
+  //     name: $scope.name 
+  //   }, function(response) {
+  //     $scope.questionSets.push(response);
+  //   });
+  // $scope.name = '';
+  // $location.path('/');
   };
 });

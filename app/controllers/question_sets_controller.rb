@@ -13,16 +13,13 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1
   # GET /question_sets/1.json
   def show
-      # check if it's a teacher:
+    if @current_user.enrolled?(@class_group.id)
       if !@current_user.teacher?(@class_group.id).empty?
-      # if so, redirect to teacher page
+        render "teacher_show"
       else
-        # else, redirect to student page
-        redirect_to 
+        render "student_show"
       end
-    # if user is not enrolled in that class, redirect them to their class groups main page:
-
-    if !@current_user.enrolled?(@class_group.id)
+    else
       redirect_to class_groups_path
       return
     end

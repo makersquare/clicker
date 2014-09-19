@@ -5,7 +5,7 @@ app.config(['$httpProvider', function(provider){
   }])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/display', {
         templateUrl: '/angular/edit_question_sets/display_all_question_sets.html',
         controller: 'QuestionSetCtrl'
       })

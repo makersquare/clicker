@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  window.g = {};
+  g.classGroup = <%= raw @class_group.to_json %>;
+
+  window.p = {};
+  p.questionSet = <%= raw @question_set.to_json %>;
+</script>
+<div ng-app="app" ng-controller='StudentViewContoller'>
+  <p id="notice"><%= notice %></p>
+  <!-- class title -->
+  <p class="code-font smallcaps"><%= link_to @class_group.name.upcase, @class_group %></p>
+  <h1 class="opensans-font"><%= @question_set.name %></h1>
+  <% if @class_group.errors.any? %>
+    <div id="error_explanation">
+      <p> <%= @class_group.errors %> </p>
+    </div>
+  <% end %>
+
+  <div class="question-set-show-style" id="question-set-show-style">
+    <%= link_to 'Back', :back %>
+ 
+    <div>
+
+<!-- begin student view section -->
+
+    <div class="student-qset-view">
+      <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+
+          <div class="align-left menu-icon">
+          <a class="left-off-canvas-toggle" href="#" >
+            <i class="fa fa-bars fa-3x"></i>
+          </a>
+          </div>
+
+          <!-- Off Canvas Menu -->
+          <aside class="left-off-canvas-menu">
+              <!-- whatever you want goes here -->
+              <ul>
+                <li><a href="#">Attendance Check</a></li>
+                <li><a href="#">Q1</a></li>
+              </ul>
+          </aside>
+
+          <div class="question-yield">
+            <h3>Attendance Check:</h3>
+            <h2>Are you here?</h2>
+            <button class="button radius">Yes!</button>
+          </div>
+
+        <!-- close the off-canvas menu -->
+        <a class="exit-off-canvas"></a>
+
+        </div>
+      </div>  
+    </div>
+
+</div>
+
+  <%= javascript_include_tag "angular_application" %>
+</div> <!-- end of ng-app -->

@@ -33,6 +33,12 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
     var questions = QuestionsRsc.save({ question_sets_id: $scope.questionSetID, question: thisQuestion });
     // var questionSets = QuestionSet.save($scope.questionSet,{ class_group_id: g.classGroup.id, name: $scope.name }, function(response){
     $scope.questions.push(thisQuestion);
+    
+    $scope.question = "";
+    $scope.choiceA = "";
+    $scope.choiceB = "";
+    $scope.choiceC = "";
+    $scope.choiceD = "";
   };
 });
 

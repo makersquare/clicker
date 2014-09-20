@@ -82,4 +82,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #Enable subdomains two deep as in app.clicker.dev
+  config.action_dispatch.tld_length = 2
 end

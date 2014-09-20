@@ -16,7 +16,8 @@
 //= require foundation
 //= require d3
 //= require class_groups.js
-//= reqiure memberships.js
+//= require memberships.js
+//= require eventsource.min.js
 
 $(function(){ $(document).foundation(); });
 
@@ -34,13 +35,13 @@ console.log('doc loaded in application js');
 $('#add-student-button').click(function () {
   $('.add-student-form').animate({
     height: 'toggle'
-  })
+  });
 });
 
 $('.add-student-form-cancel').click(function () {
   $('.add-student-form').animate({
     height: 'toggle'
-  })
+  });
 });
 
 $('.submit-new-student').click(function () {
@@ -49,8 +50,8 @@ $('.submit-new-student').click(function () {
   });
   $('.add-student-form').animate({
     height: 'toggle'
-  })
-})
+  });
+});
 
 
 // -------------------------------------------------- TOUCH ACTIONS

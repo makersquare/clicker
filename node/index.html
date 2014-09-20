@@ -10,7 +10,7 @@
     <hr/>
     <div id="content"></div>
     <script>
-    var source = new EventSource('/test');
+    var source = new EventSource('/test',{withCredentials:true});
 
     source.addEventListener('open', function(e) {}, false);
     

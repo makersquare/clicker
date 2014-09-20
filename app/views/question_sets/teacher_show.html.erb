@@ -52,13 +52,13 @@
             <div class="small-10 small-centered medium-6 medium-centered large-6 large-centered columns panel">
               <div class="row">
                 <div class="small-6 medium-6 large-6 columns panel">
-                  <a ng-click="findResponses(question.id)">
+                  <a ng-click="openQuestion(question.id)">
                     <i class="fa fa-play fa-3x"></i>
                     <p>start</p>
                   </a>
                 </div>
                 <div class="small-6 medium-6 large-6 columns panel">
-                  <a href="#">
+                  <a ng-click="closeQuestion(question.id)">
                     <i class="fa fa-stop fa-3x"></i>
                     <p>stop</p>
                   </a>

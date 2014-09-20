@@ -5,6 +5,21 @@ app.controller('TeacherViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc,
   $scope.setTab = function(num){
     $scope.showTab = num;
   };
+
+  $scope.openQuestion = function(questionID) {
+    var thisQuestion = {
+      state: "open"
+    };
+    var question = QuestionsRsc.update({question_sets_id: $scope.questionSet.id, id: questionID, question: thisQuestion});
+  };
+
+  $scope.closeQuestion = function(questionID) {
+    var thisQuestion = {
+      state: "closed"
+    };
+    var question = QuestionsRsc.update({question_sets_id: $scope.questionSet.id, id: questionID, question: thisQuestion});
+  };
+
   $scope.findResponses = function(questionID) {
     ResponsesRsc.query({question_sets_id: $scope.questionSet.id, id: questionID});
   };

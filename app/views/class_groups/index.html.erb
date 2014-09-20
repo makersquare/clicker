@@ -10,7 +10,6 @@
   </div>
 <!-- displays each class -->
 
-
 <br>
 
   <!-- add a new class button -->
@@ -35,13 +34,6 @@
 
 
     <div class="class-list">
-
-    <% if @class_groups.count == 0 %>
-      <div class="no-classes panel">
-        <%= "No current classes.  Please add a class to begin." %>
-      </div>
-    <% end %>
-
     <% @class_groups.each do |class_group| %>
 
     <div class="single-class-padding">

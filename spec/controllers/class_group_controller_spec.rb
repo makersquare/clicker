@@ -24,16 +24,14 @@ RSpec.describe ClassGroupsController, :type => :controller do
       get :show, {id: @class_group.id}, {user_id: @student.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
-      expect(response).to render_template('class_groups/student_show')
-      expect(response).to_not render_template('class_groups/teacher_show')
+      expect(response).to render_template('class_groups/show')
     end
 
     it "responds successfully with HTTP 200 status code for teacher" do
       get :show, {id: @class_group.id}, {user_id: @teacher.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
-      expect(response).to render_template('class_groups/teacher_show')
-      expect(response).to_not render_template('class_groups/student_show')
+      expect(response).to render_template('class_groups/show')
     end
 
     it "does not allow users that are not members of the class to view the class and redirects to index" do

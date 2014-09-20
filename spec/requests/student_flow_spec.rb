@@ -56,7 +56,7 @@ RSpec.describe "student flow" do
 
       #student views 1 class group on show page and the question sets for that class
       get "/class_groups/#{@class_group1.id}"
-      expect(response).to render_template('class_groups/student_show')
+      expect(response).to render_template('class_groups/show')
 
       #if a question set is active the student can view the page for that question set
       get "/class_groups/#{@class_group1.id}/question_sets/#{@qset2.id}"

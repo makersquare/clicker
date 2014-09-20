@@ -19,6 +19,7 @@
 //= require memberships.js
 //= require eventsource.min.js
 
+
 $(function(){ $(document).foundation(); });
 
 console.log('doc loaded in application js');

@@ -1,0 +1,109 @@
+$teal: #54BC9E;
+$teal-dark: #316858;
+$lime: #A4F7C0;
+$lime-dark: #90D8A8;
+$cloud: #ecf0f1;
+$dark-grey: #434234;
+$bright-yellow: #FBF963;
+$light-yellow: #FCFBBE;
+$grey-yellow: #7F7F61;
+$black-yellow: #303018;
+$black-warm: #1D1610;
+$light-black: #1d1d1d;
+$black-home: #141414;
+$escher: #444444;
+$super-light-black: #585441;
+
+#about {
+  .splain {
+    background-color: white;
+  }
+  .what-what {
+    background-color: $teal;
+  }
+  .maker-img-div {
+    padding-top: 1rem;
+    background-color: black;
+    margin: 0;
+    h2 {
+      color: $cloud;
+      font-size: 2.3rem;
+      padding-bottom: 1rem;
+    }
+  }
+  .hex-main {
+    span {
+      text-align: center;
+    }
+  }
+  .hex-img {
+    // height: 260px;
+    // width: auto;
+    display: inline-block;
+    height: 250px;
+    margin: 0 1em 1em 0;
+    position: relative;
+    width: auto;
+  }
+  .hex-img-container-2 {
+    margin-top: -60px;
+  }
+  .hex-img-container-3 {
+    margin-top: -60px;
+  }
+  span.text-content {
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+    color: white;
+    cursor: pointer;
+    display: table;
+    height: 250px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 250px;
+  }
+  span.text-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .text-1 {
+    transform: translateX(30px);
+  }
+  .text-2 {
+    transform: translateX(283px);
+  }
+  .text-3 {
+    transform: translateX(530px);
+  }
+  .text-4 {
+    transform: translateX(157px);
+  }
+  .text-5 {
+    transform: translateX(400px);
+  }
+  .text-6 {
+    transform: translateX(30px);
+  }
+  .text-7 {
+    transform: translateX(283px);
+  }
+  .text-8 {
+    transform: translateX(530px);
+  }
+  span.text-content {
+    opacity: 0;
+  }
+  span.text-content:hover {
+    opacity: 1;
+  }
+  img:hover {
+    opacity: 0.6;
+  }
+}

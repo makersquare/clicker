@@ -34,7 +34,9 @@
         <aside class="left-off-canvas-menu">
             <!-- whatever you want goes here -->
             <ul>
-              <li ng-repeat="question in questions"><a ng-click="setTab(questions.indexOf(question))" class="cloud">{{question.content.question}}</a></li>
+              <li ng-repeat="question in questions">
+                <a ng-click="setTab(questions.indexOf(question))" class="cloud">{{question.content.question}}</a><br /><br /> 
+              </li>
             </ul>
         </aside>
 
@@ -63,6 +65,9 @@
                     <p>stop</p>
                   </a>
                 </div>
+              </div>
+              <div class="row">
+                hey!
               </div>
             </div>
           </div>

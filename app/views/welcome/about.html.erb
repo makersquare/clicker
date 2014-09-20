@@ -1,24 +1,41 @@
 <div id="about" class="opensans-font">
 
   <div id="panel_fix">
-    <div  class="clearfix left row splain">
-      <h1 class="text-center">About</h1>
-      <div class="small-12 medium-6 large6 columns">
-        <p>Click Clack is the result of an open source group project by students at MakerSquare in Austin, Tx.  Our intent was to create an immediate feedback tool for teachers to use during class lecture so that they may check their students understanding of material being presented as they progressed through lectures.</p>
-        <p>We chose to build Click Clack with the latest in modern web development technologies making it so it can be used on any device the teacher or student has available to access the internet.  It's designed to be interactive, fun, and to serve a major purpose in daily instruction.  Give Click Clack a try and we think you'll immediately see the benefits of using it over traditional methods.</p>
-      </div>
-      <div id="mks-pic" class="small-12 medium-6 large6 columns left">
-        <%= image_tag 'mks-streetview.png' %>
+    <div  class="clearfix left">
+      <header class="splain">
+        <h1 class="text-center splain opensans-font smallcaps">about</h1>
+        <p class="opensans-font tagline">This is an open-source group project by students at <a href="http://www.makersquare.com" target="_blank">MAKERSQUARE</a> in Austin, TX. </p>
+      </header>
+      <div class="row clearfix text-center trio-desc">
+        <div class="small-12 medium-4 large-4 centered columns">
+          <h3 class="gothic-caps-font">stack</h3>
+          <i class="fa fa-laptop fa-3x"></i>
+          <p>
+            Click Clack is a combo of Rails, Angular, and Node. And blood, late nights, curses, and wine.
+          </p>
+        </div>
+        <div class="small-12 medium-4 large-4 centered columns">
+          <h3 class="gothic-caps-font">our app</h3>
+          <i class="fa fa-mortar-board fa-3x"></i>
+          <p>
+            Use Click Clack to quickly integrate Checks for Understanding in your lectures. CFU's are quick questions that gauge student understanding of lecture material. It's made by students and teachers. For students and teachers.
+          </p>
+        </div>
+        <div class="small-12 medium-4 large-4 centered columns">
+          <h3 class="gothic-caps-font">check us out</h3>
+          <i class="fa fa-github fa-3x"></i>
+          <p>
+            Take a gander at our repo on <a href="https://github.com/makersquare/clicker" target="_blank" class="repo-link"><span>GITHUB</span></a>.
+          </p>
+        </div>
       </div>
     </div>
     
     <div class="small-12 medium-12 large-12 columns left what-what">
-      <h2 class="text-center">What are CFU's?</h2>
-      <p>CFU is an acronym for "Checks For Understanding" used throughout the world in many fields and settings, but primarily education.  CFUs are useful as they allow instructors to gauge the progress or understanding of content of their students as they introduce them to content.  Instructors can immediately choose how to respond when they do not get the results expected during class lectures.</p>
+      <h1 class="text-center smallcaps">the makers</h1>
     </div>
 
     <div class="small-12 medium-12 large-12 columns maker-img-div">
-      <h2 class="text-center opensans-font">The Makers</h2>
       <div class="row hex-main">
         <div class="hex-img-container-1 large-9 large-centered columns text-center">
           <a href="https://twitter.com/mindeavor" target="_blank"><%= image_tag 'gilbert.png', class: 'hex-img' %>

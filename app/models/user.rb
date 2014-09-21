@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
     response.empty? ? false : true
   end
 
+  def student?(class_group_id)
+    response = self.memberships.where(class_group_id: class_group_id, kind: "student")
+    response.empty? ? false : true
+  end
+
   def enrolled?(class_group_id)
     response = self.memberships.where(class_group_id: class_group_id)
     response.empty? ? false : true

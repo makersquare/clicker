@@ -73,11 +73,16 @@ class QuestionSetsController < ApplicationController
   # DELETE /question_sets/1
   # DELETE /question_sets/1.json
   def destroy
-    @question_set.destroy
-    respond_to do |format|
-      format.html { redirect_to class_group_question_sets_url, notice: 'Question set was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    if current_user.teacher?(@class_group.id)
+      @question_set.destroy
+      respond_to do |format|
+        format.html { redirect_to class_group_question_sets_url, notice: 'Question set was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:error_not_teacher] = "You must be a teacher to perform this action."
+      redirect_to class_groups_path
+    end       
   end
 
   private

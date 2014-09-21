@@ -107,7 +107,7 @@ RSpec.describe QuestionSetsController, :type => :controller do
     end
 
     it "cannot be updated by a student" do
-      old_name = @class_group.name
+      old_name = @question_set.name
       modified_params = {
         class_group_id: @class_group.id,
         id: @question_set.id,
@@ -122,7 +122,7 @@ RSpec.describe QuestionSetsController, :type => :controller do
     end
 
     it "cannot be updated by a teacher of another class" do
-      old_name = @class_group.name
+      old_name = @question_set.name
       modified_params = {
         class_group_id: @class_group.id,
         id: @question_set.id,

@@ -51,18 +51,23 @@ class QuestionSetsController < ApplicationController
   # PATCH/PUT /question_sets/1
   # PATCH/PUT /question_sets/1.json
   def update
-    respond_to do |format|
-      if @question_set.update(question_set_params)
-        @question_set = QuestionSet.new(question_set_params)
-        @question_set.class_group_id = params[:class_group_id]
-        
-        format.html { redirect_to [@class_group, @question_set], notice: 'Question set was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@class_group, @question_set] }
-      else
-        format.html { render :edit }
-        format.json { render json: @question_set.errors, status: :unprocessable_entity }
+    if current_user.teacher?(@class_group.id)
+      respond_to do |format|
+        if @question_set.update(question_set_params)
+          @question_set = QuestionSet.new(question_set_params)
+          @question_set.class_group_id = @class_group.id
+          
+          format.html { redirect_to [@class_group, @question_set], notice: 'Question set was successfully updated.' }
+          format.json { render :show, status: :ok, location: [@class_group, @question_set] }
+        else
+          format.html { render :edit }
+          format.json { render json: @question_set.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    else
+      flash[:error_not_teacher] = "You must be a teacher to perform this action."
+      redirect_to class_groups_path
+    end      
   end
 
   # DELETE /question_sets/1

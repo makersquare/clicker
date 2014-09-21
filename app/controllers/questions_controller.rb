@@ -19,17 +19,20 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
-    @question.question_set_id = params[:question_set_id]
-    
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to question_set_questions_url, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: question_set_questions_url }
-      else
-        format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+    if current_user.teacher?(@question_set.class_group_id)
+      @question = Question.new(question_params)
+      @question.question_set_id = @question_set.id    
+      respond_to do |format|
+        if @question.save
+          format.html { redirect_to question_set_questions_url, notice: 'Question was successfully created.' }
+          format.json { render :show, status: :created, location: question_set_questions_url }
+        else
+          format.html { render :new }
+          format.json { render json: @question.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      render :status => :forbidden, text: "You must be a student enrolled in the class to create a response."
     end
   end
 

@@ -43,8 +43,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
 });
  
 app.controller('EditQuestionCtrl', function($http,$scope, $routeParams, QuestionsRsc) {
-  // domain_url is set in application.html.erb
-  url =  window.domain_url + '/question_sets/' + $routeParams.question_set_id + '/questions/' + $routeParams.id
+  url =  '/question_sets/' + $routeParams.question_set_id + '/questions/' + $routeParams.id;
   $http.get(url)
     .then(function(response){
     $scope.updatedquestion = response.data.content.question;

@@ -35,7 +35,7 @@ RSpec.describe "student flow" do
   end
 
   describe 'github' do
-    it "should login with github", :js => true do
+    it "should login with github" do
       get "/test_sign_in/#{@student.id}"
       get '/'
       expect(response).to redirect_to('/class_groups')

@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  Rails.application.config.session_store :cookie_store, key: '_clicker_session'
   Rails.application.routes.prepend do
     get '/test_sign_in/:user_id' => 'sessions#test_sign_in'
   end

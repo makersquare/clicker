@@ -3,13 +3,14 @@
   <div class="field row">
   <%= text_field_tag( 'membership[nickname]', '', placeholder: 'github username', class: 'form-control small-centered medium-centered large-centered columns' )%>
   </div>
-
-  <%= label_tag('membership[kind]', "Set Teacher") %>
+  
+ <%= label_tag('membership[teacher]', "Set Teacher") %>
   <div class="switch radius">
-    <input id="membership[kind]" type="checkbox">
-    <label for="membership[kind]"></label>
+    <input id="membership[teacher]", name = 'membership[teacher]' checked="true" type="checkbox">
+    <label for="membership[teacher]"></label>
   </div> 
 
-<%= submit_tag("Submit", class: 'button submit-new-student') %>
+
+  <%= submit_tag("Submit", class: 'button submit-new-student') %>
 
 <% end %>

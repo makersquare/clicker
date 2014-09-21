@@ -89,17 +89,17 @@ RSpec.describe ResponsesController, :type => :controller do
         }.to change(Response, :count).by(1)
       end
 
-        it "notifies its existence", :no_database_cleaner => true do
-          valid_params = {content: {response: "D"}}
-          id = @studenta.id
-          expect {
-            post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params, user_id: @studenta.id}, {user_id: @studenta}
-          }.to notify('new_responses') {|payload|
-            data = JSON.parse(payload)
-            expect(data["question_id"]).to eq @question1.id
-            expect(data["user_id"]).to eq @studenta.id
-          }
-        end
+      it "notifies its existence", :no_database_cleaner => true do
+        valid_params = {content: {response: "D"}}
+        id = @studenta.id
+        expect {
+          post :create, {question_set_id: @questionset, question_id: @question1, response: valid_params, user_id: @studenta.id}, {user_id: @studenta}
+        }.to notify('new_responses') {|payload|
+          data = JSON.parse(payload)
+          expect(data["question_id"]).to eq @question1.id
+          expect(data["user_id"]).to eq @studenta.id
+        }
+      end
     end
 
     it "does not allow student to submit response for another student" do
@@ -111,6 +111,29 @@ RSpec.describe ResponsesController, :type => :controller do
       expect(student_a_response.length).to eq(0)
       expect(student_b_response.length).to eq(1)
     end
+
+    it "does not allow teachers to submit a response" do
+      params = {content: {response: "D", user_id: @teacher.id}}
+      expect {
+        post :create, 
+          {question_set_id: @questionset, 
+          question_id: @question1, 
+          response: params, user_id: @teacher.id}, 
+          {user_id: @teacher}
+      }.to change(Response, :count).by(0)
+    end
+
+    it "does not allow users who are not part of the class to submit a response" do
+      unenrolled_student = Fabricate(:user)
+      params = {content: {response: "D", user_id: unenrolled_student.id}}
+      expect {
+        post :create, 
+          {question_set_id: @questionset, 
+          question_id: @question1, 
+          response: params, user_id: unenrolled_student.id}, 
+          {user_id: unenrolled_student}
+      }.to change(Response, :count).by(0)
+    end    
 
     context 'with invalid attributes' do
       it "does not create a new response" do

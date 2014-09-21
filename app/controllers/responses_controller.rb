@@ -31,8 +31,7 @@ class ResponsesController < ApplicationController
         render json: @response.errors, status: :unprocessable_entity
       end
     else
-      flash[:error_not_enrolled_student] = "You must be a student enrolled in the class to create a response."
-      redirect_to class_groups_path
+      render :status => :forbidden, text: "You must be a student enrolled in the class to create a response."
     end
   end
 

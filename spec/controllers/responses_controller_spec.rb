@@ -133,6 +133,7 @@ RSpec.describe ResponsesController, :type => :controller do
           response: params, user_id: unenrolled_student.id}, 
           {user_id: unenrolled_student}
       }.to change(Response, :count).by(0)
+      expect(response).to have_http_status(403)
     end    
 
     context 'with invalid attributes' do

@@ -18,7 +18,7 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.json
   def create
-    if @current_user.enrolled?(@question_set.class_group_id)
+    if @current_user.enrolled?(@question_set.class_group_id) && @current_user.student?(@question_set.class_group_id)
       @response = Response.new(response_params)
       @response.user_id = @current_user.id
       @response.question_id = @question.id

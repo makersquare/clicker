@@ -4,63 +4,61 @@
   p.questionSet = <%= raw @question_set.to_json %>;
   p.question = <%= raw @question.to_json %>
 </script>
-  <div class="edit-question panel">
     <div>
-    {{question_test}}
       <p class="code-font italic">
       <!-- TODO: insert question set title below {{}} -->
       </p>
 
-      <h1 class="gothic-caps-font">edit question</h1>
+      <h3 class="opensans-font edit-q-header">Edit Question</h3>
 
-      <form ng-submit="updateQuestion()">
+      <form ng-submit="updateQuestion()" class="edit-question">
 
       <div class="row">
 
         <div class="row">
-          <div class="small-10 columns">
-            <input type="text" ng-model="updatedquestion">
+          <div class="small-8 small-offset-1 columns">
+            <input type="text" ng-model="updatedquestion" id="question">
           </div>
-          <div class="small-2 columns">
-            <span class="code-font">set answer:</span>
+          <div class="small-3 columns">
+            <span class="code-font">answer:</span>
           </div>
         </div>
 
         <div class="row">
-          <div class="small-10 columns">
+          <div class="small-8 small-offset-1 columns">
             <input type="text" ng-model="updatedchoiceA">
           </div>
-            <div class="switch small-2 columns">
+            <div class="switch radius small-3 columns">
               <span class="code-font"></span><input name="choices" id="A" value="0" type="radio" ng-model="updatedanswer">
               <label for="A"></label>
             </div>
         </div>
 
         <div class="row">
-          <div class="small-10 columns">
+          <div class="small-8 small-offset-1 columns">
             <input type="text" ng-model="updatedchoiceB">
           </div>
-          <div class="switch small-2 columns">
+          <div class="switch radius small-3 columns">
             <span class="code-font"></span><input name="choices" id="B" value="1" type="radio" ng-model="updatedanswer">
             <label for="B"></label>
           </div>
         </div>
 
         <div class="row">
-          <div class="small-10 columns">
+          <div class="small-8 small-offset-1 columns">
             <input type="text" ng-model="updatedchoiceC">
           </div>
-          <div class="switch small-2 columns">
+          <div class="switch radius small-3 columns">
             <span class="code-font"></span><input name="choices" id="C" value="2" type="radio" ng-model="updatedanswer">
             <label for="C"></label>
           </div>
         </div> 
 
         <div class="row">
-          <div class="small-10 columns">
+          <div class="small-8 small-offset-1 columns">
             <input type="text" ng-model="updatedchoiceD">
           </div>
-          <div class="switch small-2 columns">
+          <div class="switch radius small-3 columns">
             <span class="code-font"></span><input name="choices" id="D" value="3" type="radio" ng-model="updatedanswer">
             <label for="D"></label>
           </div>
@@ -69,13 +67,14 @@
       </div>
 
         <div>
-          <input type="submit" class="button" id="submit" value="Save">
+          <div class="small-11 small-centered columns">
+            <button type="submit" class="button" id="submit" value="Save">Save</button>
+          </div>
         </div>
 
         <div>
-          <a href="#"> < Cancel</a>
+          <a href="#"> Cancel </a>
         </div>
 
       </form>
     </div>
-  </div>

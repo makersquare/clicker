@@ -169,3 +169,28 @@ $escher: #444444;
     color: $cloud;
   }
 }
+
+body > div:nth-child(2) > div > div.ng-qset-show > ng-view > div > form > div.row > div:nth-child(1) > div.small-8.small-offset-1.columns {
+  input {
+    background-color: $escher;
+    color: $cloud;
+  }
+}
+
+.edit-q-header {
+  padding-bottom: 2rem;
+}
+
+.edit-question {
+  p {
+    color: $grey-yellow;
+  }
+  input {
+    border: none;
+    border-bottom: 1px solid $grey-yellow;
+  }
+  #submit {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}

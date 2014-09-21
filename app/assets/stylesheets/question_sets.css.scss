@@ -40,6 +40,17 @@ div.question-set-show-style{
   }
 }
 
+button.choice {
+  width: 50%;
+}
+span.Q {
+  color: $teal;
+}
+
+h2 span.content {
+  color: $cloud;
+}
+
 body > div:nth-child(2) > div > div > div.teacher-qset-view > div.off-canvas-wrap > div > div.menu-icon {
   text-align: left;
   padding-left: 1rem;
@@ -50,10 +61,19 @@ div.teacher-qset-view {
   background-color: $light-black;
 }
 
+.teacher-control-options {
+  a {
+    color: 
+  }
+}
+
 body > div:nth-child(2) > div > div > div.student-qset-view > div > div > 
 
 .question-yeild {
   h3, h2, h1, p {
     color: $cloud;
+  }
+  h2 {
+    padding-bottom: 1rem;
   }
 }

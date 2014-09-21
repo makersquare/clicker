@@ -43,22 +43,22 @@
         <!-- Question content for Teacher (with control options) goes here -->
         <div ng-repeat="question in questions" class="current-lecture-question show" ng-show="showTab == {{questions.indexOf(question)}}">
           <div class="question-yield">
-            <h2>{{question.content.question}}</h2>
+            <h2><span class="Q">Q{{questions.indexOf(question)+1}}:    <span><span class="content">{{question.content.question}}</span></h2>
             <div ng-repeat="choice in question.content.choices track by $index">
-              <button class="button radius">{{choice}}</button>
+              <button class="button radius choice">{{choice}}</button>
             </div>
           </div>
         
           <div class="teacher-control-options row">
-            <div class="small-10 small-centered medium-6 medium-centered large-6 large-centered columns panel">
+            <div class="small-10 small-centered medium-6 medium-centered large-6 large-centered columns">
               <div class="row">
-                <div class="small-6 medium-6 large-6 columns panel">
+                <div class="small-6 medium-6 large-6 columns">
                   <a ng-click="openQuestion(question.id)">
                     <i class="fa fa-play fa-3x"></i>
                     <p>start</p>
                   </a>
                 </div>
-                <div class="small-6 medium-6 large-6 columns panel">
+                <div class="small-6 medium-6 large-6 columns">
                   <a ng-click="closeQuestion(question.id)">
                     <i class="fa fa-stop fa-3x"></i>
                     <p>stop</p>

@@ -36,9 +36,12 @@ client.query("LISTEN new_responses");
 // Server Sent Events Code
 
 var sendInterval = 1000;
-var currentSessions = {};
+var sessions = [];
+// var currentSession = {};
  
 function sendServerSentEvent(req, res) {
+  var currentSession = {};
+
   res.writeHead(200, {
   'Content-Type' : 'text/event-stream',
   'Cache-Control' : 'no-cache',
@@ -53,30 +56,66 @@ function sendServerSentEvent(req, res) {
   var cookie = readCookie("_clicker_session", req.headers.cookie);
 
   //Decodes said cookie using rails session decoder set above
+  //and adds the userID, connection, and membership data to the sessions array
   try {
     decoder.decodeCookie(cookie, function(err, sessionData){
       console.log(sessionData);
       sessionData = JSON.parse(sessionData);
-      currentSessions[sessionData.user_id] = true;
-      console.log(currentSessions);
+      createSession(sessionData, function(newSession) {
+        console.log("Adding user session:", newSession);
+        sessions.push(newSession);
+        handleNewSession();
+      });
     });
   }
   catch(err) {
     console.log("Cookie Error", err);
   }
 
+  //Adds a session entry to the sessions array 
+  var createSession = function(sessionData, callback) {
+    var assembledSession = {};
+    assembledSession["user_id"] = sessionData.user_id;
+    assembledSession["connection"] = 'res';
+    var memberships = [];
+    assembledSession["memberships"] = memberships;
+    var query = client.query("SELECT class_group_id, kind FROM memberships WHERE user_id = $1", [sessionData.user_id]);
+    query.on('row', function(row) {
+      console.log(row);
+      memberships.push(row);
+    });
+    query.on('end', function(result) {
+      if (callback) {
+        callback(assembledSession);
+      }
+    });
+  };
+
+  //Removes a session entry from the sessions array when the session is closed
+  req.on('close', function (){
+    for (var i = 0; i < sessions.length; i++){
+      if (sessions[i].user_id === currentSession.user_id){
+        console.log('spliced sessions');
+        sessions.splice(i, 1);
+      }
+    }
+  });
+
   var sseId = (new Date()).toLocaleTimeString();
 
-  setInterval(function() {
-  writeServerSentEvent(res, sseId, currentSessions);
-  }, sendInterval);
+  function handleNewSession() {
+    setInterval(function() {
+      writeServerSentEvent(res, sseId, sessions);
+    }, sendInterval);
 
-  writeServerSentEvent(res, sseId, currentSessions);
+    writeServerSentEvent(res, sseId, sessions);
+  }
+
 }
  
-function writeServerSentEvent(res, sseId, currentSessions) {
+function writeServerSentEvent(res, sseId, sessions) {
   res.write('id: ' + sseId + '\n');
-  res.write("data: "+ JSON.stringify(currentSessions) + '\n\n');
+  res.write("data: "+ JSON.stringify(sessions) + '\n\n');
 }
 
 //creates server

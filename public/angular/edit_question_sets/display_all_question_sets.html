@@ -1,16 +1,24 @@
 <!-- Layout A: display all question sets -->
-<div class="new-q-set panel">
+<div class="new-q-set">
   <form ng-submit="addQuestionSet()">
-    <h1 class="gothic-caps-font">add question set</h1>
-    <input class="form-control" type="text" ng-model="name" placeholder="title">
-    <div>
+    <button class="opensans-font button" ng-click="setForm = !setForm">ADD QUESTION SET</button>
+    <div class="row" ng-show="setForm">
+      <div class="small-10 small-centered medium-8 medium-centered large-6 large-centered columns">
+        <input class="form-control input-title " type="text" ng-model="name" placeholder="title"/>
+      </div>
       <input type="submit" class="button" id="submit" value="Save">
+      <div>
+        <a class="cancel-button">
+          <!-- <i class="fa fa-angle-up fa-2x"></i> -->
+          <p ng-click="setForm = !setForm">cancel</p>
+        </a>
+      </div>
     </div>
   </form>
 </div>
 
-<div class="all-q-sets panel" ng-repeat="questionSet in questionSets | orderBy: '-id'">
-  <div class="each-q-set panel">
+<div class="all-q-sets" ng-repeat="questionSet in questionSets | orderBy: '-id'">
+  <div class="each-q-set">
     <div>
       <h3 class="gothic-caps-font">{{questionSet.name}}</h3>
     </div>

@@ -4,23 +4,23 @@
   g.questionSet = <%= raw @question_sets.to_json %>;
 </script>
 
-<div ng-app="app" ng-controller="QuestionSetCtrl">
+<div ng-app="app" ng-controller="QuestionSetCtrl" class="ng-manage-q">
+  <div class="manage-back-button">
+    <%= link_to :back do %>
+    <i class="fa fa-angle-double-left fa-3x"></i>
+    <% end %>
+  </div>
   <p id="notice"><%= notice %></p>
+  <div class="header">
   <h3 class="gothic-caps-font">manage question sets</h3>
   <!-- class title -->
   <h1 class="opensans-font"><%= link_to @class_group.name, class_group_path %></h1>
-  <p class="code-font italic"><%= @class_group.description %></p>
-  <% if @current_user.teacher?(@class_group.id) %>
-    <%= @current_user.inspect %>
-  <% end %>
-  <%= @class_group.inspect %>
+  </div>
   <% if @class_group.errors.any? %>
     <div id="error_explanation">
       <p> <%= @class_group.errors %> </p>
     </div>
   <% end %>
-
-  <%= link_to 'Back', :back %>
  
   <div class="ng-qset-show">
     

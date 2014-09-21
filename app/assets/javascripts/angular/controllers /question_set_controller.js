@@ -1,6 +1,6 @@
 app.controller('QuestionSetCtrl', function($scope, $location, QuestionSetRsc){
  $scope.questionSets = QuestionSetRsc.query({ class_group_id: g.classGroup.id });
-
+ $scope.setForm = false;
  $scope.addQuestionSet = function(){
   var questionSets = QuestionSetRsc.save(
     $scope.QuestionSetRsc, {

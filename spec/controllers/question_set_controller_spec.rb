@@ -149,13 +149,13 @@ RSpec.describe QuestionSetsController, :type => :controller do
     it "cannot be deleted by a student" do
       expect {
         delete :destroy, {class_group_id: @class_group.id, id: @question_set.id}, { user_id: @student.id }
-      }.to change(Question, :count).by(0)
+      }.to change(QuestionSet, :count).by(0)
     end
 
     it "cannot be deleted by a teacher of another class" do
       expect {
         delete :destroy, {class_group_id: @class_group.id, id: @question_set.id}, { user_id: @other_teacher.id }
-      }.to change(Question, :count).by(0)
+      }.to change(QuestionSet, :count).by(0)
     end 
   end 
 end

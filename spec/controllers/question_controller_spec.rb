@@ -76,6 +76,7 @@ RSpec.describe QuestionsController, :type => :controller do
       expect {
         post :create, new_param_hash, { user_id: @student.id }
       }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
     end
 
     it "cannot be created by a teacher of another class" do
@@ -92,6 +93,7 @@ RSpec.describe QuestionsController, :type => :controller do
       expect {
         post :create, new_param_hash, { user_id: @other_teacher.id }
       }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
     end 
   end
 
@@ -130,6 +132,7 @@ RSpec.describe QuestionsController, :type => :controller do
       qset = Question.find(@multi_choice_question.id)
       expect(qset.id).to eq(@multi_choice_question.id)
       expect(qset.content["question"]).to eq(old_question)
+      expect(response).to have_http_status(403)
     end
 
     it "cannot be updated by a teacher of another class" do
@@ -147,6 +150,7 @@ RSpec.describe QuestionsController, :type => :controller do
       put :update, modified_params, { user_id: @other_teacher.id }
       qset = Question.find(@multi_choice_question.id)
       expect(qset.content["question"]).to eq(old_question)
+      expect(response).to have_http_status(403)
     end
   end
 
@@ -159,15 +163,16 @@ RSpec.describe QuestionsController, :type => :controller do
 
     it "cannot be deleted by a student" do
       expect {
-        delete :destroy, {question_set_id: @question_set.id, id: @multi_choice_question.id}, { user_id: @student.id }
-        binding.pry
-      }.to change(QuestionSet, :count).by(0)
+        delete :destroy, {question_set_id: @question_set.id, id: @attendance_question.id}, { user_id: @student.id }
+      }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
     end
 
     it "cannot be deleted by a teacher of another class" do
       expect {
-        delete :destroy, {question_set_id: @question_set.id, id: @multi_choice_question.id}, { user_id: @other_teacher.id }
-      }.to change(QuestionSet, :count).by(0)
+        delete :destroy, {question_set_id: @question_set.id, id: @short_answer_question.id}, { user_id: @other_teacher.id }
+      }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
     end  
   end
 

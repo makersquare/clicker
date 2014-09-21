@@ -19,22 +19,35 @@ $black-home: #141414;
 $escher: #444444;
 $super-light-black: #585441;
 
-div.classes-container {
-  margin-right: 2rem;
-  margin-left: 2rem;
+
+#class_groups {
+  div.header { 
+    padding-top: 4rem;
+    h3 {
+      color: $escher;
+      opacity: 0.4;
+      margin: 0;
+    }
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+    }
+  }
 }
 
-div.header h1 {
-  font-size: 4rem;
-  padding: 1.5rem 0 1.5rem 0;
+
+
+.all-classes #all-classes {
+  margin: 0;
 }
 
 // class div styling
 .specific-class {
-  background-color: transparent;
+  background-color: $cloud;
+  border-radius: 0.4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   p {
     margin-bottom: 0.2rem;
   }
@@ -44,24 +57,24 @@ div.header h1 {
   h3 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: $teal;
   }
   p {
     font-size: 1.23rem;
   }
-  color: $escher;
+  color: $teal;
   &:hover {
     h3, p {
-    color: $teal;
+    color: $teal-dark;
     }
   }
 }
 
 .class-options {
+  margin: 0;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  border-top: 2px solid $escher;
-  border-radius: 0 0 0.4rem 0.4rem;
-  background-color: $cloud;
+  // border-top: 2px solid $escher;
   div a {
     font-size: 0.8rem;
     color: $escher;
@@ -78,10 +91,14 @@ div.header h1 {
 }
 
 .class-list {
-  margin-top: 1rem;
+  padding: 2rem 3rem 1rem 3rem;
+  background-color: $escher;
+  height: 70vh;
+  width: 100%;
 }
 
 .add-class {
+  padding-bottom: 1rem;
   button {
     border-radius: 0.4rem;
     background-color: $teal;
@@ -92,8 +109,11 @@ div.header h1 {
 }
 
 .new-class {
+  background-color: $cloud;
   padding-top: 1.5rem;
   // add other styling here
+  margin-right: 0;
+  margin-left: 0;
   h3 {
     font-size: 2rem;
     color: $teal-dark;
@@ -115,6 +135,10 @@ div.header h1 {
     font-size: 1.3rem;
     color: $super-light-black;
   }
+}
+
+.grey-form {
+  background-color: $cloud;
 }
 
 .add-class-width {

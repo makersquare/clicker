@@ -4,6 +4,7 @@
 </script>
 
   <div class="header">
+    <h3 class="gothic-caps-font">manage my</h3>
     <h1 class="opensans-font">
       Classes
     </h1>
@@ -14,23 +15,21 @@
 
   <!-- add a new class button -->
 
-  <div class="classes-container">
-
   <!-- displays each class -->
-  <div class="all-classes row" id="all-classes">
-
     <div class="add-class row" id="add-class">
       <button class="opensans-font button" id="add-a-class">ADD A CLASS</button>
     </div>
 
       <!-- add a new class form -->
+<div class="grey-form">
     <div class="new-class row" id="new-class-div">
       <h3 class="opensans-font smallcaps">create a class</h3>
       <% title = 'title' %>
       <% description = 'description' %>
       <%= render 'form' %>
-      <p class="new-class-cancel code-font smallcaps"><a>cancel</a></p>
+      <p class="new-class-cancel"><a>cancel</a></p>
     </div>
+</div>
 
 
     <div class="class-list">
@@ -61,7 +60,4 @@
     </div>
     <% end %>
     </div>
-
-  </div>
-</div>
 </div>

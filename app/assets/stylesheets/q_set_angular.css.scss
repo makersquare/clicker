@@ -62,14 +62,18 @@ $escher: #444444;
 .new-q-set {
   div.row {
     background-color: $cloud;
+    padding-top: 1.3rem;
+    margin-top: 1rem;
   }
   input.input-title {
     border-bottom: 2px solid grey;
+    margin-bottom: 1.4rem;
   }
   .cancel-button {
     p {
       color: $grey-yellow;
       margin-top: -0.7rem;
+      font-size: 1.3rem;
       &:hover {
         color: $teal;
       }
@@ -97,6 +101,26 @@ $escher: #444444;
   }
 }
 
-.each-q-set {
+.all-q-sets {
+  padding: 2rem;
   background-color: $escher;
+  height: 100vh;
 }
+
+.each-q-set {
+  background-color: $cloud;
+  border-radius: 0.4rem;
+  padding: 1rem 0 1rem 0;
+  margin-bottom: 1rem;
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  a {
+    color: $teal;
+    &:hover {
+      color: $teal-dark;
+    }
+  }
+}
+

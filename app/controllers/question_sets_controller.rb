@@ -44,6 +44,7 @@ class QuestionSetsController < ApplicationController
       end
     else
       flash[:error_not_teacher] = "You must be a teacher to perform this action."
+      redirect_to class_groups_path
     end
   end
 

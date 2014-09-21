@@ -145,3 +145,27 @@ $escher: #444444;
   }
 }
 
+.add-question-form {
+  background-color: $cloud;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.list-of-all-questions {
+  padding-top: 2rem;
+  background-color: $escher;
+  height: 80vh;
+}
+
+.each-question {
+  margin-bottom: 1.5rem;
+  span {
+    font-size: 2rem;
+  }
+  span.Q {
+    color: $teal;
+  }
+  span.content {
+    color: $cloud;
+  }
+}

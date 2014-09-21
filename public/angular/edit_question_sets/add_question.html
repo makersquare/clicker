@@ -6,15 +6,14 @@
   <div class="add-question">
     <div>
       <p class="code-font italic">
-        – add question to {{questionSetName}} –
+        – Questions in {{questionSetName}} –
         <!-- insert question set name here: {{questionSetName}}. ID: {{questionSetID}}  -->
         <!-- {{questionRoute}}  -->
       </p>
 
-      <div ng-repeat="question in questions">
-      {{question.content.question}} -- <a href="#/qsets/{{questionSetID}}/questions/{{question.id}}">Edit</a><a ng-click="destroy(question.id)"> Delete</a>
-      </div>
-      <form ng-submit="createQuestion()">
+      <button class="button" ng-click=" showAddQForm = !showAddQForm ">Add Question</button>
+
+      <form ng-submit="createQuestion()" class="add-question-form" ng-show="showAddQForm">
         <div class="row">
 
           <div class="row">
@@ -68,16 +67,28 @@
 
         <div>
           <div class="small-11 small-centered columns">
-            <button type="submit" class="button" id="submit" value="Add Question">Add Question</button>
+            <button type="submit" class="button" id="submit" value="Add Question" ng-click="showAddQForm = !showAddQForm">Submit</button>
           </div>
         </div>
         </div>
 
-
         <div>
-          <a href="#"> < Cancel</a>
+          <a ng-click="showAddQForm = !showAddQForm"> Cancel</a>
         </div>
 
       </form>
+
+      <div class="list-of-all-questions">
+        <div ng-repeat="question in questions" class="each-question">
+          <span class="Q">Q{{questions.indexOf(question)+1}}</span>
+          <span class="content"> {{question.content.question}} </span>
+          <a href="#/qsets/{{questionSetID}}/questions/{{question.id}}">
+            Edit<span>  </span>
+          </a>
+          <a ng-click="destroy(question.id)">
+            Delete
+          </a>
+        </div>
+      </div>
     </div>
   </div>

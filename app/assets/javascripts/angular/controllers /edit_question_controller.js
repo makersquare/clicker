@@ -3,6 +3,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   $scope.questionSetID = $routeParams.id;
   $scope.questions = QuestionsRsc.query({ question_sets_id: $scope.questionSetID });
   $scope.questionSetName = g.classGroup.name;
+  $scope.showAddQForm = false;
   $scope.destroy = function(id) {
     if (confirm("Are you sure?")) {
       QuestionsRsc.remove({ question_sets_id: $scope.questionSetID, id: id}, function(response){

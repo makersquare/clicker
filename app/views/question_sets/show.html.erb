@@ -18,15 +18,6 @@
 
   <div class="question-set-show-style" id="question-set-show-style">
     <%= link_to 'Back', :back %>
- 
-    <div>
-      <% if !@current_user.teacher?(@class_group.id).empty? %>
-        <%= render 'teacher_show' %>
-      <% else %>
-        <%= render 'student_show' %>
-      <% end %>
-    </div>
-
   </div>
 
   <%= javascript_include_tag "angular_application" %>

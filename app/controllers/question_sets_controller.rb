@@ -14,7 +14,7 @@ class QuestionSetsController < ApplicationController
   # GET /question_sets/1.json
   def show
     if @current_user.enrolled?(@class_group.id)
-      if !@current_user.teacher?(@class_group.id).empty?
+      if @current_user.teacher?(@class_group.id)
         render "teacher_show"
       else
         render "student_show"
@@ -29,10 +29,9 @@ class QuestionSetsController < ApplicationController
   # POST /question_sets.json
   def create
     # return render :json => { :id => 99, :name => "Hello Class", :class_group_id => 1 }
-
-    if current_user.teacher?(question_set_params)
+    if current_user.teacher?(@class_group.id)
       @question_set = QuestionSet.new(question_set_params)
-      @question_set.class_group_id = params[:class_group_id]
+      @question_set.class_group_id = @class_group.id
 
       respond_to do |format|
         if @question_set.save

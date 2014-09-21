@@ -62,6 +62,7 @@ RSpec.describe QuestionSetsController, :type => :controller do
       expect(QuestionSet.all.count).to eq(2)
 
       qset = assigns(:question_set)
+      binding.pry
       expect(qset.class_group_id).to eq @class_group.id
       expect(qset.name).to eq("UX Design")
     end
@@ -117,6 +118,7 @@ RSpec.describe QuestionSetsController, :type => :controller do
       }
       put :update, modified_params, { user_id: @student.id }
       qset = QuestionSet.find(@question_set.id)
+      expect(qset.id).to eq(@question_set.id)
       expect(qset.name).to eq(old_name)
     end
 

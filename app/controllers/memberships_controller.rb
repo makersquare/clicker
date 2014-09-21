@@ -21,9 +21,14 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @user = GetUserInfo.run(membership_params)
+    if membership_params['teacher'] == 'on'
+      kind = 'teacher'
+    else 
+      kind = 'student'
+    end
     @membership = Membership.new(
       user_id: @user.id,
-      kind: membership_params['kind'],
+      kind: kind,
       class_group_id: @class_group.id)
     respond_to do |format|
       if @membership.save
@@ -74,6 +79,6 @@ class MembershipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
-      params.require(:membership).permit(:kind, :nickname)
+      params.require(:membership).permit(:teacher, :nickname)
     end
 end

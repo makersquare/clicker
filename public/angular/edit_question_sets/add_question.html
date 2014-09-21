@@ -6,7 +6,7 @@
   <div class="add-question">
     <div>
       <p class="code-font italic">
-        Questions in {{questionSetName}}:
+        – add question to {{questionSetName}} –
         <!-- insert question set name here: {{questionSetName}}. ID: {{questionSetID}}  -->
         <!-- {{questionRoute}}  -->
       </p>
@@ -14,66 +14,65 @@
       <div ng-repeat="question in questions">
       {{question.content.question}} -- <a href="#/qsets/{{questionSetID}}/questions/{{question.id}}">Edit</a><a ng-click="destroy(question.id)"> Delete</a>
       </div>
-
-      <h1 class="gothic-caps-font">add question</h1>
-
       <form ng-submit="createQuestion()">
         <div class="row">
 
           <div class="row">
-            <div class="small-10 columns">
-              <input type="text" placeholder="question" ng-model="question">
+            <div class="small-8 small-offset-1 columns">
+              <input type="text" placeholder="question" ng-model="question" class="question" id="question">
             </div>
-            <div class="small-2 columns">
-              <span class="code-font">set answer:</span>
+            <div class="small-3 columns">
+              <span class="code-font">answer:</span>
             </div>
           </div>
 
           <div class="row">
-            <div class="small-10 columns">
+            <div class="small-8 small-offset-1 columns">
               <input type="text" placeholder="choice" ng-model="choiceA">
             </div>
-              <div class="switch small-2 columns">
+              <div class="switch radius small-3 columns">
                 <span class="code-font"></span><input name="choices" id="A" value="0" type="radio" ng-model="answer">
                 <label for="A"></label>
               </div>
           </div>
 
           <div class="row">
-            <div class="small-10 columns">
+            <div class="small-8 small-offset-1 columns">
               <input type="text" placeholder="choice" ng-model="choiceB">
             </div>
-            <div class="switch small-2 columns">
+            <div class="switch radius small-3 columns">
               <span class="code-font"></span><input name="choices" id="B" value="1" type="radio" ng-model="answer">
               <label for="B"></label>
             </div>
           </div>
 
           <div class="row">
-            <div class="small-10 columns">
+            <div class="small-8 small-offset-1 columns">
               <input type="text" placeholder="choice" ng-model="choiceC">
             </div>
-            <div class="switch small-2 columns">
+            <div class="switch radius small-3 columns">
               <span class="code-font"></span><input name="choices" id="C" value="2" type="radio" ng-model="answer">
               <label for="C"></label>
             </div>
           </div> 
 
           <div class="row">
-            <div class="small-10 columns">
+            <div class="small-8 small-offset-1 columns">
               <input type="text" placeholder="choice" ng-model="choiceD">
             </div>
-            <div class="switch small-2 columns">
+            <div class="switch radius small-3 columns">
               <span class="code-font"></span><input name="choices" id="D" value="3" type="radio" ng-model="answer">
               <label for="D"></label>
             </div>
           </div>
 
+        <div>
+          <div class="small-11 small-centered columns">
+            <button type="submit" class="button" id="submit" value="Add Question">Add Question</button>
+          </div>
+        </div>
         </div>
 
-        <div>
-          <input type="submit" class="button" id="submit" value="Add Question">
-        </div>
 
         <div>
           <a href="#"> < Cancel</a>

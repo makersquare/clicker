@@ -124,3 +124,24 @@ $escher: #444444;
   }
 }
 
+// adding a new question form styling
+.add-question {
+  p {
+    color: $grey-yellow;
+  }
+  form {
+    input {
+      border: none;
+      border-bottom: 1px solid $grey-yellow;
+    }
+    input.question#question {
+      background-color: $escher;
+      color: $cloud;
+    }
+  }
+  #submit {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}
+

@@ -119,12 +119,13 @@ RSpec.describe QuestionsController, :type => :controller do
     it "cannot be updated by a student" do
       old_question = @multi_choice_question.content["question"]
       modified_params = {
+        question_set_id: @question_set.id,
         id: @multi_choice_question.id,
         question: {
           content: {
-            question: "Modified Question",
-            choices: %w(array hash variable class),
-            answer: 3
+            "question" => "Modified Question",
+            "choices" => %w(array hash variable class),
+            "answer" => 3
           }
         }
       }
@@ -138,6 +139,7 @@ RSpec.describe QuestionsController, :type => :controller do
     it "cannot be updated by a teacher of another class" do
       old_question = @multi_choice_question.content["question"]
       modified_params = {
+        question_set_id: @question_set.id,
         id: @multi_choice_question.id,
         question: {
           content: {

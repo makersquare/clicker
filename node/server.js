@@ -36,8 +36,7 @@ client.query("LISTEN new_responses");
 // Server Sent Events Code
 
 var sendInterval = 1000;
-
-var psqlnotify = "test";
+var currentSessions = {};
  
 function sendServerSentEvent(req, res) {
   res.writeHead(200, {
@@ -57,6 +56,9 @@ function sendServerSentEvent(req, res) {
   try {
     decoder.decodeCookie(cookie, function(err, sessionData){
       console.log(sessionData);
+      sessionData = JSON.parse(sessionData);
+      currentSessions[sessionData.user_id] = true;
+      console.log(currentSessions);
     });
   }
   catch(err) {
@@ -66,15 +68,15 @@ function sendServerSentEvent(req, res) {
   var sseId = (new Date()).toLocaleTimeString();
 
   setInterval(function() {
-  writeServerSentEvent(res, sseId, psqlnotify);
+  writeServerSentEvent(res, sseId, currentSessions);
   }, sendInterval);
 
-  writeServerSentEvent(res, sseId, psqlnotify);
+  writeServerSentEvent(res, sseId, currentSessions);
 }
  
-function writeServerSentEvent(res, sseId, data) {
+function writeServerSentEvent(res, sseId, currentSessions) {
   res.write('id: ' + sseId + '\n');
-  res.write("data: "+ data + '\n\n');
+  res.write("data: "+ JSON.stringify(currentSessions) + '\n\n');
 }
 
 //creates server

@@ -34,7 +34,9 @@
         <aside class="left-off-canvas-menu">
             <!-- whatever you want goes here -->
             <ul>
-              <li ng-repeat="question in questions"><a ng-click="setTab(questions.indexOf(question))" class="cloud">{{question.content.question}}</a></li>
+              <li ng-repeat="question in questions">
+                <a ng-click="setTab(questions.indexOf(question))" class="cloud">{{question.content.question}}</a><br /><br />
+              </li>
             </ul>
         </aside>
 
@@ -46,7 +48,6 @@
               <button class="button radius">{{choice}}</button>
             </div>
           </div>
-
         
           <div class="teacher-control-options row">
             <div class="small-10 small-centered medium-6 medium-centered large-6 large-centered columns panel">
@@ -63,6 +64,9 @@
                     <p>stop</p>
                   </a>
                 </div>
+              </div>
+              <div class="row">
+                <a ng-click="setTab(showTab + 1)">Next >></a>
               </div>
             </div>
           </div>

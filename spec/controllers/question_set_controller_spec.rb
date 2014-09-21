@@ -16,6 +16,7 @@ RSpec.describe QuestionSetsController, :type => :controller do
       user_id: @teacher.id
       )
     @question_set = Fabricate(:question_set, class_group_id: @class_group.id)
+    @other_teacher = Fabricate(:verified_user)
   end
 
   describe "GET #index" do
@@ -64,6 +65,30 @@ RSpec.describe QuestionSetsController, :type => :controller do
       expect(qset.class_group_id).to eq @class_group.id
       expect(qset.name).to eq("UX Design")
     end
+
+    it "cannot be created by a student" do
+      new_param_hash = {
+        class_group_id: @class_group.id,
+        question_set: {
+          name: "UX Design"
+        }
+      }
+      expect {
+        post :create, new_param_hash, { user_id: @student.id }
+      }.to change(QuestionSet, :count).by(0)
+    end
+
+    it "cannot be created by a teacher of another class" do
+      new_param_hash = {
+        class_group_id: @class_group.id,
+        question_set: {
+          name: "UX Design"
+        }
+      }
+      expect {
+        post :create, new_param_hash, { user_id: @other_teacher.id }
+      }.to change(QuestionSet, :count).by(0)
+    end    
   end
 
   describe "PATCH/PUT #update" do
@@ -80,6 +105,34 @@ RSpec.describe QuestionSetsController, :type => :controller do
       qset = assigns(:question_set)
       expect(qset.name).to eq("Functional Calculus")
     end
+
+    it "cannot be updated by a student" do
+      old_name = @class_group.name
+      modified_params = {
+        class_group_id: @class_group.id,
+        id: @question_set.id,
+        question_set: {
+          name: "Modified Name"
+        }
+      }
+      put :update, modified_params, { user_id: @student.id }
+      qset = QuestionSet.find(@question_set.id)
+      expect(qset.name).to eq(old_name)
+    end
+
+    it "cannot be updated by a teacher of another class" do
+      old_name = @class_group.name
+      modified_params = {
+        class_group_id: @class_group.id,
+        id: @question_set.id,
+        question_set: {
+          name: "Changing the Name"
+        }
+      }
+      put :update, modified_params, { user_id: @student.id }
+      qset = QuestionSet.find(@question_set.id)
+      expect(qset.name).to eq(old_name)
+    end  
   end
 
   describe "DELETE #destroy" do
@@ -91,6 +144,17 @@ RSpec.describe QuestionSetsController, :type => :controller do
       delete :destroy, new_param_hash, { user_id: @teacher.id }
       expect(QuestionSet.all.count).to eq(0)
     end
-  end
+    end
 
+    it "cannot be deleted by a student" do
+      expect {
+        delete :destroy, {class_group_id: @class_group.id, id: @question_set.id}, { user_id: @student.id }
+      }.to change(QuestionSet, :count).by(0)
+    end
+
+    it "cannot be deleted by a teacher of another class" do
+      expect {
+        delete :destroy, {class_group_id: @class_group.id, id: @question_set.id}, { user_id: @student.id }
+      }.to change(QuestionSet, :count).by(0)
+    end  
 end

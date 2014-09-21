@@ -130,7 +130,7 @@ RSpec.describe QuestionSetsController, :type => :controller do
           name: "Changing the Name"
         }
       }
-      put :update, modified_params, { user_id: @student.id }
+      put :update, modified_params, { user_id: @other_teacher.id }
       qset = QuestionSet.find(@question_set.id)
       expect(qset.name).to eq(old_name)
     end  
@@ -145,17 +145,17 @@ RSpec.describe QuestionSetsController, :type => :controller do
       delete :destroy, new_param_hash, { user_id: @teacher.id }
       expect(QuestionSet.all.count).to eq(0)
     end
-    end
 
     it "cannot be deleted by a student" do
       expect {
         delete :destroy, {class_group_id: @class_group.id, id: @question_set.id}, { user_id: @student.id }
-      }.to change(QuestionSet, :count).by(0)
+      }.to change(Question, :count).by(0)
     end
 
     it "cannot be deleted by a teacher of another class" do
       expect {
-        delete :destroy, {class_group_id: @class_group.id, id: @question_set.id}, { user_id: @student.id }
-      }.to change(QuestionSet, :count).by(0)
-    end  
+        delete :destroy, {class_group_id: @class_group.id, id: @question_set.id}, { user_id: @other_teacher.id }
+      }.to change(Question, :count).by(0)
+    end 
+  end 
 end

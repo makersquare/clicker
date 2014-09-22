@@ -4,7 +4,12 @@ app.controller('TeacherViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc,
   $scope.showTab = 0;
   
   $scope.setTab = function(num){
-    $scope.showTab = num;
+    if (num == ($scope.questions.length)) {
+      $scope.showTab = 0
+    }
+    else {
+      $scope.showTab = num;  
+    };
   };
 
   $scope.openQuestion = function(questionID) {

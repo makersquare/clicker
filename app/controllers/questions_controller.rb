@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = @question_set.questions
+    render json: @question_set.questions  
   end
 
   # GET /questions/1

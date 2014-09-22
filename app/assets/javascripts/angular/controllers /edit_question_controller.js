@@ -43,7 +43,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   };
 });
  
-app.controller('EditQuestionCtrl', function($http,$scope, $routeParams, QuestionsRsc) {
+app.controller('EditQuestionCtrl', function($http, $scope, $routeParams, QuestionsRsc, $location) {
   url =  '/question_sets/' + $routeParams.question_set_id + '/questions/' + $routeParams.id;
   $http.get(url)
     .then(function(response){
@@ -77,13 +77,8 @@ app.controller('EditQuestionCtrl', function($http,$scope, $routeParams, Question
     };
 
   var questions = QuestionsRsc.update({ question_sets_id: $scope.questionSetID, id: $routeParams.id , question: thisQuestion });
-  // $scope.questions.push(thisQuestion);
 
-  // $scope.updatedquestion = "";
-  // $scope.updatedchoiceA = "";
-  // $scope.updatedchoiceB = "";
-  // $scope.updatedchoiceC = "";
-  // $scope.updatedchoiceD = "";
+  $location.path("/qsets/" + $routeParams.question_set_id );
 
   };
 });

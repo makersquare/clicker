@@ -41,7 +41,7 @@
           <!-- Question content for Teacher (with control options) goes here -->
           <div ng-repeat="question in questions" class="current-lecture-question show" ng-show="showTab == {{questions.indexOf(question)}}">
             <div class="question-yield">
-              <h2><span class="Q">Q{{questions.indexOf(question)+1}}<span>{{question.content.question}}{{question.id}}</h2>
+              <h2><span class="Q">Q{{questions.indexOf(question)+1}}     <span>{{question.content.question}}</h2>
               <div ng-repeat="choice in question.content.choices track by $index">
                 <button class="button radius choice" a ng-click="submitResponse(question.id, question.content.choices.indexOf(choice))">{{choice}}</button>
               </div>

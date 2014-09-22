@@ -8,6 +8,10 @@ class UpdateUserInfo
     data = Net::HTTP.get(uri)
     json = JSON.parse(data)
 
+    if json['id'].nil?
+      return :no_github_user
+    end
+    
     user.name = json['name']
     user.uid = json['id'].to_s #typecast into string to match omniauth's format
     user.provider = 'github'

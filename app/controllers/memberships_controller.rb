@@ -1,6 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
-  before_action :set_class_group, only: [:edit, :index, :show, :new, :create]
+  before_action :set_class_group, only: [:edit, :index, :show, :new, :create, :destroy]
   before_action :require_login
 
   # GET /memberships
@@ -10,6 +10,16 @@ class MembershipsController < ApplicationController
     @users = @class_group.users
     @student_memberships = @class_group.memberships.where(kind: 'student')
     @teacher_memberships = @class_group.memberships.where(kind: 'teacher')
+    if session[:new_member_msg] == "no_github_user"
+      @new_member = session[:new_member_id]
+    elsif session[:new_member_msg] == "successful_save"
+      @new_member = User.find(session[:new_member_id])
+      @new_membership = Membership.find_by(class_group_id: @class_group.id, user_id: @new_member.id)
+    else
+      @new_member = nil
+    end
+    session[:new_member_msg] = nil
+    session[:new_member_id] = nil
   end
 
   # GET /memberships/1
@@ -21,6 +31,12 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @user = GetUserInfo.run(membership_params)
+    if @user == :no_github_user
+      session[:new_member_msg] = :no_github_user
+      session[:new_member_id] = membership_params['nickname']
+      redirect_to class_group_memberships_url
+      return
+    end
     if membership_params['teacher'] == 'on'
       kind = 'teacher'
     else 
@@ -32,6 +48,8 @@ class MembershipsController < ApplicationController
       class_group_id: @class_group.id)
     respond_to do |format|
       if @membership.save
+        session[:new_member_msg] = :successful_save
+        session[:new_member_id] = @user.id
         format.html { redirect_to class_group_memberships_url, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
@@ -61,7 +79,7 @@ class MembershipsController < ApplicationController
     @membership.destroy
     @id = params[:id]
     respond_to do |format|
-      format.html { redirect_to memberships_url, notice: 'Membership was successfully destroyed.' }
+      format.html { redirect_to class_group_memberships_path(@class_group), notice: 'Membership was successfully destroyed.' }
       format.js { render :layout => false }
       format.json { head :no_content }
     end

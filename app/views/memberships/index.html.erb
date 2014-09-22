@@ -11,34 +11,33 @@
   </div>
 
   <!-- Successful Student Added - confirm -->
-<!--   <div class="add-student-confirm panel">
-    <h3>Do you want to add Catherine O'Neil to Ruby Course?</h3>
+  <% if @new_member.is_a?(User) %>
+  <div class="add-student-confirm panel">
+    <h3>You just added <%= @new_member.name %> to <%= @class_group.name %></h3>
     <div class="row">
-      <a href="#"><img alt="Gravatar for user" src="https://avatars.githubusercontent.com/u/5787114?size=100" class="gravatar"></a>
+      <img alt="Gravatar for user" src="http://www.gravatar.com/avatar/<%= @new_member.gravatar_id %>?size=100" class="gravatar">
 
       <ul class="small-block-grid-2">
-        <li><button class="button open-sans-font smallcaps">yes</button></li>
-        <li><button class="button open-sans-font smallcaps"> no </button></li>
+        <li><%= link_to 'Keep', class_group_memberships_path(@class_group), :class => "button open-sans-font smallcaps" %></li>
+        <li><%= link_to 'Remove', class_group_membership_path(@class_group, @new_membership), method: :delete, :class => "button open-sans-font smallcaps", data: { confirm: 'Are you sure?' } %></li>
       </ul>
     </div>
-  </div> -->
+  </div>
+  <% end %>
 
   <!-- Add Student Error: try again or cancel -->
-<!--   <div class="add-student-error panel">
-    <h3>input is not a Github user. Would you like to try again?</h3>
+  <% if @new_member.is_a?(String) %>
+  <div class="add-student-error panel">
+    <h3><%= @new_member %>is not a Github user. Would you like to try again?</h3>
     <div class="row">
       <a href="#"><img alt="sad Octocat" src="http://archaeogeek.github.io/ukqgis_talk/images/octocat_sad.gif"></a>
-    </div> -->
-    <!-- render form for add student -->
-<!--     <button class="button open-sans-font">YES</button>
-    <div><p class="code-font smallcaps">cancel</p></div>
-  </div> -->
+    </div>
+  </div>
+  <% end %>
+
   
   <!-- List of current members that have access to the class -->
   <div data-equalizer class="member-list">
-    <div>
-      <h2>Members</h2>
-    </div>
     <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
       <h3>Instructors</h3>
       <p>

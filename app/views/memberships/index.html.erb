@@ -28,10 +28,12 @@
   <!-- Add Student Error: try again or cancel -->
   <% if @new_member.is_a?(String) %>
   <div class="add-student-error panel">
-    <h3><%= @new_member %>is not a Github user. Would you like to try again?</h3>
+    <h3><%= @new_member %> is not a Github user</h3>
     <div class="row">
       <a href="#"><img alt="sad Octocat" src="http://archaeogeek.github.io/ukqgis_talk/images/octocat_sad.gif"></a>
     </div>
+    <br>
+    <%= link_to 'Clear', class_group_memberships_path(@class_group), :class => "button open-sans-font smallcaps" %>
   </div>
   <% end %>
 

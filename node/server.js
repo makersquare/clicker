@@ -37,9 +37,11 @@ client.query("LISTEN new_responses");
 
 var sendInterval = 1000;
 var sessions = [];
-var currentSession = {};
+// var currentSession = {};
  
 function sendServerSentEvent(req, res) {
+  var currentSession = {};
+
   res.writeHead(200, {
   'Content-Type' : 'text/event-stream',
   'Cache-Control' : 'no-cache',
@@ -59,8 +61,12 @@ function sendServerSentEvent(req, res) {
     decoder.decodeCookie(cookie, function(err, sessionData){
       console.log(sessionData);
       sessionData = JSON.parse(sessionData);
-      assembleCurrentSession(sessionData);
-      sessions.push(currentSession);
+      assembleCurrentSession(sessionData, function(newSession) {
+        currentSession = newSession;
+        console.log("Adding user session:", currentSession);
+        sessions.push(currentSession);
+        sessionStarted();
+      });
     });
   }
   catch(err) {
@@ -68,21 +74,29 @@ function sendServerSentEvent(req, res) {
   }
 
   //Adds a session entry to the sessions array 
-  var assembleCurrentSession = function(sessionData){
-    currentSession["user_id"] = sessionData.user_id;
-    currentSession["connection"] = req;
+  var assembleCurrentSession = function(sessionData, callback) {
+    var assembledSession = {};
+    assembledSession["user_id"] = sessionData.user_id;
+    assembledSession["connection"] = res;
     var memberships = [];
-    var query = client.query("SELECT * FROM memberships WHERE user_id = $1", [sessionData.user_id]);
-    query.on('row', function(row){
+    assembledSession["memberships"] = memberships;
+    var query = client.query("SELECT class_group_id, kind FROM memberships WHERE user_id = $1", [sessionData.user_id]);
+    query.on('row', function(row) {
+      console.log(row);
       memberships.push(row);
     });
-    currentSession["memberships"] = memberships;
+    query.on('end', function(result) {
+      if (callback) {
+        callback(assembledSession);
+      }
+    });
   };
 
   //Removes a session entry from the sessions array when the session is closed
   req.on('close', function (){
     for (var i = 0; i < sessions.length; i++){
       if (sessions[i].user_id === currentSession.user_id){
+        console.log('spliced sessions');
         sessions.splice(i, 1);
       }
     }
@@ -90,11 +104,14 @@ function sendServerSentEvent(req, res) {
 
   var sseId = (new Date()).toLocaleTimeString();
 
-  setInterval(function() {
-  writeServerSentEvent(res, sseId, sessions);
-  }, sendInterval);
+  function sessionStarted() {
+    setInterval(function() {
+      writeServerSentEvent(res, sseId, sessions);
+    }, sendInterval);
 
-  writeServerSentEvent(res, sseId, sessions);
+    writeServerSentEvent(res, sseId, sessions);
+  }
+
 }
  
 function writeServerSentEvent(res, sseId, sessions) {

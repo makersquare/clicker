@@ -13,6 +13,21 @@ RSpec.describe QuestionsController, :type => :controller do
     @attendance_question = Fabricate(:attendance_question, question_set_id: @question_set.id)
     @multi_choice_question = Fabricate(:multi_choice_question, question_set_id: @question_set.id)
     @short_answer_question = Fabricate(:short_answer_question, question_set_id: @question_set.id)
+    Membership.create(
+      user_id: @student.id,
+      class_group_id: @classgroup.id,
+      kind: "student")
+    Membership.create(
+      user_id: @teacher.id,
+      class_group_id: @classgroup.id,
+      kind: "teacher")
+
+    @other_teacher = Fabricate(:verified_user)
+    @classgroup2 = Fabricate(:class_group)
+    Membership.create(
+      user_id: @other_teacher.id,
+      class_group_id: @classgroup2.id,
+      kind: "teacher")
   end
 
   describe 'GET #index' do
@@ -41,11 +56,45 @@ RSpec.describe QuestionsController, :type => :controller do
       end
 
       it "creates a new question" do
-        params = {"question_sets_id"=>@question_set.id, "question"=>{"type"=>"MultiChoiceQuestion", "content"=>{"question"=>"Test Q", "answer"=>"0", "choices"=>["a", "b", "c", "d"]}}, "question_set_id"=>@question_set.id}
+        params = {"question_set_id"=>@question_set.id, "question"=>{"type"=>"MultiChoiceQuestion", "content"=>{"question"=>"Test Q", "answer"=>"0", "choices"=>["a", "b", "c", "d"]}}, "question_set_id"=>@question_set.id}
         post :create, params, {user_id: @teacher.id}
         expect(response).to be_success
       end
     end
+
+    it "cannot be created by a student" do
+      new_param_hash = {
+        question_set_id: @question_set.id,
+        question: {
+          content: {
+            question: "In this array [a, b, c, d] what is the index of b?",
+            choices: ["1", "2", "3", "4"],
+            answer: 1
+          }
+        }
+      }
+      expect {
+        post :create, new_param_hash, { user_id: @student.id }
+      }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
+    end
+
+    it "cannot be created by a teacher of another class" do
+      new_param_hash = {
+        question_set_id: @question_set.id,
+        question: {
+          content: {
+            question: "In this array [a, b, c, d] what is the index of b?",
+            choices: ["1", "2", "3", "4"],
+            answer: 1
+          }
+        }
+      }
+      expect {
+        post :create, new_param_hash, { user_id: @other_teacher.id }
+      }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
+    end 
   end
 
   describe "PUT #update" do
@@ -66,6 +115,45 @@ RSpec.describe QuestionsController, :type => :controller do
         expect(@multi_choice_question.content).to eq(updated_question)
       end
     end
+
+    it "cannot be updated by a student" do
+      old_question = @multi_choice_question.content["question"]
+      modified_params = {
+        question_set_id: @question_set.id,
+        id: @multi_choice_question.id,
+        question: {
+          content: {
+            "question" => "Modified Question",
+            "choices" => %w(array hash variable class),
+            "answer" => 3
+          }
+        }
+      }
+      put :update, modified_params, { user_id: @student.id }
+      qset = Question.find(@multi_choice_question.id)
+      expect(qset.id).to eq(@multi_choice_question.id)
+      expect(qset.content["question"]).to eq(old_question)
+      expect(response).to have_http_status(403)
+    end
+
+    it "cannot be updated by a teacher of another class" do
+      old_question = @multi_choice_question.content["question"]
+      modified_params = {
+        question_set_id: @question_set.id,
+        id: @multi_choice_question.id,
+        question: {
+          content: {
+            question: "Modified Question",
+            choices: %w(array hash variable class),
+            answer: 3
+          }
+        }
+      }
+      put :update, modified_params, { user_id: @other_teacher.id }
+      qset = Question.find(@multi_choice_question.id)
+      expect(qset.content["question"]).to eq(old_question)
+      expect(response).to have_http_status(403)
+    end
   end
 
   describe "POST #delete" do
@@ -74,6 +162,20 @@ RSpec.describe QuestionsController, :type => :controller do
         delete :destroy, {question_set_id: @question_set.id, id: @multi_choice_question.id}, {user_id: @teacher.id}
       }.to change(Question, :count).by(-1)
     end
+
+    it "cannot be deleted by a student" do
+      expect {
+        delete :destroy, {question_set_id: @question_set.id, id: @attendance_question.id}, { user_id: @student.id }
+      }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
+    end
+
+    it "cannot be deleted by a teacher of another class" do
+      expect {
+        delete :destroy, {question_set_id: @question_set.id, id: @short_answer_question.id}, { user_id: @other_teacher.id }
+      }.to change(Question, :count).by(0)
+      expect(response).to have_http_status(403)
+    end  
   end
 
 end

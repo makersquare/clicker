@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
         end
       end
     else
-      render :status => :forbidden, text: "You must be a student enrolled in the class to create a response."
+      render :status => :forbidden, text: "You must be a teacher enrolled in the class to create a question."
     end
   end
 
@@ -50,7 +50,7 @@ class QuestionsController < ApplicationController
         end
       end
     else
-      render :status => :forbidden, text: "You must be a student enrolled in the class to create a response."
+      render :status => :forbidden, text: "You must be a teacher enrolled in the class to create a question."
     end      
   end
 
@@ -64,7 +64,7 @@ class QuestionsController < ApplicationController
         format.json { head :no_content }
       end
     else
-      render :status => :forbidden, text: "You must be a student enrolled in the class to create a response."
+      render :status => :forbidden, text: "You must be a teacher enrolled in the class to delete a response."
     end
   end
 

@@ -1,6 +1,16 @@
 app.controller('StudentViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc, ResponsesRsc){
   $scope.questionSet = p.questionSet;
-  $scope.questions = QuestionsRsc.query({ question_sets_id: $scope.questionSet.id });
+  $scope.questions = QuestionsRsc.query({ question_sets_id: $scope.questionSet.id }, function() {
+    $scope.questions = $scope.questions.sort(function(a, b) {
+      if (a.created_at < b.created_at) {
+        return -1;
+      } else if (a.created_at > b.created_at) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  });
   $scope.showTab = 0;
   $scope.setTab = function(num){
     $scope.showTab = num;

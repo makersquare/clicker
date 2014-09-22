@@ -42,7 +42,7 @@ app.controller('EditCtrl', function($scope, $routeParams, QuestionsRsc) {
   };
 });
  
-app.controller('EditQuestionCtrl', function($http,$scope, $routeParams, QuestionsRsc) {
+app.controller('EditQuestionCtrl', function($http, $scope, $routeParams, QuestionsRsc) {
   url =  '/question_sets/' + $routeParams.question_set_id + '/questions/' + $routeParams.id;
   $http.get(url)
     .then(function(response){

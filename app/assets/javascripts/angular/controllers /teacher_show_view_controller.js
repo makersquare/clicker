@@ -2,6 +2,11 @@ app.controller('TeacherViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc,
   $scope.questionSet = p.questionSet;
   $scope.questions = QuestionsRsc.query({ question_sets_id: $scope.questionSet.id });
   $scope.showTab = 0;
+  // colors for pie charts
+  var teal = '#54BC9E';
+  var violet = '#5854D3';
+  var rose = '#C95073';
+  var cloud = '#ecf0f1';
   
   $scope.setTab = function(num){
     $scope.showTab = num;

@@ -18,8 +18,14 @@ $light-black: #1d1d1d;
 $black-home: #141414;
 $escher: #444444;
 $super-light-black: #585441;
+$rose: #C95073;
+$violet: #5854D3;
+$gold: #F5BD54;
+
 
 div.question-set-show-style{
+  background-color: $light-black;
+  height: 90vh;
   .cloud {
     color: $cloud;
   }
@@ -30,6 +36,9 @@ div.question-set-show-style{
     text-align: left;
     padding-left: 1rem;
     padding-top: 1rem;
+  }
+  h2 {
+    padding-bottom: 1.5rem;
   }
 }
 
@@ -62,12 +71,26 @@ div.teacher-qset-view {
 }
 
 .teacher-control-options {
-  a {
-    color: 
+  padding-top: 1.5rem;
+  a.start {
+    color: $violet;
+    &:hover {
+      color: darken($violet, 10)
+    }
+  }
+  a.stop {
+    color: $rose;
+    &:hover {
+      color: darken($rose, 10)
+    }
+  }
+  a.next {
+    color: $gold;
+    &:hover {
+      color: darken($gold, 10)
+    }
   }
 }
-
-body > div:nth-child(2) > div > div > div.student-qset-view > div > div > 
 
 .question-yeild {
   h3, h2, h1, p {
@@ -75,5 +98,34 @@ body > div:nth-child(2) > div > div > div.student-qset-view > div > div >
   }
   h2 {
     padding-bottom: 1rem;
+  }
+}
+
+aside.left-off-canvas-menu {
+  background-color: lighten($violet, 10);
+  ul {
+    margin-left: 0;
+    text-align: left;
+    list-style: none;
+    &:hover {
+      cursor: pointer;
+    }
+    li {
+      padding: 1rem 0 1rem 1.5rem;
+      &:hover{
+        background-color: $violet;
+      }
+      a {
+        color: $cloud;
+        font-size: 1.3125rem;
+      }
+    }
+  }
+}
+
+.q-set-header {
+  padding: 2rem 0 2rem 0;
+  h1 {
+    font-size: 4rem;
   }
 }

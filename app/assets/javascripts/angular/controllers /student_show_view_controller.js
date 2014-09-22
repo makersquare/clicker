@@ -5,6 +5,10 @@ app.controller('StudentViewCtrl', function($scope, QuestionSetRsc, QuestionsRsc,
   $scope.setTab = function(num){
     $scope.showTab = num;
   };
+  var teal = '#54BC9E';
+  var violet = '#5854D3';
+  var rose = '#C95073';
+  var cloud = '#ecf0f1';
   $scope.pieChartData = [
       {label: "A", value: 10, color: "red", total: 100}, 
       {label: "B", value: 5, color: "black", total: 100},

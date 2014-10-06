@@ -37,7 +37,7 @@ Clicker is a web app that allows teachers to create questions to survey the clas
 
 **Frontend / JavaScript Team**
 
-- Quin Adney (@forwardinnovations)
+- Quin Adney (@quinadney)
 - Brian Patternson (@brianpatterson)
 
 **Backend / JavaScript Team**

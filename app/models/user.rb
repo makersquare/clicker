@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :class_groups, through: :memberships
   has_many :questions, through: :responses
+  has_one :session
 	
 	def self.create_with_omniauth(auth)
     create! do |user|
